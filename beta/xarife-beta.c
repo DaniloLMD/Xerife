@@ -23,7 +23,6 @@ void usar_estilo () {
 
 void mensagem (const char* text, const char* secundary) {
     GtkDialog *msg = GTK_DIALOG(gtk_builder_get_object(builder, "msg"));
-    //GtkWidget *msg = GTK_WIDGET(gtk_builder_get_object(builder, "msg"));
     g_object_set(msg, "text", text, NULL);
     g_object_set(msg, "secondary_text", secundary, NULL);
 
@@ -40,7 +39,7 @@ void on_submeter_clicked () {
     // função que vai rodar o codigo ficar aqui ex 1 sucesso 2 run time 3 compile error 4 time limit
     
 
-    switch (escrever(texto))
+    switch (julgar(texto))
     {
     case ACCEPTED:
         mensagem("ACCEPTED", ":)");
@@ -55,6 +54,10 @@ void on_submeter_clicked () {
         break;
     case RUNTIME_ERROR:
         mensagem("RUNTIME ERROR", ":-O");
+        break;
+
+    case TIME_LIMIT_EXCEEDED:
+        mensagem("TIME LIMIT EXCEEDED", "!!!");
         break;
     
     default:
