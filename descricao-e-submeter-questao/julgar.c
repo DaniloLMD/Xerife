@@ -93,13 +93,36 @@ int checa_resposta(const char* nome_arquivo_saida){
     FILE* resposta = fopen(path_saida, "r");
     FILE* resposta_usuario = fopen("arquivos/usuario_saidas/saida", "r");
     
-    char c = 0, c2 = 0;
     bool wrong_answer = false;
 
-    while(fscanf(resposta, "%c", &c) != EOF){
-        fscanf(resposta_usuario, "%c", &c2);
-        if(c != c2 && c2 != EOF){
+    int eof1, eof2;
+    char s1[500], s2[500];
+    while(1){
+
+        eof1 = fscanf(resposta, "%[^\n]%*c", s1);
+        eof2 = fscanf(resposta_usuario, "%[^\n]%*c", s2);
+
+        if(eof1 == EOF && eof2 == EOF){
+            break;
+        }
+
+        if(eof1 == EOF){
+            if(strcmp(s2, "\n") != 0){
                 wrong_answer = true;
+                break;
+            }
+            continue;
+        }
+        if(eof2 == EOF){
+            if(strcmp(s1, "\n") != 0){
+                wrong_answer = true;
+                break;
+            }
+            continue;
+        }
+
+        if(strcmp(s1, s2) != 0){
+            wrong_answer = true;
             break;
         }
     }

@@ -6,13 +6,12 @@ int main(){
 
     scanf("%d %d", &a, &b);
 
-    if(a == -1){
-        while(1){
-
-        }
+    if(b == 0){
+        return 58;   
     }
 
-    printf("%d.00\n",  a/b);
-    
+    //printf("%d.00\n",  a/b);
+    printf("%.2lf\n", (double) a/b);
+
     return 0;
 }

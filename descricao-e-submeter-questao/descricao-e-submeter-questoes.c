@@ -95,12 +95,16 @@ char* get_answer(const char* file_path, int caso_de_teste){
 }
 
 void mostrar_casos_de_testes(const char* file_path){
- 
+    
+
     int teste = 1;
     int qtd_testes = 6;
 
     GtkTreeIter iter;
     gtk_list_store_clear(list_store_casos_de_teste);
+
+    mensagem("JULGANDO", "Por favor aguarde");
+
     while(teste <= qtd_testes){
         gtk_list_store_append(list_store_casos_de_teste, &iter);
         gtk_list_store_set(list_store_casos_de_teste, &iter,
