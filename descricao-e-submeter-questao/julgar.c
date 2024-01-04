@@ -99,7 +99,7 @@ int checa_resposta(const char* nome_arquivo_saida){
     while(fscanf(resposta, "%c", &c) != EOF){
         fscanf(resposta_usuario, "%c", &c2);
         if(c != c2 && c2 != EOF){
-            wrong_answer = true;
+                wrong_answer = true;
             break;
         }
     }
@@ -154,12 +154,41 @@ int judge_c_file(int caso_de_teste){
     return checa_resposta(nome_saida);
 }
 
-int judge_python_file(int caso_de_teste){
-    char comando_executar[100];
-    g_snprintf(comando_executar, 100, "python3 arquivos/usuario_codigos/usuario.py < arquivos/entradas/%s > arquivos/saidas/%s", nome_entrada, nome_saida);
-    printf("comando = %s\n", comando_executar);
+int judge_cpp_file(int caso_de_teste){
 
+    char comando_executar[100] = "./arquivos/compilados/usuario_compilado < arquivos/entradas/";
+    strcat(comando_executar, nome_entrada);
+    strcat(comando_executar, " > arquivos/usuario_saidas/saida");
+    
+    int compilacao = system("g++ arquivos/usuario_codigos/usuario.cpp -o arquivos/compilados/usuario_compilado");
+
+    if(compilacao != 0){
+        vermelho
+        printf("COMPILATION ERROR\n");
+        normal
+        return COMPILATION_ERROR;
+    }//compilacao mal sucedida
+
+    bool tle;
+    int execucao;
+    checa_tle(&tle, &execucao, comando_executar);
+    if(tle){
+        amarelo
+        printf("TIME LIMIT EXCEEDED\n");
+        normal
+        return TIME_LIMIT_EXCEEDED;
+    }
+
+    if(execucao != 0){
+        amarelo
+        printf("RUNTIME ERROR\n");
+        normal
+        return RUNTIME_ERROR;
+    }//execucao mal sucedida
+    
+    return checa_resposta(nome_saida);
 }
+
 
 char* get_file_name_from_path(const char* path){
     char *file_name;
@@ -210,6 +239,7 @@ bool extension_compare(const char* extension_test){
 
 int julgar_arquivo(const char* file_path, int caso_de_teste){
 
+
     g_snprintf(nome_entrada, 5, "e%d", caso_de_teste);
     g_snprintf(nome_saida, 5, "s%d", caso_de_teste);
 
@@ -229,12 +259,7 @@ int julgar_arquivo(const char* file_path, int caso_de_teste){
         return judge_c_file(caso_de_teste);
     }
     else if(extension_compare("cpp")){
-        //IMPLEMENTAR
-        printf("arquivo c++\n");
-    }
-    else if(extension_compare("py")){
-        //IMPLEMENTAR
-        return judge_python_file(caso_de_teste);
+        return judge_cpp_file(caso_de_teste);
     }
     else {
         return INVALID_EXTENSION;

@@ -9,6 +9,7 @@ GtkListStore* list_store_casos_de_teste;
 GtkFileChooser* file_chooser;
 gchar* arquivo_usuario_path;
 GtkMessageDialog *mensagem_dialogo;
+
 //==========    outros   ================
 void mostrar_casos_de_testes(const char* file_path);
 
@@ -47,7 +48,10 @@ void on_stack_1_escolher_arquivo_file_chooser_file_activated(){
     arquivo_usuario_path = gtk_file_chooser_get_filename(file_chooser);
 
     if(julgar_arquivo(arquivo_usuario_path, 1) == INVALID_EXTENSION){
-        mensagem("AVISO", "Arquivo selecionado possui extensao invalida");
+        char* file_name = get_file_name_from_path(arquivo_usuario_path);
+        char texto[100];
+        g_snprintf(texto, 100, "Arquivo \"%s\" possui extensao invalida", file_name);
+        mensagem("AVISO", texto);
         return;
     }
 
@@ -86,16 +90,14 @@ char* get_answer(const char* file_path, int caso_de_teste){
         return "TIME LIMIT EXCEEDED";
     
     default:
-        return "SYSTEM ERROR";
+        return "ERROR";
     }
 }
 
 void mostrar_casos_de_testes(const char* file_path){
-    /*proximo_user->proximo = NULL;
-    proximo_user = cabecalho_user;*/
-
+ 
     int teste = 1;
-    int qtd_testes = 50;
+    int qtd_testes = 6;
 
     GtkTreeIter iter;
     gtk_list_store_clear(list_store_casos_de_teste);
@@ -103,16 +105,15 @@ void mostrar_casos_de_testes(const char* file_path){
         gtk_list_store_append(list_store_casos_de_teste, &iter);
         gtk_list_store_set(list_store_casos_de_teste, &iter,
             0, teste,
-            1, get_answer(file_path, teste%4),
+            1, get_answer(file_path, teste),
             -1
         );
-        //proximo_user = proximo_user->proximo;
         teste++;
     }
 }
 
 void on_stack_2_casos_de_teste_button_back_clicked(){
-    gtk_stack_set_visible_child_name(stack, "stack_1_escolher_arquivo");
+    gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
 }
 
 

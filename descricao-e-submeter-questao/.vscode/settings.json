@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "julgar.h": "c",
+        "iostream": "cpp"
+    }
+}
