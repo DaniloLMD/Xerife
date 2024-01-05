@@ -1,0 +1,233 @@
+#prompt {
+    border: 3px solid black;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: black;
+}
+
+#login {
+    background: rgba(128, 128, 128, 0.939);
+    padding: 150px;
+}
+
+#label_login {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    border-bottom: 3px solid black;
+    color: black;
+    font-weight: bolder;
+
+    font-size:  20px;
+}
+
+#grid_login {
+    padding:10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+
+    border: 3px solid black;
+}
+
+#entry_usu {
+    border-radius: 20px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.684);
+    border-top: 3px solid rgba(0, 0, 0, 0.684);
+    border-left: 3px solid rgba(255, 0, 0, 0.684);
+    border-right: 3px solid rgba(255, 0, 0, 0.684); 
+}
+
+#entry_senha {
+    border-radius: 20px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.684);
+    border-top: 3px solid rgba(0, 0, 0, 0.684);
+    border-left: 3px solid rgba(255, 0, 0, 0.684);
+    border-right: 3px solid rgba(255, 0, 0, 0.684); 
+}
+
+
+#Xerefi-login {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+#usu_login {
+    color: black;
+    border-top: 3px solid rgba(255, 0, 0, 0.684); 
+    border-left: 3px solid rgba(255, 0, 0, 0.684);
+    border-right: 3px solid rgba(255, 0, 0, 0.684);
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#senha_login {
+    color: black;
+    border-top: 3px solid rgba(255, 0, 0, 0.684); 
+    border-left: 3px solid rgba(255, 0, 0, 0.684);
+    border-right: 3px solid rgba(255, 0, 0, 0.684);
+    border-radius: 20px;
+
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#login-tela {
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    background:white;
+    color: black;
+
+}
+#bt_login {
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+#bt_login:hover{
+    opacity: 0.4;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 30px;
+    border: 3px solid red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+    color: red;
+    transition: ease-in-out 400ms;
+}
+#bt_cadastre_login {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+    
+}
+
+#bt_cadastre_login:hover {
+    opacity: 0.4;
+    font-weight: bolder;
+    font-size: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    transition: ease-in-out 400ms;
+    border: 3px solid red;
+}
+
+
+/*
+    css da página de cadastro começa aqui
+*/
+#cadastro {
+    background: rgba(128, 128, 128, 0.939);
+    padding: 150px;
+}
+
+#grid_cadastro {
+    background: white;
+    border: 3px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+}
+
+#xerife_log_cadastro {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+
+#cadastro_label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+
+#usuario_label_cadastro {
+    background: white;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+    border-bottom: 3px solid black;
+    border-left: 3px solid black;
+    border-radius: 20px;
+}
+
+#senha_label_cadastro {
+    background: white;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+    border-bottom: 3px solid black;
+    border-right: 3px solid black;
+    border-radius: 20px;
+}
+
+#centry_usu_cadastro {
+    border-radius: 20px;
+    border-top: 3px solid red;
+    border-right: 3px solid red;
+    border-bottom: rgba(255, 255, 255, 0);
+    border-left: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
+}
+
+#centry_senha_cadastro {
+    border-radius: 20px;
+    border-top: 3px solid red;
+    border-right: 3px solid red;
+    border-bottom: rgba(255, 255, 255, 0);
+    border-left: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
+}
+
+#cbt_enviar_cadastro {
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#cbt_enviar_cadastro:hover {
+    opacity: 0.4;
+    font-weight: bolder;
+    font-size: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    transition: ease-in-out 400ms;
+    border: 3px solid red;
+}
+
+#cbt_voltar_cadastro {
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#cbt_voltar_cadastro:hover {
+    opacity: 0.4;
+    font-weight: bolder;
+    font-size: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    transition: ease-in-out 400ms;
+    border: 3px solid red;
+    
+}
