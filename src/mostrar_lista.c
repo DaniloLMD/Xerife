@@ -1,4 +1,5 @@
 #include "../include/mostrar_lista.h"
+#include "../include/includes.h"
 
 lhead *lista_de_listas = NULL;
 lnode *ponteiro_atual = NULL;
@@ -129,6 +130,21 @@ int voltar_lista(GtkLabel *numero_questao, GtkLabel *titulo_quest) {
  * @param 
  * @return
  */
-int checar_lista_monitorada () {
-    return ponteiro_atual -> id;
+lista checar_lista_monitorada () {
+    lista lista_observada;
+    FILE *file = NULL;
+    char comando[200] = "";
+    char qtd[200];
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade%d.txt", ponteiro_atual -> id, ponteiro_atual -> id, ponteiro_atual -> id);
+    
+    file = fopen(comando, "r");
+    fscanf(file, "%[^\n]", qtd);
+    fclose(file);
+    
+    lista_observada.qtd_entrada_saida = 0;
+    lista_observada.numero_da_lista = 0;
+    lista_observada.numero_da_lista = ponteiro_atual -> id;
+    lista_observada.qtd_entrada_saida =  atoi(qtd);
+    
+    return lista_observada;
 }

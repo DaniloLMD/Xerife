@@ -19,7 +19,6 @@ _src: \
 		$(OBJ)/login.o \
 		$(OBJ)/struct_list.o \
 		$(OBJ)/mostrar_lista.o \
-		$(OBJ)/paths.o
 
 clean_apps:
 	rm -rf $(BIN)/*

@@ -1,3 +1,6 @@
+/*
+    css da página de login do projeto
+*/
 #prompt {
     border: 3px solid black;
     font-size: 20px;
@@ -8,7 +11,7 @@
 }
 
 #login {
-    background: rgba(128, 128, 128, 0.939);
+    background: #45214A;
     padding: 150px;
 }
 
@@ -27,24 +30,23 @@
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
-
     border: 3px solid black;
 }
 
 #entry_usu {
     border-radius: 20px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.684);
-    border-top: 3px solid rgba(0, 0, 0, 0.684);
-    border-left: 3px solid rgba(255, 0, 0, 0.684);
-    border-right: 3px solid rgba(255, 0, 0, 0.684); 
+    border-bottom: 3px solid black;
+    border-top: 3px solid  black;
+    border-left: 3px solid  black;
+    border-right: 3px solid black;
 }
 
 #entry_senha {
     border-radius: 20px;
-    border-bottom: 3px solid rgba(0, 0, 0, 0.684);
-    border-top: 3px solid rgba(0, 0, 0, 0.684);
-    border-left: 3px solid rgba(255, 0, 0, 0.684);
-    border-right: 3px solid rgba(255, 0, 0, 0.684); 
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black; 
 }
 
 
@@ -57,9 +59,9 @@
 }
 #usu_login {
     color: black;
-    border-top: 3px solid rgba(255, 0, 0, 0.684); 
-    border-left: 3px solid rgba(255, 0, 0, 0.684);
-    border-right: 3px solid rgba(255, 0, 0, 0.684);
+    border-top: 3px solid black; 
+    border-left: 3px solid black;
+    border-right: 3px solid black;
     border-radius: 20px;
     font-size: 18px;
     font-weight: bolder;
@@ -67,9 +69,9 @@
 
 #senha_login {
     color: black;
-    border-top: 3px solid rgba(255, 0, 0, 0.684); 
-    border-left: 3px solid rgba(255, 0, 0, 0.684);
-    border-right: 3px solid rgba(255, 0, 0, 0.684);
+    border-top: 3px solid black; 
+    border-left: 3px solid black;
+    border-right: 3px solid black;
     border-radius: 20px;
 
     font-size: 18px;
@@ -87,20 +89,19 @@
 }
 #bt_login {
     border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black
+    color: black;
 }
 #bt_login:hover{
-    opacity: 0.4;
+    opacity: 0.9;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: bolder;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
     font-size: 30px;
-    border: 3px solid red;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
-    color: red;
-    transition: ease-in-out 400ms;
+    background: #7f00001b;
 }
 #bt_cadastre_login {
     border-radius: 10px;
@@ -109,26 +110,24 @@
     font-weight: bolder;
     border: 3px solid black;
     color: black;
-    
 }
 
 #bt_cadastre_login:hover {
-    opacity: 0.4;
-    font-weight: bolder;
-    font-size: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
     font-family: Arial, Helvetica, sans-serif;
-    color: red;
-    transition: ease-in-out 400ms;
-    border: 3px solid red;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    background: #7f00001b;
 }
 
 
 /*
     css da página de cadastro começa aqui
 */
+
 #cadastro {
-    background: rgba(128, 128, 128, 0.939);
+    background:  #45214A;
     padding: 150px;
 }
 
@@ -158,6 +157,7 @@
 #usuario_label_cadastro {
     background: white;
     font-weight: bolder;
+    color: black;
     font-size: 20px;
     font-family: Helvetica, sans-serif;
     border-bottom: 3px solid black;
@@ -168,6 +168,7 @@
 #senha_label_cadastro {
     background: white;
     font-weight: bolder;
+    color: black;
     font-size: 20px;
     font-family: Helvetica, sans-serif;
     border-bottom: 3px solid black;
@@ -177,19 +178,19 @@
 
 #centry_usu_cadastro {
     border-radius: 20px;
-    border-top: 3px solid red;
-    border-right: 3px solid red;
-    border-bottom: rgba(255, 255, 255, 0);
-    border-left: rgba(255, 255, 255, 0);
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: black;
+    border-left: black;
     background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
 }
 
 #centry_senha_cadastro {
     border-radius: 20px;
-    border-top: 3px solid red;
-    border-right: 3px solid red;
-    border-bottom: rgba(255, 255, 255, 0);
-    border-left: rgba(255, 255, 255, 0);
+    border-top: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: black;
+    border-left: black;
     background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
 }
 
@@ -202,14 +203,12 @@
 }
 
 #cbt_enviar_cadastro:hover {
-    opacity: 0.4;
-    font-weight: bolder;
-    font-size: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
     font-family: Arial, Helvetica, sans-serif;
-    color: red;
-    transition: ease-in-out 400ms;
-    border: 3px solid red;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 25px;
+    background: #7f00001b;
 }
 
 #cbt_voltar_cadastro {
@@ -221,13 +220,197 @@
 }
 
 #cbt_voltar_cadastro:hover {
-    opacity: 0.4;
-    font-weight: bolder;
-    font-size: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
     font-family: Arial, Helvetica, sans-serif;
-    color: red;
-    transition: ease-in-out 400ms;
-    border: 3px solid red;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 25px;
+    background: #7f00001b;
+}
+
+/*
+    css da página de hub do projeto
+*/
+
+#main_hub {
+    padding: 80px;
+    background: #45214A;
     
+}
+
+#hub_title {
+    font-size: 35px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: black;
+}
+
+#bt_listas_ativas {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#bt_listas_ativas:hover{
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    background: #7f00001b;
+}
+
+#bt_cadastrar_lista {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#bt_cadastrar_lista:hover {
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    background: #7f00001b;
+}
+
+#bt_deslogar_hub {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+#bt_deslogar_hub:hover {
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    background: rgb(156, 0, 156);
+}
+#box_hub {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+    border: 3px solid black;
+}
+
+/*
+    css da página de cadastro
+*/
+
+#cadlista_hub {
+    padding: 80px;
+    background: #45214A;
+}
+
+#Label_cadastrar_lista {
+    font-size: 35px;
+    font-weight: bolder;
+    font-style: oblique;
+    color: black;
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+    border-top-left-radius: 10px;
+
+}
+
+#cadlista_box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+    border: 3px solid black;
+}
+
+#logo_cad_lista {
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
+
+#entry_nome_cad_lista {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#entry_numero_questao {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#entry_entrada_saidas_cad_lista {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#criar_list_bt {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#criar_list_bt:hover {
+    opacity: 0.9;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    background: rgb(156, 0, 156);
+}
+
+#label_nome_lista {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: black;
+}
+
+#label_numero_questao {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: black;
+}
+
+#label_quantidade_emtrada_saida {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: black;
+}
+
+#choose_file_enviar_desq {
+    border: 3px solid black;
+}
+
+#bt_enviar_desq_questao {
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
 }

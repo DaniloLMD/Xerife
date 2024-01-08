@@ -1,4 +1,5 @@
 #include "../include/cadastro.h"
+#include "../include/includes.h"
 
 /**
  * @brief Verifica se o nome de usuário já existe no sistema

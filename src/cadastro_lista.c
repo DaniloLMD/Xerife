@@ -1,5 +1,6 @@
 #include "../include/cadastro_lista.h"
 #include "gtk-3.0/gtk/gtk.h"
+#include "../include/includes.h"
 
 int qtd_lista = 0;
 
@@ -13,9 +14,12 @@ int qtd_lista = 0;
  */
 void cadastrar_nome_lista(char const *nome) {
     char nome_da_questao[100] = "";
+    char aux[200]= "";
     //construindo o caminho para abrir o arquivo
     char caminho[500];
-    strcpy(caminho, PATH_BANCO_LISTAS);
+    strcat(aux, PATH_BANCO_LISTAS);
+    strcat(aux, "/");
+    strcpy(caminho, aux);
     char pasta[500] = "lista";
     char nome_arq[500] =  "/nome_lista";
     //abrindo o arquivo que guarda a quantidade de listas no sistema
@@ -32,11 +36,13 @@ void cadastrar_nome_lista(char const *nome) {
     fclose(file);
     //copiando o nome da questão que está sendo cadastrada
     strcpy(nome_da_questao, nome);
-    //abrindo o arquivo que a questão vai ser gravada
+
+    ///abrindo o arquivo que a questão vai ser gravada
     FILE *arq = fopen(caminho, "a");
     fputs(nome_da_questao, arq);
     fputc('\n', arq);
     fclose(arq);
+
 };
 
 /**
@@ -59,6 +65,18 @@ void criar_pasta_lista () {
     fclose(file);
 }
 
+void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida) {
+    char comando[200] = "";
+    sprintf(comando, "mkdir dados/banco_listas/lista%d/qtd_entrada_saida%d", qtd_lista, qtd_lista);
+    system(comando);
+    strcpy(comando, "");
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade%d.txt", qtd_lista, qtd_lista, qtd_lista);
+    FILE *file = fopen(comando, "w");
+    fprintf(file, "%s\n", qtd_entrada_saida);
+    fclose(file);
+};
+
+
 /**
  * @brief Está função atualiza a quantidade total de listas cadastradas no sistema (qtd.txt)
  * @brief nome arquivo que recebe este dado
@@ -67,12 +85,15 @@ void criar_pasta_lista () {
 void atualizar_qtd_lista () {
     //abrindo e lendo a quantidade de listas no sistema
     FILE *file = NULL;
+
     file = fopen(PATH_QTD_TXT, "r");
     char quantidade[200] = "";
     int intquantidade = 0;
+    
     fscanf(file ,"%[^\n]", quantidade);
     intquantidade = atoi(quantidade);
     intquantidade++;
+    qtd_lista = intquantidade;
     fclose(file);
 
 
@@ -81,6 +102,7 @@ void atualizar_qtd_lista () {
     file = fopen(PATH_QTD_TXT, "w");
     fprintf(file, "%d\n", intquantidade);
     fclose(file);
+    
 }
 
 /**
@@ -93,8 +115,9 @@ void atualizar_qtd_lista () {
  *  
  * @return void 
  */
-void casdastrar_lista(const char *nome) {
+void casdastrar_lista(const char *nome, const char* qtd_entrada_saida) {
     atualizar_qtd_lista();
     criar_pasta_lista();
+    cria_past_qtd_entrada_saida(qtd_entrada_saida);
     cadastrar_nome_lista(nome);
 };

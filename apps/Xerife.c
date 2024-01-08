@@ -1,13 +1,12 @@
 #include "../include/xerife.h"
 #include <gtk-3.0/gtk/gtk.h>
 
-int lista_atual_monitorada = 0;
-
+lista Lista_atual_selecionada;
 
 GtkBuilder *builder;
 GtkWidget *window;
 GtkStack *stack;
-GtkListStore *list_store_casos_de_teste;
+//GtkListStore* list_store_casos_de_teste;
 
 //estes labels pertencem a página de carregar as listas
 GtkLabel *numero_questao;
@@ -44,13 +43,32 @@ void usar_estilo () {
             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION
     );
 }
+
 void on_sinal_clicked (){
     g_print("oii estou funcionando");
 }
+
 int main (int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new_from_file(PATH_XERIFE_GLADE);
+    //labels que pertencem a página de carregar questão
+    numero_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_numero_lista_exibir_lista"));
+    titulo_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_titulo_questao_exibir_lista"));
+    
+    //file chooser referentes a parte de cadastro de questao
+    desq_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_text_questao"));
+    entrada_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_entrada_questao"));
+    saida_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_saida_questao"));
+    file_chooser = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")); 
+
+
+    label_desq_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_desq_ques  tao"));
+
+    //stack e window do programa inteiro
+    stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
+    window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
+    //list_store_casos_de_teste = GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_casos_de_teste"));
 
     gtk_builder_add_callback_symbols( builder,
         "on_main_window_destroy", G_CALLBACK(on_main_window_destroy),
@@ -85,28 +103,12 @@ int main (int argc, char *argv[]) {
         "on_stack_2_casos_de_teste_button_back_clicked", G_CALLBACK(on_stack_2_casos_de_teste_button_back_clicked),
         "on_bt_lista_selecionada_entrar_clicked", G_CALLBACK(on_bt_lista_selecionada_entrar_clicked),
         "on_bt_ok_message_dialog_box_clicked", G_CALLBACK(on_bt_ok_message_dialog_box_clicked),
+        "on_bt_voltar_casos_de_teste_clicked", G_CALLBACK(on_bt_voltar_casos_de_teste_clicked),
         NULL
     );
 
     gtk_builder_connect_signals(builder, NULL);
 
-    //labels que pertencem a página de carregar questão
-    numero_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_numero_lista_exibir_lista"));
-    titulo_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_titulo_questao_exibir_lista"));
-    
-    //file chooser referentes a parte de cadastro de questao
-    desq_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_text_questao"));
-    entrada_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_entrada_questao"));
-    saida_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_saida_questao"));
-    file_chooser = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")); 
-
-
-    label_desq_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_desq_questao"));
-
-    //stack e window do programa inteiro
-    stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
-    window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
-    list_store_casos_de_teste = GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_casos_de_teste"));
     
     usar_estilo();
     gtk_widget_show_all(window);
@@ -224,9 +226,10 @@ void on_bt_cadastre_se_login_clicked () {
 void on_cad_lista_enviar_bt_clicked () {
     const char *nome_lista = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista")));
     qtd_questao = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista")));
-    
-    casdastrar_lista(nome_lista);
-    
+    qtd_entrada_saida = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista")));
+
+
+    casdastrar_lista(nome_lista, qtd_entrada_saida);
     
     //aqui carrego a lista com a pasta
     cadastro_descricao_questao(qtd_questao);
@@ -237,7 +240,7 @@ void on_cad_lista_enviar_bt_clicked () {
 
 void on_bt_avancar_exibir_listar_clicked () {
     int resposta = avancar_lista(numero_questao, titulo_questao);
-    lista_atual_monitorada = checar_lista_monitorada();
+    Lista_atual_selecionada = checar_lista_monitorada();
 
     switch (resposta)
     {
@@ -252,7 +255,7 @@ void on_bt_avancar_exibir_listar_clicked () {
 
 void on_bt_voltar_exibir_lista_clicked () {
     int resposta = voltar_lista(numero_questao, titulo_questao);
-    lista_atual_monitorada = checar_lista_monitorada();
+    Lista_atual_selecionada = checar_lista_monitorada();
     
     switch (resposta)
     {
@@ -266,6 +269,7 @@ void on_bt_voltar_exibir_lista_clicked () {
 }
 
 void on_bt_lista_selecionada_entrar_clicked () {
+    g_print("n_lista = %d , n_testes = %d\n", Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.qtd_entrada_saida);
     gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
 }
 
@@ -325,7 +329,7 @@ void on_stack_1_escolher_arquivo_file_chooser_confirm_overwrite(){}
 void on_stack_1_escolher_arquivo_file_chooser_file_activated(){
     arquivo_usuario_path = gtk_file_chooser_get_filename(file_chooser);
 
-    if(julgar_arquivo(arquivo_usuario_path, 1) == INVALID_EXTENSION){
+    if(extension_is_valid(arquivo_usuario_path) == false){
         char* file_name = get_file_name_from_path(arquivo_usuario_path);
         char texto[100];
         g_snprintf(texto, 100, "Arquivo \"%s\" possui extensao invalida", file_name);
@@ -333,10 +337,8 @@ void on_stack_1_escolher_arquivo_file_chooser_file_activated(){
         return;
     }
 
-    gtk_stack_set_visible_child_name(stack, "stack_2_casos_de_teste");
-    sleep(1);
     mostrar_casos_de_testes(arquivo_usuario_path);
-    
+    gtk_stack_set_visible_child_name(stack, "stack_2_casos_de_teste");
 }
 
 void on_stack_1_casos_de_teste_button_back_clicked(){
@@ -344,8 +346,8 @@ void on_stack_1_casos_de_teste_button_back_clicked(){
 }
 
 // stack de casos_de_teste
-char* get_answer(const char* file_path, int caso_de_teste){
-    switch (julgar_arquivo(file_path, caso_de_teste))
+char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste){
+    switch (julgar_arquivo(file_path, n_lista, n_questao, n_caso_de_teste))
     {
 
     case ACCEPTED:
@@ -371,26 +373,36 @@ char* get_answer(const char* file_path, int caso_de_teste){
 }
 
 void mostrar_casos_de_testes(const char* file_path){
-    
 
-    int teste = 1;
-    int qtd_testes = 6;
+    GtkListStore* list_store_casos_de_teste;
+    list_store_casos_de_teste =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_casos_de_teste"));
+    
+    
+    int teste = 1; //caso de teste atual
+
+    int n_lista = Lista_atual_selecionada.numero_da_lista;
+    int n_questao = 1;
+    int qtd_casos_de_teste = Lista_atual_selecionada.qtd_entrada_saida;
 
     GtkTreeIter iter;
     gtk_list_store_clear(list_store_casos_de_teste);
 
-    mensagem("JULGANDO", "Por favor aguarde");
 
-    while(teste <= qtd_testes){
+    
+    mensagem("JULGANDO", "Por favor aguarde");
+    while(teste <= qtd_casos_de_teste){
+        
         gtk_list_store_append(list_store_casos_de_teste, &iter);
-        gtk_list_store_set(list_store_casos_de_teste, &iter,
+        
+        gtk_list_store_set(
+            list_store_casos_de_teste, &iter,
             0, teste,
-            1, get_answer(file_path, teste),
+            1, get_answer(file_path, n_lista, n_questao, teste),
             -1
         );
         teste++;
     }
-}
+}   
 
 void on_stack_2_casos_de_teste_button_back_clicked(){
     gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
@@ -417,3 +429,7 @@ void on_file_chooser_saida_questao_confirm_overwrite (){};
 void on_file_chooser_saida_questao_file_activated () {
     caminho_saida_questao = gtk_file_chooser_get_filename(saida_questao);
 };
+
+void on_bt_voltar_casos_de_teste_clicked(){
+    gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
+}

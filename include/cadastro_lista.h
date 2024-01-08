@@ -2,7 +2,7 @@
 #define CASDASTRO_LISTA
 #include "includes.h"
 
-void casdastrar_lista(const char*);
+void casdastrar_lista(const char*, const char*);
 
 
 

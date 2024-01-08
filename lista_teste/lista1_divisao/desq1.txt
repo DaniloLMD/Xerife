@@ -1,0 +1,1 @@
+Faça um programa que leia dois números inteiros A e B e exiba na tela o resultado de A/B.

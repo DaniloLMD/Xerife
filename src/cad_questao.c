@@ -1,4 +1,5 @@
 #include "../include/cad_questao.h"
+#include "../include/includes.h"
 
 chead *lista = NULL;
 chead *lista_questao = NULL;
@@ -45,15 +46,13 @@ void cria_pastas_desq_questao (const char * qtd_questao) {
     fscanf(aqr, "%[^\n]", lista_atual);
     fclose(aqr);
     char caminho[100];
-    char caminho_aux[100];
 
-    strcpy(caminho, caminho_aux);
     /*
         este for vai caminhar pelos caminhos criando a quantidade x de pastas necessárias para 
         armazenar a quantidade de questões de cada lista x
     */
     for (int i = 1; i <= max_questao; i++) {
-        sprintf(caminho, "%s/lista%d/questao%d", PATH_BANCO_LISTAS, atoi(lista_atual), i);
+        sprintf(caminho, "mkdir %s/lista%d/questao%d/", PATH_BANCO_LISTAS, atoi(lista_atual), i);
         system(caminho);
     }
 
@@ -71,9 +70,9 @@ void cria_pastas_entrada_saida (const char *qtd_questao) {
     int max_questao = atoi(qtd_questao);
 
     for (int i = 1; i <= max_questao; i++) {
-        sprintf(caminho, "%s/lista%d/questao%d/entrada%d", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
+        sprintf(caminho, "mkdir %s/lista%d/questao%d/entrada%d/", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
         system(caminho);
-        sprintf(caminho, "%s/lista%d/questao%d/saida%d", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
+        sprintf(caminho, "mkdir %s/lista%d/questao%d/saida%d/", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
         system(caminho);
     }
 }

@@ -5,6 +5,7 @@
         "cad_questao.h": "c",
         "gtk.h": "c",
         "login.h": "c",
-        "includes.h": "c"
+        "includes.h": "c",
+        "julgar.h": "c"
     }
 }

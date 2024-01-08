@@ -77,8 +77,10 @@ void on_stack_2_casos_de_teste_button_back_clicked();
 
 void mostrar_casos_de_testes(const char*);
 
-char* get_answer(const char*, int);
+char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste);
 
 void on_bt_ok_message_dialog_box_clicked(); 
+
+void on_bt_voltar_casos_de_teste_clicked();
 
 #endif
