@@ -67,33 +67,30 @@ void carregar_listas_ativas() {
     ponteiro_atual = lista_de_listas -> begin;
 };
 
+void atualizar_label(GtkLabel *labelx, char *texto) {
+    gtk_label_set_text(labelx, texto);
+}
+
+void iniciar_label(GtkLabel* numero_da_questao, GtkLabel* titulo_da_questao) {
+    char texto[200];
+    sprintf(texto, "lista %d", ponteiro_atual -> id);
+    atualizar_label(numero_da_questao, texto);
+    atualizar_label(titulo_da_questao, ponteiro_atual -> titulo);
+};
+
+
 /**
  * @brief 
  * @param 
  * @return
  */
 int avancar_lista(GtkLabel *numero_questao, GtkLabel *titulo_quest) {
-    char numero_lista[200] = "";
-    if (lista_de_listas -> tamanho == 0) {
-        gtk_label_set_text(numero_questao, "Nenhuma lista cadatrada");
-        gtk_label_set_text(titulo_quest, "vazio");
-        return 2;
-    } else {
-        sprintf(numero_lista, "Lista (%d)", ponteiro_atual -> id);
-        if (ponteiro_atual != lista_de_listas -> end) {
-            gtk_label_set_text(titulo_quest, ponteiro_atual -> titulo);
-            gtk_label_set_text(numero_questao, numero_lista);
-            ponteiro_atual = ponteiro_atual -> next; 
+    char texto[200] = "";
+    ponteiro_atual = ponteiro_atual -> next;
+    sprintf(texto, "Lista (%d)", ponteiro_atual -> id);
 
-            return 0;
-        } else {
-            gtk_label_set_text(titulo_quest, "ultima lista");
-            gtk_label_set_text(titulo_quest, lista_de_listas -> end -> titulo);
-            gtk_label_set_text(numero_questao, numero_lista);
-            return 1;
-
-        }
-    }
+    atualizar_label(titulo_quest, ponteiro_atual -> titulo);
+    atualizar_label(numero_questao, texto);
 };
 
 /**
@@ -102,27 +99,12 @@ int avancar_lista(GtkLabel *numero_questao, GtkLabel *titulo_quest) {
  * @return
  */
 int voltar_lista(GtkLabel *numero_questao, GtkLabel *titulo_quest) {
-    char numero_lista[200] = "";
-    if (lista_de_listas -> tamanho == 0) {
-        gtk_label_set_text(numero_questao, "Nenhuma lista cadatrada");
-        gtk_label_set_text(titulo_quest, "vazio");
-        return 2;
-    } else {
-        sprintf(numero_lista, "Lista (%d)", ponteiro_atual -> id);
-        if(ponteiro_atual != lista_de_listas -> begin) {    
-            gtk_label_set_text(titulo_quest, ponteiro_atual -> titulo);
-            gtk_label_set_text(numero_questao, numero_lista);
-            ponteiro_atual = ponteiro_atual -> prev;
-            
-            return 0;
-
-        }else {
-            gtk_label_set_text(titulo_quest, "Primeira lista");
-            gtk_label_set_text(titulo_quest, lista_de_listas -> begin -> titulo);
-            gtk_label_set_text(numero_questao, numero_lista);
-            return 1;
-        }
-    }
+    char texto[200] = "";   
+    ponteiro_atual = ponteiro_atual -> prev;
+    
+    sprintf(texto, "Lista (%d)", ponteiro_atual -> id);
+    atualizar_label(titulo_quest, ponteiro_atual -> titulo);
+    atualizar_label(numero_questao, texto);
 };
 
 /**
@@ -130,21 +112,33 @@ int voltar_lista(GtkLabel *numero_questao, GtkLabel *titulo_quest) {
  * @param 
  * @return
  */
-lista checar_lista_monitorada () {
-    lista lista_observada;
+llista checar_lista_monitorada () {
+    llista lista_observada;
     FILE *file = NULL;
     char comando[200] = "";
     char qtd[200];
+    char qtd_de_questoes[200];
     sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade%d.txt", ponteiro_atual -> id, ponteiro_atual -> id, ponteiro_atual -> id);
     
     file = fopen(comando, "r");
     fscanf(file, "%[^\n]", qtd);
     fclose(file);
     
+    strcpy(comando, "");
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade_questoes%d.txt", ponteiro_atual -> id, ponteiro_atual -> id, ponteiro_atual -> id);
+    file = fopen(comando, "r");
+    fscanf(file, "%[^\n]", qtd_de_questoes);
+    fclose(file);
+    
     lista_observada.qtd_entrada_saida = 0;
     lista_observada.numero_da_lista = 0;
+    lista_observada.quantidade_de_questoes = 0;
+    lista_observada.numero_da_questao = 0;
     lista_observada.numero_da_lista = ponteiro_atual -> id;
     lista_observada.qtd_entrada_saida =  atoi(qtd);
-    
+
+    lista_observada.quantidade_de_questoes = atoi(qtd_de_questoes);
+
+
     return lista_observada;
 }

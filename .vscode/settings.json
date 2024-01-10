@@ -6,6 +6,8 @@
         "gtk.h": "c",
         "login.h": "c",
         "includes.h": "c",
-        "julgar.h": "c"
+        "julgar.h": "c",
+        "pthread.h": "c",
+        "mostrar_questao.h": "c"
     }
 }

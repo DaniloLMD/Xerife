@@ -430,30 +430,12 @@
               <object class="GtkLabel" id="label_pag_enviar_desq_questao">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Selecione o arquivo que contém o .txt da questão </property>
+                <property name="label" translatable="yes">Selecione o arquivo que contém o .txt da questão 1</property>
                 <property name="justify">center</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bt_enviar_cad_enunciado_questao">
-                <property name="label" translatable="yes">enviar</property>
-                <property name="name">bt_enviar_desq_questao</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="margin-start">160</property>
-                <property name="margin-end">160</property>
-                <property name="margin-top">200</property>
-                <property name="margin-bottom">200</property>
-                <signal name="clicked" handler="on_bt_enviar_cad_enunciado_questao_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
               </packing>
             </child>
             <child>
@@ -470,6 +452,9 @@
                 <property name="left-attach">1</property>
                 <property name="top-attach">1</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -511,10 +496,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="label_pag_enviar_entrada">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Escolha o arquivo .txt da entrada x</property>
+                <property name="label" translatable="yes">Escolha o arquivo .txt da entrada 1</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -522,29 +507,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel">
+              <object class="GtkLabel" id="label_pag_enviar_saida">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Escolha o arquivo .txt da saida x</property>
+                <property name="label" translatable="yes">Escolha o arquivo .txt da saida 1</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="bt_enviar_entrada_saida">
-                <property name="label" translatable="yes">enviar</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <signal name="clicked" handler="on_bt_enviar_entrada_saida_clicked" swapped="no"/>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">2</property>
               </packing>
             </child>
             <child>
@@ -559,6 +529,17 @@
               </object>
               <packing>
                 <property name="left-attach">1</property>
+                <property name="top-attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_questao_cad_entrada_saida">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">questão atual 1</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
                 <property name="top-attach">2</property>
               </packing>
             </child>
@@ -605,7 +586,7 @@
               <object class="GtkLabel" id="label_numero_lista_exibir_lista">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Lista-x</property>
+                <property name="label" translatable="yes">Lista 1</property>
               </object>
               <packing>
                 <property name="left-attach">0</property>
@@ -616,7 +597,7 @@
               <object class="GtkLabel" id="label_titulo_questao_exibir_lista">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">titulo-x</property>
+                <property name="label" translatable="yes">titulo 1</property>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -673,13 +654,14 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton">
-                <property name="label" translatable="yes">Não sei</property>
+              <object class="GtkButton" id="bt_lista_ativa_sair">
+                <property name="label" translatable="yes">Sair</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+                <signal name="clicked" handler="on_bt_lista_ativa_sair_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
@@ -866,7 +848,6 @@
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
-            <property name="homogeneous">True</property>
             <child>
               <object class="GtkLabel" id="numero-questao">
                 <property name="visible">True</property>
@@ -880,39 +861,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="descricao-questa">
+              <object class="GtkLabel" id="enunciado_questao">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Faça X e Y</property>
               </object>
               <packing>
-                <property name="expand">False</property>
+                <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">label</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">label</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -922,6 +879,65 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <signal name="clicked" handler="on_button_submeter_questao_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkButton" id="bt_back_descricao_questao">
+                    <property name="label">gtk-go-back</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <property name="always-show-image">True</property>
+                    <signal name="clicked" handler="on_bt_back_descricao_questao_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="bt_descricao_questao_sair">
+                    <property name="label" translatable="yes">Sair</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_bt_descricao_questao_sair_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="bt_forward_descricao_questao">
+                    <property name="label">gtk-go-forward</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <property name="image-position">right</property>
+                    <property name="always-show-image">True</property>
+                    <signal name="clicked" handler="on_bt_forward_descricao_questao_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1047,25 +1063,6 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="cad_lista_enviar_bt">
-                    <property name="label" translatable="yes">criar</property>
-                    <property name="name">criar_list_bt</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">True</property>
-                    <property name="receives-default">True</property>
-                    <property name="margin-start">100</property>
-                    <property name="margin-end">100</property>
-                    <property name="margin-top">15</property>
-                    <property name="margin-bottom">15</property>
-                    <signal name="clicked" handler="on_cad_lista_enviar_bt_clicked" swapped="no"/>
-                  </object>
-                  <packing>
-                    <property name="left-attach">0</property>
-                    <property name="top-attach">4</property>
-                    <property name="width">2</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkLabel">
                     <property name="name">label_nome_lista</property>
                     <property name="visible">True</property>
@@ -1113,15 +1110,59 @@
                     <property name="top-attach">0</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="homogeneous">True</property>
+                    <child>
+                      <object class="GtkButton" id="bt_voltar_cadlista">
+                        <property name="label" translatable="yes">Voltar</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <signal name="clicked" handler="on_bt_voltar_cadlista_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="cad_lista_enviar_bt">
+                        <property name="label" translatable="yes">criar</property>
+                        <property name="name">criar_list_bt</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="margin-left">100</property>
+                        <property name="margin-right">100</property>
+                        <property name="margin-start">100</property>
+                        <property name="margin-end">100</property>
+                        <property name="margin-top">15</property>
+                        <property name="margin-bottom">15</property>
+                        <signal name="clicked" handler="on_cad_lista_enviar_bt_clicked" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">4</property>
+                    <property name="width">2</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>

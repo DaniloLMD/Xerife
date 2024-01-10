@@ -1,0 +1,43 @@
+        O banco inteligente
+
+Os atuais caixas automáticos dos bancos, ou ATMs – Automated Teller Machines, são uma ótima inven-
+ção mas, às vezes, precisamos de dinheiro trocado e a máquina nos entrega notas de R$100,00. Noutras
+
+vezes, desejamos sacar um valor um pouco maior e, por questão de segurança, gostaríamos de receber todo
+o valor em notas de R$100,00, mas a máquina nos entrega um monte de notas de R$20,00.
+Para conquistar clientes, o Banco Inteligente (BI) está tentando minimizar este problema dando aos
+clientes a possibilidade de escolher o valor das notas na hora do saque. Para isso, eles precisam da sua ajuda
+para saber a resposta para a seguinte questão: dado um determinado valor S de saque (em reais) e quantas
+notas de cada valor a máquina tem, qual é o número de maneiras distintas que há para entregar o valor S ao
+cliente?
+Sabe-se que nas ATMs do BI há escaninhos para notas de 2, 5, 10, 20, 50 e de 100 reais.
+Por exemplo, suponha que para certo cliente X tenha-se que S = 22 e que o número de notas de cada valor
+presente na ATM no momento da solicitação deste saque é:
+N2 = 5
+N5 = 4
+N10 = 3
+N20 = 10
+N100 = 10
+
+
+Assim, há QUATRO maneiras distintas da máquina entregar o valor do saque solicitado:
+1a : uma nota de R$20,00 e uma nota de R$2,00 (duas notas);
+2a : duas notas de R$10,00 e uma nota de R$2,00 (três notas);
+3a : uma nota de R$10,00, duas notas de R$5,00 e uma nota de R$2,00 (quatro notas);
+4a : quatro notas de R$5,00 e uma nota de R$2,00 (cinco notas).
+
+Tarefa
+Escrever, em C, um programa que seja capaz de determinar o número de maneiras possíveis de atender
+à solicitação de saque do cliente.
+
+
+Entrada
+A primeira linha da entrada contém o número natural S expressando, em reais, o valor do saque desejado.
+A segunda linha contém seis inteiros N2, N5, N10, N20, N50 e N100, respectivamente, indicando o número de
+notas de 2, 5, 10, 20, 50 e 100 reais disponíveis na ATM no momento do saque. Os números estão separados
+por um único espaço em branco entre eles.
+Saída
+Seu programa deve imprimir um único número natural: a quantidade de maneiras distintas da máquina
+atender ao saque solicitado.
+Restrições
+• 0 ≤ S ≤ 5000 e Ni ≤ 500, ∀i ∈ {2,5,10,20,50,100}.

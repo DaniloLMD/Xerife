@@ -8,6 +8,7 @@
 #include "mostrar_lista.h"
 #include "cad_questao.h"
 #include "julgar.h"
+#include "mostrar_questao.h"
 
 void on_bt_submeter_pagina_questao_clicked ();
 
@@ -39,8 +40,6 @@ void on_bt_ir_cadastrar_lista_clicked();
 
 void on_bt_mostrar_listas_ativas_clicked ();
 
-void on_bt_enviar_cad_enunciado_questao_clicked ();
-
 void on_file_chooser_text_questao_confirm_overwrite ();
 
 void on_file_chooser_text_questao_file_activated ();
@@ -58,8 +57,6 @@ void bt_enviar_entrada_saida ();
 void bt_proxima_questao_cad_desq_pag();
 
 void bt_proxima_questao_cad_enviar_desq_pag();
-
-void on_bt_enviar_entrada_saida_clicked();
 
 void on_bt_proxima_questao_entrada_saida_clicked();
 
@@ -82,5 +79,15 @@ char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_d
 void on_bt_ok_message_dialog_box_clicked(); 
 
 void on_bt_voltar_casos_de_teste_clicked();
+
+void on_bt_back_descricao_questao_clicked();
+
+void on_bt_forward_descricao_questao_clicked();
+
+void on_bt_descricao_questao_sair_clicked();
+
+void on_bt_lista_ativa_sair_clicked();
+
+void on_bt_voltar_cadlista_clicked();
 
 #endif

@@ -1,13 +1,8 @@
-//arquivo para submeter as questoes para testar
-
 #include <stdio.h>
+#include <math.h>
 
-int main(){
-
-    int a, b;
-    scanf("%d %d", &a, &b);
-
-    printf("%d", a/b);
-
+int main () 
+{ 
+    printf("Hello, World!\n");
     return 0;
 }

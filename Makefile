@@ -19,6 +19,7 @@ _src: \
 		$(OBJ)/login.o \
 		$(OBJ)/struct_list.o \
 		$(OBJ)/mostrar_lista.o \
+		$(OBJ)/mostrar_questao.o
 
 clean_apps:
 	rm -rf $(BIN)/*
@@ -34,3 +35,8 @@ $(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
 
 $(BIN)/%: $(APPS)/%.c
 	gcc $< $(OBJ)/*.o -I $(INCLUDE) -o $@ $(GTK_FLAGS) $(MULTIPLE_FLAGS)
+
+
+a:
+	rm _luis/* -rf
+	cp * _luis/ -rf

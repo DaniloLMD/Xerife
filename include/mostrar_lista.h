@@ -10,6 +10,8 @@ int avancar_lista(GtkLabel*, GtkLabel*);
 
 int voltar_lista(GtkLabel*, GtkLabel*);
 
-lista checar_lista_monitorada();
+llista checar_lista_monitorada();
+
+void iniciar_label(GtkLabel*, GtkLabel*);
 
 #endif

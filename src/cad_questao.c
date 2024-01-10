@@ -1,6 +1,8 @@
 #include "../include/cad_questao.h"
 #include "../include/includes.h"
 
+
+ 
 chead *lista = NULL;
 chead *lista_questao = NULL;
 cnode *aux = NULL;
@@ -27,7 +29,7 @@ void criar_carregar_lista(const char *qtd_questao) {
  * @param const_char* quantidade de entrada e saidas da lista 
  * @return void
  */
-void criar_carregar_lista_entrada_saoida(const char *qtd_entrada_saida) {
+void criar_carregar_lista_entrada_saida(const char *qtd_entrada_saida) {
     lista_questao = criar_c_lista();
     for (int i = 1; i <= atoi(qtd_entrada_saida); i++) {
         adicionar_c_fim(lista_questao, i);
@@ -122,18 +124,37 @@ int proxima_questao () {
     }    
 };
 
-/**
- * @brief está função copia os dados fornecidos nos caminhos para as pastas \n que foram criadas para recebê-los
- * @param gchar* caminho_entrada
- * @param gchar* caminho_saida
- * @return void
- */
-void gravar_arquivo_entrada_saida (gchar *caminho_entrada, gchar *caminho_saida) {
+void atualizar_text_label(GtkLabel *text, char c) {
+    char texto[100];
+    if (c == 'q') {
+        sprintf(texto, "questão atual %d", aux -> numero_questao);
+        gtk_label_set_text(text, texto);
+    }
+    if (c == 'd') {
+        sprintf(texto, "Selecione o .txt que contem a descrição da questão %d", aux -> numero_questao);
+        gtk_label_set_text(text, texto);
+        return;
+    }
+    if (c == 'e') {
+        sprintf(texto, "Selecione o .txt que contem a entrada %d", aux_entrada_saida -> numero_questao);
+        gtk_label_set_text(text, texto);
+
+        return;
+    }
+    if (c == 's') {
+        sprintf(texto, "Selecione o .txt que contem a saida %d", aux_entrada_saida -> numero_questao);
+        gtk_label_set_text(text, texto);
+
+        return;
+    }
+}
+
+void gravar_arquivo_entrada (gchar* caminho_entrada) {
     char caminho_destino[100];
     char caminho_final[300] = "cp ";
 
-    sprintf(caminho_destino, " %s/lista%d/questao%d/entrada%d/", PATH_BANCO_LISTAS, atoi(lista_atual),
-        aux -> numero_questao, aux -> numero_questao 
+    sprintf(caminho_destino, " %s/lista%d/questao%d/entrada%d/entrada%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
+        aux -> numero_questao, aux -> numero_questao, aux_entrada_saida -> numero_questao
     );
     
     strcat(caminho_final, (char*) caminho_entrada);
@@ -141,16 +162,26 @@ void gravar_arquivo_entrada_saida (gchar *caminho_entrada, gchar *caminho_saida)
 
     system(caminho_final);
 
-    sprintf(caminho_destino, " %s/lista%d/questao%d/saida%d/", PATH_BANCO_LISTAS, atoi(lista_atual),
-        aux -> numero_questao, aux -> numero_questao 
+}
+
+/**
+ * @brief está função copia os dados fornecidos nos caminhos para as pastas \n que foram criadas para recebê-los
+ * @param gchar* caminho_entrada
+ * @param gchar* caminho_saida
+ * @return void
+ */
+void gravar_arquivo_saida (gchar *caminho_saida) {
+    char caminho_destino[100];
+    char caminho_final[300] = "cp ";
+
+    sprintf(caminho_destino, " %s/lista%d/questao%d/saida%d/saida%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
+        aux -> numero_questao, aux -> numero_questao, aux_entrada_saida -> numero_questao
     );
 
-    char caminho_final2[300] = "cp ";
+    strcat(caminho_final, (char*) caminho_saida);
+    strcat(caminho_final, caminho_destino);
 
-    strcat(caminho_final2, (char*) caminho_saida);
-    strcat(caminho_final2, caminho_destino);
-
-    system(caminho_final2);
+    system(caminho_final);
 
 }
 

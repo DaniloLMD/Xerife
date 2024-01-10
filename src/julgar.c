@@ -12,7 +12,7 @@
 #define verde printf("\e[1;32m");
 #define amarelo printf("\e[1;33m");
 
-typedef char bool;
+//typedef char bool;
 #define true 1
 #define false 0
 
@@ -84,7 +84,7 @@ void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execu
 int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 
     char path_saida[300];       // = "arquivos/saidas/";
-    snprintf(path_saida, 300, "%s/lista%d/questao%d/saida%d/saida%d",
+    snprintf(path_saida, 300, "%s/lista%d/questao%d/saida%d/saida%d.txt",
         PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
     );
 
@@ -129,15 +129,9 @@ int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
     fclose(resposta_usuario);
 
     if(wrong_answer == true){
-        vermelho
-        printf("WRONG ANSWER\n");
-        normal
         return WRONG_ANSWER;
     }//resposta errada
     else{
-        verde
-        printf("ACCEPTED!\n");
-        normal
         return ACCEPTED;
     }//resposta certa
 
@@ -147,11 +141,12 @@ int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
 
     //montando o comando para executar o arquivo
     char comando_executar[300];
-    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada%d/entrada%d",
+    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada%d/entrada%d.txt",
         PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
         PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
     );
 
+    
     //montando o comando para compilar o arquivo
     char comando_compilar[300];
     snprintf(comando_compilar, 300, "gcc %s%s -o %s", PATH_CODIGO_USUARIO, file_extension, PATH_COMPILADO_USUARIO);
@@ -160,9 +155,6 @@ int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
     int compilacao = system(comando_compilar);
 
     if(compilacao != 0){
-        vermelho
-        printf("COMPILATION ERROR\n");
-        normal
         return COMPILATION_ERROR;
     }//compilacao mal sucedida
 
@@ -170,56 +162,49 @@ int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
     int execucao;
     checa_tle(&tle, &execucao, comando_executar);
 if(tle){
-        amarelo
-        printf("TIME LIMIT EXCEEDED\n");
-        normal
         return TIME_LIMIT_EXCEEDED;
     }
 
     if(execucao != 0){
-        amarelo
-        printf("RUNTIME ERROR\n");
-        normal
         return RUNTIME_ERROR;
     }//execucao mal sucedida
     
     return checa_resposta(n_lista, n_questao, n_caso_de_teste);
 }
 
-/*int judge_cpp_file(int caso_de_teste){
+int judge_cpp_file(int n_lista, int n_questao, int n_caso_de_teste){
 
-    char comando_executar[100] = "./arquivos/compilados/usuario_compilado < arquivos/entradas/";
-    strcat(comando_executar, nome_entrada);
-    strcat(comando_executar, " > arquivos/usuario_saidas/saida");
+    //montando o comando para executar o arquivo
+    char comando_executar[300];
+    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada%d/entrada%d.txt",
+        PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
+        PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
+    );
+
+    //montando o comando para compilar o arquivo
+    char comando_compilar[300];
+    snprintf(comando_compilar, 300, "g++ %s%s -o %s", PATH_CODIGO_USUARIO, file_extension, PATH_COMPILADO_USUARIO);
     
-    int compilacao = system("g++ arquivos/usuario_codigos/usuario.cpp -o arquivos/compilados/usuario_compilado");
+
+    int compilacao = system(comando_compilar);
 
     if(compilacao != 0){
-        vermelho
-        printf("COMPILATION ERROR\n");
-        normal
         return COMPILATION_ERROR;
     }//compilacao mal sucedida
 
     bool tle;
     int execucao;
     checa_tle(&tle, &execucao, comando_executar);
-    if(tle){
-        amarelo
-        printf("TIME LIMIT EXCEEDED\n");
-        normal
+if(tle){
         return TIME_LIMIT_EXCEEDED;
     }
 
     if(execucao != 0){
-        amarelo
-        printf("RUNTIME ERROR\n");
-        normal
         return RUNTIME_ERROR;
     }//execucao mal sucedida
     
-    return checa_resposta(nome_saida);
-}*/ 
+    return checa_resposta(n_lista, n_questao, n_caso_de_teste);
+}
 
 
 char* get_file_name_from_path(const char* path){
@@ -291,9 +276,9 @@ int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso
     if(extension_compare("c")){
         return judge_c_file(n_lista, n_questao, n_caso_de_teste);
     }
-    /*else if(extension_compare("cpp")){
-        return judge_cpp_file(n_caso_de_teste);
-    }*/
+    else if(extension_compare("cpp")){
+        return judge_cpp_file(n_lista, n_questao, n_caso_de_teste);
+    }
     else {
         return INVALID_EXTENSION;
     }
@@ -309,9 +294,9 @@ int extension_is_valid(const char* arquivo_path){
     if(extension_compare("c")){
         return true;
     }
-    /*else if(extension_compare("cpp")){
-        return judge_cpp_file(n_caso_de_teste);
-    }*/
+    else if(extension_compare("cpp")){
+        return true;
+    }
 
     return false;
 }

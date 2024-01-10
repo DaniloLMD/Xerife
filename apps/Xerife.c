@@ -1,11 +1,22 @@
 #include "../include/xerife.h"
 #include <gtk-3.0/gtk/gtk.h>
 
-lista Lista_atual_selecionada;
+llista Lista_atual_selecionada;
+
+//labels da parte de exibir questao
+GtkLabel* label_n_questao;
+GtkLabel* label_enunciado_questao;
 
 GtkBuilder *builder;
 GtkWidget *window;
 GtkStack *stack;
+
+//labels referentes a pagina de registrar questão
+GtkLabel *label_pag_enviar_desq_questao;
+GtkLabel *label_pag_enviar_entrada;
+GtkLabel *label_pag_enviar_saida;
+GtkLabel *label_questao_cad_entrada_saida;
+
 //GtkListStore* list_store_casos_de_teste;
 
 //estes labels pertencem a página de carregar as listas
@@ -25,8 +36,6 @@ gchar *caminho_desq_questao;
 gchar *caminho_entrada_questao;
 gchar *caminho_saida_questao;
 gchar* arquivo_usuario_path;
-
-GtkLabel *label_desq_questao;
 
 GtkMessageDialog *prompt;
 
@@ -62,8 +71,9 @@ int main (int argc, char *argv[]) {
     saida_questao = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_saida_questao"));
     file_chooser = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")); 
 
-
-    label_desq_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_desq_ques  tao"));
+    //labels da parte de mostrar questao
+    label_n_questao = GTK_LABEL(gtk_builder_get_object(builder, "numero-questao"));
+    label_enunciado_questao = GTK_LABEL(gtk_builder_get_object(builder, "enunciado_questao"));
 
     //stack e window do programa inteiro
     stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
@@ -85,7 +95,6 @@ int main (int argc, char *argv[]) {
         "on_deslogar_clicked", G_CALLBACK(on_deslogar_clicked),
         "on_bt_ir_cadastrar_lista_clicked", G_CALLBACK(on_bt_ir_cadastrar_lista_clicked),
         "on_bt_mostrar_listas_ativas_clicked", G_CALLBACK(on_bt_mostrar_listas_ativas_clicked),
-        "on_bt_enviar_cad_enunciado_questao_clicked", G_CALLBACK(on_bt_enviar_cad_enunciado_questao_clicked),
         "on_file_chooser_text_questao_confirm_overwrite", G_CALLBACK(on_file_chooser_text_questao_confirm_overwrite),
         "on_file_chooser_text_questao_file_activated", G_CALLBACK(on_file_chooser_text_questao_file_activated),
         "on_file_chooser_entrada_questao_confirm_overwrite", G_CALLBACK(on_file_chooser_entrada_questao_confirm_overwrite),
@@ -95,7 +104,6 @@ int main (int argc, char *argv[]) {
         "bt_enviar_entrada_saida", G_CALLBACK(bt_enviar_entrada_saida),
         "bt_proxima_questao_cad_enviar_desq_pag", G_CALLBACK(bt_proxima_questao_cad_enviar_desq_pag),
         "on_bt_proxima_questao_entrada_saida_clicked", G_CALLBACK(on_bt_proxima_questao_entrada_saida_clicked),
-        "on_bt_enviar_entrada_saida_clicked", G_CALLBACK(on_bt_enviar_entrada_saida_clicked),
         "on_button_submeter_questao_clicked", G_CALLBACK(on_button_submeter_questao_clicked),
         "on_stack_1_escolher_arquivo_file_chooser_confirm_overwrite", G_CALLBACK(on_stack_1_escolher_arquivo_file_chooser_confirm_overwrite),
         "on_stack_1_escolher_arquivo_file_chooser_file_activated",   G_CALLBACK(on_stack_1_escolher_arquivo_file_chooser_file_activated),
@@ -104,6 +112,11 @@ int main (int argc, char *argv[]) {
         "on_bt_lista_selecionada_entrar_clicked", G_CALLBACK(on_bt_lista_selecionada_entrar_clicked),
         "on_bt_ok_message_dialog_box_clicked", G_CALLBACK(on_bt_ok_message_dialog_box_clicked),
         "on_bt_voltar_casos_de_teste_clicked", G_CALLBACK(on_bt_voltar_casos_de_teste_clicked),
+        "on_bt_back_descricao_questao_clicked", G_CALLBACK(on_bt_back_descricao_questao_clicked), 
+        "on_bt_forward_descricao_questao_clicked", G_CALLBACK(on_bt_forward_descricao_questao_clicked),
+        "on_bt_descricao_questao_sair_clicked", G_CALLBACK(on_bt_descricao_questao_sair_clicked),
+        "on_bt_lista_ativa_sair_clicked", G_CALLBACK(on_bt_lista_ativa_sair_clicked),
+        "on_bt_voltar_cadlista_clicked", G_CALLBACK(on_bt_voltar_cadlista_clicked),
         NULL
     );
 
@@ -155,7 +168,7 @@ void on_bt_enviar_cadastro_clicked () {
         }
     }
 
-    else if (strlen(usuario) > 200 || strlen(senha) > 200) {
+    else if (strlen(usuario) > 30 || strlen(senha) > 30) {
         mensagem("Limite de caracteres excedido", "no maximo 200 caracteres para senha e nome de usuário\n tente novamente"); 
         gtk_entry_set_text(eusuario, "");
         gtk_entry_set_text(esenha, "");
@@ -171,6 +184,11 @@ void on_bt_enviar_cadastro_clicked () {
             gtk_entry_set_text(eusuario, "");
             gtk_entry_set_text(esenha, "");
         }
+        else if (cadastro(usuario, senha) == 3) {
+            mensagem("Caractere virgula ( , ) não é permitido", "escolha outro nome ou senha");
+            gtk_entry_set_text(eusuario, "");
+            gtk_entry_set_text(esenha, "");
+        }
     }
 }
 
@@ -179,7 +197,12 @@ void on_bt_login_tela_login_clicked () {
     GtkEntry *esenha = GTK_ENTRY(gtk_builder_get_object(builder, "entry_senha_login"));
     const char *usuario = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_usuario_login")));
     const char *senha = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_senha_login")));
-
+    if (strlen(usuario) > 30 || strlen(senha) > 30) {
+        mensagem("Login ou Senha excedem a quantidade maxima de caracteres", "");
+        gtk_entry_set_text(eusuario, "");
+        gtk_entry_set_text(esenha, "");
+        return;
+    }
     if ((strcmp(usuario, "") == 0) && strcmp(senha, "") == 0) {
         mensagem("Espaço de senha ou usuario está vazia", "insira seus dados de login");
         gtk_entry_set_text(eusuario, "");
@@ -210,9 +233,9 @@ void on_bt_login_tela_login_clicked () {
         default:
             break;
         }
-    }
-  
+    }  
     gtk_stack_set_visible_child_name(stack, "hub");
+
 }
 
 void on_cadastro_questao_clicked () {
@@ -225,16 +248,21 @@ void on_bt_cadastre_se_login_clicked () {
 
 void on_cad_lista_enviar_bt_clicked () {
     const char *nome_lista = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista")));
-    qtd_questao = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista")));
     qtd_entrada_saida = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista")));
-
-
-    casdastrar_lista(nome_lista, qtd_entrada_saida);
+    qtd_questao = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista")));
     
-    //aqui carrego a lista com a pasta
-    cadastro_descricao_questao(qtd_questao);
+    //verifica se algum dos campos contem uma string vazia caso esteja não realiza o cadstro da lista
+    if ((strcmp(qtd_entrada_saida, "") == 0) || (strcmp(qtd_questao, "") == 0 || (strcmp(nome_lista, "") == 0))) {
+        mensagem("algum dos campos está vazio", "");
+    }
+    else {
+        casdastrar_lista(nome_lista, qtd_entrada_saida, qtd_questao);
+    
+        //aqui carrego a lista com a pasta
+        cadastro_descricao_questao(qtd_questao);
 
-    gtk_stack_set_visible_child_name(stack, "page_cadastro_desq_questao");    
+        gtk_stack_set_visible_child_name(stack, "page_cadastro_desq_questao");    
+    }
 }
 
 
@@ -269,14 +297,17 @@ void on_bt_voltar_exibir_lista_clicked () {
 }
 
 void on_bt_lista_selecionada_entrar_clicked () {
-    g_print("n_lista = %d , n_testes = %d\n", Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.qtd_entrada_saida);
+    Lista_atual_selecionada.numero_da_questao = 1;
+    mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
+    mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
     gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
+    
 }
 
 void on_deslogar_clicked () {
     gtk_stack_set_visible_child_name(stack, "login");
     mensagem("deslogado com sucesso","");
-}
+}    
 
 void on_bt_ir_cadastrar_lista_clicked () {
     gtk_stack_set_visible_child_name(stack, "teste");
@@ -285,33 +316,36 @@ void on_bt_ir_cadastrar_lista_clicked () {
 void on_bt_mostrar_listas_ativas_clicked () {
     carregar_listas_ativas();
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
-}
-
-void on_bt_enviar_cad_enunciado_questao_clicked () {
-    gravar_arquivo(caminho_desq_questao);
-    //gtk_stack_set_visible_child_name(stack, "pag_cad_entrada_saida");
+    iniciar_label(numero_questao, titulo_questao);
+    Lista_atual_selecionada = checar_lista_monitorada();
 }
 
 void bt_proxima_questao_cad_enviar_desq_pag () {
+    label_pag_enviar_desq_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_desq_questao"));
+
     if (proxima_questao(caminho_desq_questao) == 1) {
         qtd_entrada_saida = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista")));
         cria_pastas_entrada_saida(qtd_questao);
 
         criar_carregar_lista(qtd_questao);
-        criar_carregar_lista_entrada_saoida(qtd_entrada_saida);
-
+        criar_carregar_lista_entrada_saida(qtd_entrada_saida);
         gtk_stack_set_visible_child_name(stack, "pag_cad_entrada_saida");
     };
-}
-
-void on_bt_enviar_entrada_saida_clicked () {
-    gravar_arquivo_entrada_saida(caminho_entrada_questao, caminho_saida_questao);
+    
+    atualizar_text_label(label_pag_enviar_desq_questao, 'd');
 }
 
 void on_bt_proxima_questao_entrada_saida_clicked () {
+    label_pag_enviar_saida = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_saida"));
+    label_pag_enviar_entrada = GTK_LABEL(gtk_builder_get_object(builder, "label_pag_enviar_entrada"));
+    label_questao_cad_entrada_saida = GTK_LABEL(gtk_builder_get_object(builder, "label_questao_cad_entrada_saida"));
+
     if (proxima_questao_entrada_saida() == 1) {
         gtk_stack_set_visible_child_name(stack, "login");
     }
+    atualizar_text_label(label_questao_cad_entrada_saida, 'q');
+    atualizar_text_label(label_pag_enviar_entrada, 'e');
+    atualizar_text_label(label_pag_enviar_saida, 's');
 }
 
 void on_button_submeter_questao_clicked () {
@@ -381,7 +415,7 @@ void mostrar_casos_de_testes(const char* file_path){
     int teste = 1; //caso de teste atual
 
     int n_lista = Lista_atual_selecionada.numero_da_lista;
-    int n_questao = 1;
+    int n_questao = Lista_atual_selecionada.numero_da_questao;
     int qtd_casos_de_teste = Lista_atual_selecionada.qtd_entrada_saida;
 
     GtkTreeIter iter;
@@ -408,28 +442,97 @@ void on_stack_2_casos_de_teste_button_back_clicked(){
     gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
 }
 
-
-
-////
-
 void on_file_chooser_text_questao_confirm_overwrite(){};
 
 void on_file_chooser_text_questao_file_activated () {
     caminho_desq_questao = gtk_file_chooser_get_filename(desq_questao);  
+    gravar_arquivo(caminho_desq_questao);
+    mensagem("arquivo selecionado com succeso", "clicke em ok e depois em proxima questão");
 };
+
+//dois boleanos para verificar se os dois arquivos foram selecionados
+bool Clicked1 = false;
+bool Clicked2 = false;
 
 void on_file_chooser_entrada_questao_confirm_overwrite (){};
 
 void on_file_chooser_entrada_questao_file_activated () {
+    Clicked1 = true;
     caminho_entrada_questao = gtk_file_chooser_get_filename(entrada_questao);
+
+    if (Clicked1 == true && Clicked2 == false) {
+        (caminho_entrada_questao, caminho_saida_questao);
+        gravar_arquivo_entrada(caminho_entrada_questao);
+
+        mensagem("arquivo de entrada selecionado", "por favor selecione as saidas");
+
+    } else if (Clicked1 == true && Clicked2 == true) {
+        gravar_arquivo_entrada(caminho_entrada_questao);
+
+        mensagem("arquivos cadastrados com sucesso", "clique em proxima questão para avançar");
+        Clicked1 = false;
+        Clicked2 = false;
+    }
 };
 
 void on_file_chooser_saida_questao_confirm_overwrite (){};
 
 void on_file_chooser_saida_questao_file_activated () {
+    Clicked2 = true;
     caminho_saida_questao = gtk_file_chooser_get_filename(saida_questao);
+
+    if (Clicked2 == true && Clicked1 == false) {
+        gravar_arquivo_saida(caminho_saida_questao);
+        mensagem("arquivo de saida selecionado", "por favor selecione o arquivo de entrada");
+
+    }
+    else if (Clicked2 == true && Clicked1 == true) {
+        gravar_arquivo_saida(caminho_saida_questao);
+
+        mensagem("arquivos cadastrados com sucesso", "clique em proxima questão para avançar");
+        Clicked1 = false;
+        Clicked2 = false;
+    }
 };
 
 void on_bt_voltar_casos_de_teste_clicked(){
     gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
+}
+
+void on_bt_back_descricao_questao_clicked(){
+    /*if(Lista_atual_selecionada.numero_da_questao == 1){
+        mensagem("Primeira questão", "Não há mais questões para trás");
+        return;
+    }*/
+
+    Lista_atual_selecionada.numero_da_questao--;
+    if(Lista_atual_selecionada.numero_da_questao <= 0)
+        Lista_atual_selecionada.numero_da_questao = Lista_atual_selecionada.quantidade_de_questoes;
+
+    mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
+    mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+}
+
+void on_bt_forward_descricao_questao_clicked(){
+    /*if(Lista_atual_selecionada.numero_da_questao == Lista_atual_selecionada.quantidade_de_questoes){
+        mensagem("Última questão", "Não há mais questões para frente");
+        return;
+    }*/
+    Lista_atual_selecionada.numero_da_questao = (Lista_atual_selecionada.numero_da_questao)%(Lista_atual_selecionada.quantidade_de_questoes) + 1;
+    mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
+    mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+}
+
+void on_bt_descricao_questao_sair_clicked(){
+    gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
+}
+
+
+void on_bt_lista_ativa_sair_clicked(){
+    gtk_stack_set_visible_child_name(stack, "hub");
+}
+
+
+void on_bt_voltar_cadlista_clicked(){
+    gtk_stack_set_visible_child_name(stack, "hub");
 }

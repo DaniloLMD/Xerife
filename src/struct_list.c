@@ -50,12 +50,21 @@ bool adicionar_l_fim(lhead *lista, char titulo [100]) {
 
         if (lista -> tamanho == 0) {
             lista -> begin = no;
-            lista -> end = no;    
+            lista -> end = no; 
+            lista -> begin -> prev = lista -> end;
+            lista -> end -> next = lista -> begin;   
         } else {
             aux = lista -> end;
+            lista -> end -> next = no;
             lista -> end = no;
             lista -> end -> prev = aux;
+            lista -> end -> next = lista -> begin;
+            lista -> begin -> prev = lista -> end;
+
+            /*lista -> end = no;
+            lista -> end -> prev = aux;
             aux -> next = lista -> end;
+            */
         }
         
         lista -> tamanho++;

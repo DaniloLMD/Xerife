@@ -28,6 +28,15 @@ bool usuario_existente(const char *usuario) {
     destruir_lista(Lista_usuarios);
 }
 
+bool verificar_caracteres_proibidos(const char string[35]) {
+    for (int i = 0; i < strlen(string); i++) {
+        if(string[i] == ',') {
+            return true;
+        }
+    }
+    return false;
+}
+
 /**
  * @brief Cadastra o usuário no sistema verificando se ele já está cadastrado
  *
@@ -39,6 +48,7 @@ bool usuario_existente(const char *usuario) {
  */
 int cadastro(const char *usuario, const char *senha) {
     if (usuario_existente(usuario)) return 2;
+    if (verificar_caracteres_proibidos(usuario) || verificar_caracteres_proibidos(senha)) return 3;
     FILE *arquivo = NULL;
     arquivo = fopen(PATH_USUARIOS_CADASTRADOS_CSV, "a");
     char nome[202];

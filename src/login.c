@@ -10,9 +10,9 @@
 head *ler_arquivo() {
     head *Lista_usuarios = NULL;
     FILE *list_usu = fopen(PATH_USUARIOS_CADASTRADOS_CSV, "r");
-    char enome[202];
+    char enome[35];
     char texto[402];
-    char esenha[203];
+    char esenha[35];
     char virgula;
     Lista_usuarios = criar_lista();
     
@@ -50,12 +50,14 @@ int quantidade_diferentes (const char *s1, const char *s2) {
  * @param 
  * @return
  */
-int login (const char nome[202], const char senha[200]) {
+int login (const char nome[35], const char senha[35]) {
     head *Lista_usuarios = NULL;
     Lista_usuarios = ler_arquivo();
     no *node = NULL;
 
     node = Lista_usuarios -> begin;
+    
+
     for (int i = 0; i < Lista_usuarios -> size; i++) {
         if ((strcmp(node -> nome, nome) == 0) && strcmp(node -> senha, senha) == 0) {
             return 1;

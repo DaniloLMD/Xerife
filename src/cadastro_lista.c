@@ -65,7 +65,7 @@ void criar_pasta_lista () {
     fclose(file);
 }
 
-void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida) {
+void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida, const char* qtd_questoes) {
     char comando[200] = "";
     sprintf(comando, "mkdir dados/banco_listas/lista%d/qtd_entrada_saida%d", qtd_lista, qtd_lista);
     system(comando);
@@ -74,6 +74,14 @@ void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida) {
     FILE *file = fopen(comando, "w");
     fprintf(file, "%s\n", qtd_entrada_saida);
     fclose(file);
+
+    //criando o caminho para criar o txt
+    strcpy(comando, "");
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade_questoes%d.txt", qtd_lista, qtd_lista, qtd_lista);
+    file = fopen(comando, "w");
+    fprintf(file, "%s\n", qtd_questoes);
+    fclose(file);
+
 };
 
 
@@ -115,9 +123,9 @@ void atualizar_qtd_lista () {
  *  
  * @return void 
  */
-void casdastrar_lista(const char *nome, const char* qtd_entrada_saida) {
+void casdastrar_lista(const char *nome, const char* qtd_entrada_saida, const char *qtd_questoes) {
     atualizar_qtd_lista();
     criar_pasta_lista();
-    cria_past_qtd_entrada_saida(qtd_entrada_saida);
+    cria_past_qtd_entrada_saida(qtd_entrada_saida, qtd_questoes);
     cadastrar_nome_lista(nome);
 };
