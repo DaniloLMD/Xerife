@@ -117,6 +117,10 @@ int main (int argc, char *argv[]) {
         "on_bt_descricao_questao_sair_clicked", G_CALLBACK(on_bt_descricao_questao_sair_clicked),
         "on_bt_lista_ativa_sair_clicked", G_CALLBACK(on_bt_lista_ativa_sair_clicked),
         "on_bt_voltar_cadlista_clicked", G_CALLBACK(on_bt_voltar_cadlista_clicked),
+        "on_bt_deletar_lista_clicked", G_CALLBACK(on_bt_deletar_lista_clicked),
+        "on_bt_voltar_deletar_lista_numero_clicked", G_CALLBACK(on_bt_voltar_deletar_lista_numero_clicked),
+        "on_bt_enviar_deletar_lista_numero_clicked", G_CALLBACK(on_bt_enviar_deletar_lista_numero_clicked),
+
         NULL
     );
 
@@ -314,6 +318,12 @@ void on_bt_ir_cadastrar_lista_clicked () {
 }
 
 void on_bt_mostrar_listas_ativas_clicked () {
+
+    if(get_qtd_listas() == 0){
+        mensagem("AVISO", "Não há listas cadastradas!");
+        return;
+    }
+
     carregar_listas_ativas();
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
     iniciar_label(numero_questao, titulo_questao);
@@ -535,4 +545,39 @@ void on_bt_lista_ativa_sair_clicked(){
 
 void on_bt_voltar_cadlista_clicked(){
     gtk_stack_set_visible_child_name(stack, "hub");
+}
+
+void on_bt_deletar_lista_clicked(){
+
+    if(get_qtd_listas() == 0){
+        mensagem("AVISO", "Não há listas ativas cadastradas!");
+        return;
+    }
+    /*mostrar a list store de listas */
+    gtk_stack_set_visible_child_name(stack, "page_deletar_lista_numero");
+}
+
+void on_bt_voltar_deletar_lista_numero_clicked(){
+    gtk_stack_set_visible_child_name(stack, "hub");
+}
+
+void on_bt_enviar_deletar_lista_numero_clicked(){
+    printf("clicado\n");
+
+    GtkEntry *entry = GTK_ENTRY(gtk_builder_get_object(builder, "entry_deletar_lista_numero"));
+
+    const gchar* entrada = gtk_entry_get_text(entry);
+
+    int num_da_lista = atoi(entrada);
+
+    if(num_da_lista < 1 || num_da_lista > get_qtd_listas()){
+        mensagem("AVISO", "Numero digitado invalido!\n");
+        return;
+    }
+
+    mensagem("Lista apagada com sucesso", "");
+
+    deletar_lista(num_da_lista);
+   
+    /* atualizar list store */
 }

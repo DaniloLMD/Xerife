@@ -1,8 +1,13 @@
 #include <stdio.h>
-#include <math.h>
 
 int main () 
-{ 
-    printf("Hello, World!\n");
-    return 0;
+{
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    while(1){
+        
+    }
+
+    printf("%d\n", a+b);
 }

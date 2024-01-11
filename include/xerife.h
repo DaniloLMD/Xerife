@@ -2,6 +2,7 @@
 #define XEREFI_H
 
 #include "cadastro.h"
+#include "deletar_lista.h"
 #include "includes.h"
 #include "login.h"
 #include "cadastro_lista.h"
@@ -9,6 +10,7 @@
 #include "cad_questao.h"
 #include "julgar.h"
 #include "mostrar_questao.h"
+
 
 void on_bt_submeter_pagina_questao_clicked ();
 
@@ -89,5 +91,11 @@ void on_bt_descricao_questao_sair_clicked();
 void on_bt_lista_ativa_sair_clicked();
 
 void on_bt_voltar_cadlista_clicked();
+
+void on_bt_deletar_lista_clicked();
+
+void on_bt_voltar_deletar_lista_numero_clicked();
+
+void on_bt_enviar_deletar_lista_numero_clicked();
 
 #endif

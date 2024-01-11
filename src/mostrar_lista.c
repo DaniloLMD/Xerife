@@ -50,7 +50,7 @@ void carregar_listas_ativas() {
 
 
     for (int i = 1; i <= string_to_int(qtdlistas); i++) {
-        sprintf(caminho, "%s/lista%d/nome_lista%d.txt", PATH_BANCO_LISTAS,i , i);
+        sprintf(caminho, "%s/lista%d/nome_lista.txt", PATH_BANCO_LISTAS,i);
         file = fopen(caminho, "r");
         fscanf(file, "%[^\n]", texto);
         adicionar_l_fim(lista_de_listas, texto);
@@ -118,14 +118,14 @@ llista checar_lista_monitorada () {
     char comando[200] = "";
     char qtd[200];
     char qtd_de_questoes[200];
-    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade%d.txt", ponteiro_atual -> id, ponteiro_atual -> id, ponteiro_atual -> id);
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida/quantidade.txt", ponteiro_atual -> id);
     
     file = fopen(comando, "r");
     fscanf(file, "%[^\n]", qtd);
     fclose(file);
     
     strcpy(comando, "");
-    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade_questoes%d.txt", ponteiro_atual -> id, ponteiro_atual -> id, ponteiro_atual -> id);
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida/quantidade_questoes.txt", ponteiro_atual -> id);
     file = fopen(comando, "r");
     fscanf(file, "%[^\n]", qtd_de_questoes);
     fclose(file);

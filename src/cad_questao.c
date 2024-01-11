@@ -72,9 +72,9 @@ void cria_pastas_entrada_saida (const char *qtd_questao) {
     int max_questao = atoi(qtd_questao);
 
     for (int i = 1; i <= max_questao; i++) {
-        sprintf(caminho, "mkdir %s/lista%d/questao%d/entrada%d/", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
+        sprintf(caminho, "mkdir %s/lista%d/questao%d/entrada/", PATH_BANCO_LISTAS, atoi(lista_atual), i);
         system(caminho);
-        sprintf(caminho, "mkdir %s/lista%d/questao%d/saida%d/", PATH_BANCO_LISTAS, atoi(lista_atual), i, i);
+        sprintf(caminho, "mkdir %s/lista%d/questao%d/saida/", PATH_BANCO_LISTAS, atoi(lista_atual), i);
         system(caminho);
     }
 }
@@ -94,9 +94,10 @@ void cadastro_descricao_questao(const char* qtd_questao) {
  * @return void
  */
 void gravar_arquivo (gchar *caminho) {
+    //grava a descrição da questão
     char caminho_destino[100];
     char caminho_final[300] = "cp ";
-    sprintf(caminho_destino, " %s/lista%d/questao%d/", PATH_BANCO_LISTAS, atoi(lista_atual), aux -> numero_questao);
+    sprintf(caminho_destino, " %s/lista%d/questao%d/desq.txt", PATH_BANCO_LISTAS, atoi(lista_atual), aux -> numero_questao);
     strcat(caminho_final, (char*) caminho);
     strcat(caminho_final, caminho_destino);
     system(caminho_final);
@@ -153,8 +154,8 @@ void gravar_arquivo_entrada (gchar* caminho_entrada) {
     char caminho_destino[100];
     char caminho_final[300] = "cp ";
 
-    sprintf(caminho_destino, " %s/lista%d/questao%d/entrada%d/entrada%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
-        aux -> numero_questao, aux -> numero_questao, aux_entrada_saida -> numero_questao
+    sprintf(caminho_destino, " %s/lista%d/questao%d/entrada/entrada%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
+        aux -> numero_questao, aux_entrada_saida -> numero_questao
     );
     
     strcat(caminho_final, (char*) caminho_entrada);
@@ -174,8 +175,8 @@ void gravar_arquivo_saida (gchar *caminho_saida) {
     char caminho_destino[100];
     char caminho_final[300] = "cp ";
 
-    sprintf(caminho_destino, " %s/lista%d/questao%d/saida%d/saida%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
-        aux -> numero_questao, aux -> numero_questao, aux_entrada_saida -> numero_questao
+    sprintf(caminho_destino, " %s/lista%d/questao%d/saida/saida%d.txt", PATH_BANCO_LISTAS, atoi(lista_atual),
+        aux -> numero_questao, aux_entrada_saida -> numero_questao
     );
 
     strcat(caminho_final, (char*) caminho_saida);

@@ -54,6 +54,14 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="list_store_listas">
+    <columns>
+      <!-- column-name Lista -->
+      <column type="gint"/>
+      <!-- column-name Nome -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="name">main_window</property>
     <property name="can-focus">False</property>
@@ -752,8 +760,8 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton">
-                    <property name="label" translatable="yes">button</property>
+                  <object class="GtkButton" id="bt_deletar_lista">
+                    <property name="label" translatable="yes">Deletar Lista</property>
                     <property name="name">bt_aleatorio</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
@@ -762,6 +770,7 @@
                     <property name="margin-end">15</property>
                     <property name="margin-top">15</property>
                     <property name="margin-bottom">15</property>
+                    <signal name="clicked" handler="on_bt_deletar_lista_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
@@ -1257,6 +1266,116 @@
             <property name="name">stack_2_casos_de_teste</property>
             <property name="title" translatable="yes">page3</property>
             <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="deletar_lista">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkTreeView" id="tree_view_lista_deletar">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="model">list_store_listas</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Lista</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn">
+                    <property name="title" translatable="yes">Nome</property>
+                    <child>
+                      <object class="GtkCellRendererText"/>
+                      <attributes>
+                        <attribute name="text">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <!-- n-columns=2 n-rows=2 -->
+              <object class="GtkGrid" id="deletar_lista_grid">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="row-homogeneous">True</property>
+                <property name="column-homogeneous">True</property>
+                <child>
+                  <object class="GtkButton" id="bt_enviar_deletar_lista_numero">
+                    <property name="label" translatable="yes">Enviar</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_bt_enviar_deletar_lista_numero_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="bt_voltar_deletar_lista_numero">
+                    <property name="label" translatable="yes">Voltar</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <signal name="clicked" handler="on_bt_voltar_deletar_lista_numero_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="entry_deletar_lista_numero">
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">1</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_deletar_lista_numero">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">Numero da lista</property>
+                  </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">page_deletar_lista_numero</property>
+            <property name="title" translatable="yes">page0</property>
+            <property name="position">10</property>
           </packing>
         </child>
       </object>

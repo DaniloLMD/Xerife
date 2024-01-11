@@ -29,7 +29,6 @@ void cadastrar_nome_lista(char const *nome) {
     fscanf(file, "%[^\n]", numero);
     strcat(pasta, numero);
     strcat(caminho, pasta);
-    strcat(nome_arq, numero);
     strcat(nome_arq, ".txt");
     strcat(caminho, nome_arq);
     //fechando o arquivo
@@ -67,17 +66,17 @@ void criar_pasta_lista () {
 
 void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida, const char* qtd_questoes) {
     char comando[200] = "";
-    sprintf(comando, "mkdir dados/banco_listas/lista%d/qtd_entrada_saida%d", qtd_lista, qtd_lista);
+    sprintf(comando, "mkdir dados/banco_listas/lista%d/qtd_entrada_saida", qtd_lista);
     system(comando);
     strcpy(comando, "");
-    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade%d.txt", qtd_lista, qtd_lista, qtd_lista);
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida/quantidade.txt", qtd_lista);
     FILE *file = fopen(comando, "w");
     fprintf(file, "%s\n", qtd_entrada_saida);
     fclose(file);
 
     //criando o caminho para criar o txt
     strcpy(comando, "");
-    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida%d/quantidade_questoes%d.txt", qtd_lista, qtd_lista, qtd_lista);
+    sprintf(comando, "dados/banco_listas/lista%d/qtd_entrada_saida/quantidade_questoes.txt", qtd_lista);
     file = fopen(comando, "w");
     fprintf(file, "%s\n", qtd_questoes);
     fclose(file);

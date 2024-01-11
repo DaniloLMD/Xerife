@@ -9,6 +9,8 @@
         "julgar.h": "c",
         "pthread.h": "c",
         "mostrar_questao.h": "c",
-        "rank.h": "c"
+        "rank.h": "c",
+        "string": "c",
+        "deletar_lista.h": "c"
     }
 }

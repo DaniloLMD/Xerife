@@ -23,7 +23,7 @@ head *criar_lista () {
  * @param 
  * @return
  */
-no *criar_node (char nome[202], char senha[202]) {
+no *criar_node (char *nome, char *senha) {
     no *node = NULL;
     do {
         node = (no*) malloc(sizeof(no)*1);
@@ -42,7 +42,7 @@ no *criar_node (char nome[202], char senha[202]) {
  * @param 
  * @return
  */
-void inserir_no_fim(head *list, char nome[202], char senha[202]) {
+void inserir_no_fim(head *list, char *nome, char *senha) {
     no *node = criar_node(nome, senha);
     no *ref = NULL;
 

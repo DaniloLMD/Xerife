@@ -84,8 +84,8 @@ void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execu
 int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 
     char path_saida[300];       // = "arquivos/saidas/";
-    snprintf(path_saida, 300, "%s/lista%d/questao%d/saida%d/saida%d.txt",
-        PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
+    snprintf(path_saida, 300, "%s/lista%d/questao%d/saida/saida%d.txt",
+        PATH_BANCO_LISTAS, n_lista, n_questao,  n_caso_de_teste
     );
 
     FILE* resposta = fopen(path_saida, "r");
@@ -141,9 +141,9 @@ int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
 
     //montando o comando para executar o arquivo
     char comando_executar[300];
-    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada%d/entrada%d.txt",
+    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada/entrada%d.txt",
         PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
-        PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
+        PATH_BANCO_LISTAS, n_lista, n_questao, n_caso_de_teste
     );
 
     
@@ -176,9 +176,9 @@ int judge_cpp_file(int n_lista, int n_questao, int n_caso_de_teste){
 
     //montando o comando para executar o arquivo
     char comando_executar[300];
-    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada%d/entrada%d.txt",
+    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada/entrada%d.txt",
         PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
-        PATH_BANCO_LISTAS, n_lista, n_questao, n_questao, n_caso_de_teste
+        PATH_BANCO_LISTAS, n_lista, n_questao, n_caso_de_teste
     );
 
     //montando o comando para compilar o arquivo
@@ -255,10 +255,6 @@ bool extension_compare(const char* extension_test){
 }
 
 int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste){
-
-    //montando o nome das entradas e saidas
-    //g_snprintf(nome_entrada, 5, "entrada%d", n_caso_de_teste);
-    //g_snprintf(nome_saida, 5, "saida%d", n_caso_de_teste);
 
     //pegando o nome do arquivo
     char* file_name = get_file_name_from_path(file_path);
