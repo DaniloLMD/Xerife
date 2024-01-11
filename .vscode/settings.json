@@ -8,6 +8,7 @@
         "includes.h": "c",
         "julgar.h": "c",
         "pthread.h": "c",
-        "mostrar_questao.h": "c"
+        "mostrar_questao.h": "c",
+        "rank.h": "c"
     }
 }

@@ -517,7 +517,7 @@ void on_bt_forward_descricao_questao_clicked(){
     /*if(Lista_atual_selecionada.numero_da_questao == Lista_atual_selecionada.quantidade_de_questoes){
         mensagem("Última questão", "Não há mais questões para frente");
         return;
-    }*/
+    }*/ 
     Lista_atual_selecionada.numero_da_questao = (Lista_atual_selecionada.numero_da_questao)%(Lista_atual_selecionada.quantidade_de_questoes) + 1;
     mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
     mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
