@@ -1,15 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 
-int main(){
-    int a, b;
-    scanf("%d %d", &a, &b);
-
-    long long int luis = 1e10;
-
-    while(luis--){
-
-    }
-
-    printf("%d\n", a + b);
+int main () 
+{ 
+    printf("Hello, World!\n");
     return 0;
 }

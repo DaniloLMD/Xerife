@@ -114,9 +114,8 @@ void RHead_ordered_insert(RHead* lista, char* nome, int pontos){
 */
 void atualiza_rank(int n_lista, char * user_name){
     char rank_path[100];
-    //sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
-    sprintf(rank_path, "rank.txt");
-
+    sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
+    
     FILE *rank = fopen(rank_path, "r");
 
     char nome_atual[100];
@@ -145,11 +144,6 @@ void atualiza_rank(int n_lista, char * user_name){
     fclose(rank);
 
     rank = fopen(rank_path, "w");
-    /*RNode* node = lista->first;
-    for(int i = 0; i < lista->size; i++){
-        fprintf(rank, "%s,%d\n", node->nome, node->pontos);
-        node = node->next;
-    }**/
 
     for(RNode *node = lista->first; node != NULL; node = node->next){
         fprintf(rank, "%s,%d\n", node->nome, node->pontos);
