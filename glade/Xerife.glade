@@ -55,6 +55,7 @@
     </columns>
   </object>
   <object class="GtkWindow" id="main_window">
+    <property name="name">main_window</property>
     <property name="can-focus">False</property>
     <signal name="destroy" handler="on_main_window_destroy" swapped="no"/>
     <child>
@@ -73,6 +74,7 @@
             <property name="column-homogeneous">True</property>
             <child>
               <object class="GtkBox">
+                <property name="name">principal_caixa</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
@@ -130,8 +132,8 @@
                         <property name="name">senha_login</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">20</property>
-                        <property name="margin-right">20</property>
+                        <property name="margin-left">10</property>
+                        <property name="margin-right">10</property>
                         <property name="margin-start">20</property>
                         <property name="margin-end">20</property>
                         <property name="margin-top">20</property>
@@ -169,8 +171,7 @@
                         <property name="name">usu_login</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="margin-left">20</property>
-                        <property name="margin-right">20</property>
+                        <property name="margin-left">10</property>
                         <property name="margin-start">20</property>
                         <property name="margin-end">20</property>
                         <property name="margin-top">20</property>
@@ -553,12 +554,14 @@
         <child>
           <!-- n-columns=3 n-rows=3 -->
           <object class="GtkGrid" id="lista-ativa">
+            <property name="name">grid_list_ative</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="row-homogeneous">True</property>
             <property name="column-homogeneous">True</property>
             <child>
               <object class="GtkBox">
+                <property name="name">box_list</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
@@ -567,7 +570,8 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="margin-bottom">49</property>
+                    <property name="halign">baseline</property>
+                    <property name="valign">baseline</property>
                     <property name="label" translatable="yes">Listas Ativas</property>
                   </object>
                   <packing>
@@ -583,20 +587,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_numero_lista_exibir_lista">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Lista 1</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkLabel" id="label_titulo_questao_exibir_lista">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <property name="label" translatable="yes">titulo 1</property>
               </object>
               <packing>
@@ -625,12 +620,12 @@
             </child>
             <child>
               <object class="GtkButton" id="bt_avancar_exibir_listar">
-                <property name="label" translatable="yes">Avançar</property>
+                <property name="label" translatable="yes">Proxima</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
+                <property name="halign">baseline</property>
+                <property name="valign">baseline</property>
                 <signal name="clicked" handler="on_bt_avancar_exibir_listar_clicked" swapped="no"/>
               </object>
               <packing>
@@ -640,12 +635,12 @@
             </child>
             <child>
               <object class="GtkButton" id="bt_voltar_exibir_lista">
-                <property name="label" translatable="yes">Voltar</property>
+                <property name="label" translatable="yes">Anterior</property>
                 <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
+                <property name="can-focus">False</property>
+                <property name="receives-default">False</property>
+                <property name="halign">baseline</property>
+                <property name="valign">baseline</property>
                 <signal name="clicked" handler="on_bt_voltar_exibir_lista_clicked" swapped="no"/>
               </object>
               <packing>
@@ -659,13 +654,26 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
+                <property name="halign">baseline</property>
+                <property name="valign">baseline</property>
                 <signal name="clicked" handler="on_bt_lista_ativa_sair_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>
                 <property name="top-attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label_numero_lista_exibir_lista">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">Lista 1</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
               </packing>
             </child>
             <child>
@@ -793,8 +801,15 @@
                 </child>
                 <child>
                   <object class="GtkImage">
+                    <property name="name">icon</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <property name="margin-right">138</property>
+                    <property name="margin-start">137</property>
+                    <property name="margin-top">11</property>
+                    <property name="margin-bottom">12</property>
                     <property name="xpad">0</property>
                     <property name="pixbuf">../imagens/Sem título.png</property>
                   </object>
@@ -807,6 +822,11 @@
                   <object class="GtkImage">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="valign">start</property>
+                    <property name="margin-right">138</property>
+                    <property name="margin-start">130</property>
+                    <property name="margin-top">12</property>
+                    <property name="margin-bottom">12</property>
                     <property name="pixbuf">../imagens/869695.png</property>
                   </object>
                   <packing>
@@ -818,6 +838,8 @@
                   <object class="GtkImage">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-left">47</property>
+                    <property name="margin-right">49</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
                     <property name="pixbuf">../imagens/xerife-logo.png</property>
@@ -993,7 +1015,7 @@
         </child>
         <child>
           <object class="GtkBox" id="cadlista_hub">
-            <property name="name">cadlista_hub</property>
+            <property name="name">cadlista_hub </property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>
@@ -1118,6 +1140,7 @@
                     <child>
                       <object class="GtkButton" id="bt_voltar_cadlista">
                         <property name="label" translatable="yes">Voltar</property>
+                        <property name="name">bt_cadlista_voltar</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="receives-default">True</property>
@@ -1147,6 +1170,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
+                        <property name="pack-type">end</property>
                         <property name="position">1</property>
                       </packing>
                     </child>

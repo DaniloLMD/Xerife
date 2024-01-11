@@ -1,24 +1,34 @@
 /*
     css da página de login do projeto
 */
+
+#principal_caixa{
+    border:3px solid black;
+    border-radius:10px;
+    color:lightblue;
+
+
+}
 #prompt {
     border: 3px solid black;
     font-size: 20px;
     font-weight: bolder;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 
     color: black;
 }
 
-#login {
-    background: #45214A;
+#login{
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
     padding: 150px;
 }
 
 #label_login {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
-    border-bottom: 3px solid black;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(206, 255, 251);
+   
+    border-bottom: 3px solid black;    
     color: black;
     font-weight: bolder;
 
@@ -28,7 +38,7 @@
 #grid_login {
     padding:10px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(206, 255, 251);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
 }
@@ -39,6 +49,8 @@
     border-top: 3px solid  black;
     border-left: 3px solid  black;
     border-right: 3px solid black;
+    background-color: rgb(206, 255, 251);
+
 }
 
 #entry_senha {
@@ -46,14 +58,17 @@
     border-bottom: 3px solid black;
     border-top: 3px solid black;
     border-left: 3px solid black;
-    border-right: 3px solid black; 
+    border-right: 3px solid black;
+    background-color: rgb(206, 255, 251);
+ 
 }
 
 
 #Xerefi-login {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
+    border-right: 3px solid black;
     border-bottom: 3px solid black;
     color: black;
 }
@@ -80,7 +95,7 @@
 
 #login-tela {
     padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     background:white;
@@ -88,8 +103,9 @@
 
 }
 #bt_login {
+    background: #1bab6a;
     border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 20px;
     font-weight: bolder;
     border: 3px solid black;
@@ -97,16 +113,20 @@
 }
 #bt_login:hover{
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 30px;
-    background: #7f00001b;
+    background: #1bab6a;
+    
+    background-image: linear-gradient(#1bab6a, #043921);
+
 }
 #bt_cadastre_login {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -114,11 +134,13 @@
 
 #bt_cadastre_login:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 30px;
-    background: #7f00001b;
+    background: #1bab6a;
+    
+    background-image: linear-gradient(#1bab6a, #043921);
 }
 
 
@@ -127,19 +149,20 @@
 */
 
 #cadastro {
-    background:  #45214A;
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
     padding: 150px;
 }
 
 #grid_cadastro {
-    background: white;
+    background: rgb(206, 255, 251);
     border: 3px solid black;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
 }
 
 #xerife_log_cadastro {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     border-bottom: 3px solid black;
@@ -147,7 +170,7 @@
 }
 
 #cadastro_label {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     border-bottom: 3px solid black;
@@ -155,22 +178,23 @@
 }
 
 #usuario_label_cadastro {
-    background: white;
+
+     background: rgb(206, 255, 251);
     font-weight: bolder;
     color: black;
     font-size: 20px;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     border-bottom: 3px solid black;
     border-left: 3px solid black;
     border-radius: 20px;
 }
 
 #senha_label_cadastro {
-    background: white;
+    background: rgb(206, 255, 251);
     font-weight: bolder;
     color: black;
     font-size: 20px;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     border-bottom: 3px solid black;
     border-right: 3px solid black;
     border-radius: 20px;
@@ -195,6 +219,7 @@
 }
 
 #cbt_enviar_cadastro {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bolder;
@@ -204,28 +229,37 @@
 
 #cbt_enviar_cadastro:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 25px;
-    background: #7f00001b;
+    background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
 }
 
+#icon{
+    color: rgb(206, 255, 251);
+}
+
+
 #cbt_voltar_cadastro {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black
+    color: black;
 }
 
 #cbt_voltar_cadastro:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 25px;
-    background: #7f00001b;
+    background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
+
 }
 
 /*
@@ -233,8 +267,9 @@
 */
 
 #main_hub {
-    padding: 80px;
-    background: #45214A;
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
+    padding: 150px;
     
 }
 
@@ -246,9 +281,10 @@
 }
 
 #bt_listas_ativas {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -256,17 +292,20 @@
 
 #bt_listas_ativas:hover{
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 30px;
-    background: #7f00001b;
+    background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
+    
 }
 
 #bt_cadastrar_lista {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -274,31 +313,33 @@
 
 #bt_cadastrar_lista:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 30px;
-    background: #7f00001b;
+    background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
 }
 
 #bt_deslogar_hub {
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
 }
 #bt_deslogar_hub:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
-    font-size: 30px;
-    background: rgb(156, 0, 156);
+    font-size: 30px; background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
 }
 #box_hub {
-    background: white;
+    background-color: rgb(206, 255, 251);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
@@ -309,8 +350,9 @@
 */
 
 #cadlista_hub {
-    padding: 80px;
-    background: #45214A;
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
+    padding: 150px;
 }
 
 #Label_cadastrar_lista {
@@ -325,7 +367,7 @@
 }
 
 #cadlista_box {
-    background: white;
+    background-color: rgb(206, 255, 251);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
@@ -339,7 +381,7 @@
 #entry_nome_cad_lista {
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -348,7 +390,7 @@
 #entry_numero_questao {
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -357,16 +399,38 @@
 #entry_entrada_saidas_cad_lista {
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
 }
 
-#criar_list_bt {
+#bt_cadlista_voltar{
+    background:#1bab6a;
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#bt_cadlista_voltar:hover{
+    opacity: 0.9;
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 1px 1px 0px #000;
+    transition: ease-in-out 250ms;
+    font-size: 30px;
+    font-size: 30px; 
+    background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
+}
+
+#criar_list_bt {
+    background:#1bab6a;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
@@ -374,29 +438,31 @@
 
 #criar_list_bt:hover {
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     box-shadow: 1px 1px 0px #000;
     transition: ease-in-out 250ms;
     font-size: 30px;
-    background: rgb(156, 0, 156);
+    font-size: 30px; background: #1bab6a;
+    background-image: linear-gradient(#1bab6a, #043921);
 }
 
+
 #label_nome_lista {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     color: black;
 }
 
 #label_numero_questao {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     color: black;
 }
 
 #label_quantidade_emtrada_saida {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     font-size: 20px;
     color: black;
@@ -409,8 +475,25 @@
 #bt_enviar_desq_questao {
     border-radius: 10px;
     font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
     color: black;
 }
+
+/* parte de escolher a lista */ 
+
+#grid_list_ative{
+    background: rgb(206, 255, 251);
+    border: 3px solid black;
+    border-radius: 20px;
+    box-shadow: 0 0 150px rgba(0, 0, 0, 0.792);
+}
+
+#box_list{
+    background-color: rgb(206, 255, 251);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+    border: 3px solid black;
+}
+
