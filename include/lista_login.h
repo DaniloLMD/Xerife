@@ -16,8 +16,8 @@ typedef struct {
 } head;
 
 head *criar_lista ();
-no *criar_node (char nome[202], char senha[202]); 
-void inserir_no_fim(head *list , char nome[202], char senha[202]);
+no *criar_node (char *nome, char *senha); 
+void inserir_no_fim(head *list , char *nome, char *senha);
 bool destruir_lista (head *ref);
 
 #endif
