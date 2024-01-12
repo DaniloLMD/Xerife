@@ -1,5 +1,18 @@
 #include "../include/includes.h"
 
+void set_nome_lista(int n_lista, char* list_name){
+    char path[100];
+    char name[100];
+    FILE* f = NULL;
+
+    sprintf(path, "%s/lista%d/nome_lista.txt", PATH_BANCO_LISTAS, n_lista);
+    f = fopen(path, "r");
+    
+    fscanf(f, "%[^\n]", name);
+    fclose(f);
+    strcpy(list_name, name);
+}
+
 int get_qtd_listas(){
 
     //lendo a quantidade total de listas

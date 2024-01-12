@@ -4,7 +4,7 @@ INCLUDE = ./include
 OBJ = ./obj
 SRC = ./src
 
-GTK_FLAGS = `pkg-config --cflags --libs gtk+-3.0`
+GTK_FLAGS = `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 MULTIPLE_FLAGS= "-Wl,--allow-multiple-definition"
 
 all: _src clean_apps _apps

@@ -95,7 +95,9 @@ void on_bt_voltar_cadlista_clicked();
 void on_bt_deletar_lista_clicked();
 
 void on_bt_voltar_deletar_lista_numero_clicked();
-
+     
 void on_bt_enviar_deletar_lista_numero_clicked();
+
+void atualizar_list_store_deletar_listas();
 
 #endif

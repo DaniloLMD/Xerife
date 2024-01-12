@@ -17,8 +17,6 @@ GtkLabel *label_pag_enviar_entrada;
 GtkLabel *label_pag_enviar_saida;
 GtkLabel *label_questao_cad_entrada_saida;
 
-//GtkListStore* list_store_casos_de_teste;
-
 //estes labels pertencem a página de carregar as listas
 GtkLabel *numero_questao;
 GtkLabel *titulo_questao;
@@ -118,7 +116,7 @@ int main (int argc, char *argv[]) {
         "on_bt_lista_ativa_sair_clicked", G_CALLBACK(on_bt_lista_ativa_sair_clicked),
         "on_bt_voltar_cadlista_clicked", G_CALLBACK(on_bt_voltar_cadlista_clicked),
         "on_bt_deletar_lista_clicked", G_CALLBACK(on_bt_deletar_lista_clicked),
-        "on_bt_voltar_deletar_lista_numero_clicked", G_CALLBACK(on_bt_voltar_deletar_lista_numero_clicked),
+        "on_bt_voltar_deletar_lista_numero_clickedF", G_CALLBACK(on_bt_voltar_deletar_lista_numero_clicked),
         "on_bt_enviar_deletar_lista_numero_clicked", G_CALLBACK(on_bt_enviar_deletar_lista_numero_clicked),
 
         NULL
@@ -139,7 +137,7 @@ void on_bt_submeter_pagina_questao_clicked () {
 }
 
 void on_bt_voltar_cadastro_clicked () {
-    gtk_stack_set_visible_child_name(stack, "login");
+    gtk_stack_set_visible_child_name(stack, "hub");
 }   
 
 void mensagem (const char *texto, const char *texto_secundario) {
@@ -351,7 +349,7 @@ void on_bt_proxima_questao_entrada_saida_clicked () {
     label_questao_cad_entrada_saida = GTK_LABEL(gtk_builder_get_object(builder, "label_questao_cad_entrada_saida"));
 
     if (proxima_questao_entrada_saida() == 1) {
-        gtk_stack_set_visible_child_name(stack, "login");
+        gtk_stack_set_visible_child_name(stack, "hub");
     }
     atualizar_text_label(label_questao_cad_entrada_saida, 'q');
     atualizar_text_label(label_pag_enviar_entrada, 'e');
@@ -420,7 +418,6 @@ void mostrar_casos_de_testes(const char* file_path){
 
     GtkListStore* list_store_casos_de_teste;
     list_store_casos_de_teste =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_casos_de_teste"));
-    
     
     int teste = 1; //caso de teste atual
 
@@ -547,13 +544,41 @@ void on_bt_voltar_cadlista_clicked(){
     gtk_stack_set_visible_child_name(stack, "hub");
 }
 
+void atualizar_list_store_deletar_listas(){
+    GtkListStore* list_store_listas;
+    list_store_listas =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_listas"));
+    
+    GtkTreeIter iter;
+    gtk_list_store_clear(list_store_listas);
+    
+    int n_listas = get_qtd_listas();
+    char list_name[100];
+
+    for(int i = 1; i <= n_listas; i++){
+
+        set_nome_lista(i, list_name);
+
+        gtk_list_store_append(list_store_listas, &iter);
+        gtk_list_store_set(
+            list_store_listas, &iter,
+            0, i,
+            1, list_name,
+            -1
+        );
+    }
+
+}
+
 void on_bt_deletar_lista_clicked(){
 
-    if(get_qtd_listas() == 0){
+   /* if(get_qtd_listas() == 0){
         mensagem("AVISO", "Não há listas ativas cadastradas!");
         return;
-    }
+    }*/
+
     /*mostrar a list store de listas */
+    atualizar_list_store_deletar_listas();
+
     gtk_stack_set_visible_child_name(stack, "page_deletar_lista_numero");
 }
 
@@ -562,7 +587,6 @@ void on_bt_voltar_deletar_lista_numero_clicked(){
 }
 
 void on_bt_enviar_deletar_lista_numero_clicked(){
-    printf("clicado\n");
 
     GtkEntry *entry = GTK_ENTRY(gtk_builder_get_object(builder, "entry_deletar_lista_numero"));
 
@@ -571,7 +595,7 @@ void on_bt_enviar_deletar_lista_numero_clicked(){
     int num_da_lista = atoi(entrada);
 
     if(num_da_lista < 1 || num_da_lista > get_qtd_listas()){
-        mensagem("AVISO", "Numero digitado invalido!\n");
+        mensagem("AVISO", "Lista invalida!\n");
         return;
     }
 
@@ -579,5 +603,5 @@ void on_bt_enviar_deletar_lista_numero_clicked(){
 
     deletar_lista(num_da_lista);
    
-    /* atualizar list store */
+    atualizar_list_store_deletar_listas();
 }

@@ -216,3 +216,4 @@ int proxima_questao_entrada_saida () {
         aux_entrada_saida = aux_entrada_saida -> next;
     }
 }
+
