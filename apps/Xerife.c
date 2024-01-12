@@ -118,6 +118,8 @@ int main (int argc, char *argv[]) {
         "on_bt_deletar_lista_clicked", G_CALLBACK(on_bt_deletar_lista_clicked),
         "on_bt_voltar_deletar_lista_numero_clickedF", G_CALLBACK(on_bt_voltar_deletar_lista_numero_clicked),
         "on_bt_enviar_deletar_lista_numero_clicked", G_CALLBACK(on_bt_enviar_deletar_lista_numero_clicked),
+        "on_bt_mostrar_rank_clicked", G_CALLBACK(on_bt_mostrar_rank_clicked),
+        "on_bt_voltar_rank_clicked", G_CALLBACK(on_bt_voltar_rank_clicked),
 
         NULL
     );
@@ -604,4 +606,12 @@ void on_bt_enviar_deletar_lista_numero_clicked(){
     deletar_lista(num_da_lista);
    
     atualizar_list_store_deletar_listas();
+}
+
+void on_bt_mostrar_rank_clicked(){
+    gtk_stack_set_visible_child_name(stack, "rank");
+}
+
+void on_bt_voltar_rank_clicked(){
+    gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
 }

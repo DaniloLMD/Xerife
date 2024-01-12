@@ -112,7 +112,7 @@ void RHead_ordered_insert(RHead* lista, char* nome, int pontos){
  *  @param user_name nome do usuario que deseja aumentar os pontos
  *  @return void
 */
-void atualiza_rank(int n_lista, char * user_name){
+void atualiza_arquivo_rank(int n_lista, char * user_name){
     char rank_path[100];
     sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
     
@@ -153,15 +153,3 @@ void atualiza_rank(int n_lista, char * user_name){
     
     RHead_delete(&lista);
 }
-
-int main(){
-    atualiza_rank(1, "Luis");
-}
-
-
-/*
-    danio
-    luiz
-    Danilo
-    catulio
-*/

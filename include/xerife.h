@@ -10,6 +10,7 @@
 #include "cad_questao.h"
 #include "julgar.h"
 #include "mostrar_questao.h"
+#include "rank.h"
 
 
 void on_bt_submeter_pagina_questao_clicked ();
@@ -99,5 +100,9 @@ void on_bt_voltar_deletar_lista_numero_clicked();
 void on_bt_enviar_deletar_lista_numero_clicked();
 
 void atualizar_list_store_deletar_listas();
+
+void on_bt_mostrar_rank_clicked();
+
+void on_bt_voltar_rank_clicked();
 
 #endif

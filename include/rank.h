@@ -6,6 +6,6 @@ typedef struct rank_head RHead;
 
 void get_rank(int n_lista);
 
-void atualiza_rank(int n_lista, char * user_name);
+void atualiza_arquivo_rank(int n_lista, char * user_name);
 
 #endif
