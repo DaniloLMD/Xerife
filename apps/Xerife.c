@@ -2,6 +2,7 @@
 #include <gtk-3.0/gtk/gtk.h>
 
 llista Lista_atual_selecionada;
+char user_name[100];
 
 //labels da parte de exibir questao
 GtkLabel* label_n_questao;
@@ -200,6 +201,9 @@ void on_bt_login_tela_login_clicked () {
     GtkEntry *eusuario = GTK_ENTRY(gtk_builder_get_object(builder, "entry_usuario_login"));
     GtkEntry *esenha = GTK_ENTRY(gtk_builder_get_object(builder, "entry_senha_login"));
     const char *usuario = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_usuario_login")));
+    //pegando o nome do usuario logado atualmente
+    strcpy(user_name, usuario);
+    
     const char *senha = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_senha_login")));
     if (strlen(usuario) > 30 || strlen(senha) > 30) {
         mensagem("Login ou Senha excedem a quantidade maxima de caracteres", "");
@@ -240,6 +244,7 @@ void on_bt_login_tela_login_clicked () {
     }  
     gtk_stack_set_visible_child_name(stack, "hub");
 
+    
 }
 
 void on_cadastro_questao_clicked () {
@@ -433,17 +438,31 @@ void mostrar_casos_de_testes(const char* file_path){
 
     
     mensagem("JULGANDO", "Por favor aguarde");
+    int acertos = 0;
+    char * answer;
     while(teste <= qtd_casos_de_teste){
         
+        answer = get_answer(file_path, n_lista, n_questao, teste);
+
         gtk_list_store_append(list_store_casos_de_teste, &iter);
         
         gtk_list_store_set(
             list_store_casos_de_teste, &iter,
             0, teste,
-            1, get_answer(file_path, n_lista, n_questao, teste),
+            1, answer,
             -1
         );
+
+        if(strcmp(answer, "ACCEPTED") == 0){
+            acertos++;
+        }
         teste++;
+    }
+    if(acertos == qtd_casos_de_teste){
+        if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){
+            atualiza_arquivo_registro(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name);
+        }
     }
 }   
 
@@ -609,6 +628,36 @@ void on_bt_enviar_deletar_lista_numero_clicked(){
 }
 
 void on_bt_mostrar_rank_clicked(){
+
+    GtkListStore* list_store_rank;
+    list_store_rank =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_rank"));
+    GtkTreeIter iter;
+    
+    gtk_list_store_clear(list_store_rank);
+   
+
+    int posicao = 1;
+
+    char rank_path[100];
+    sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, Lista_atual_selecionada.numero_da_lista);
+    
+    FILE *rank = fopen(rank_path, "r");
+
+    char nome[100];
+    int acertos;
+
+    while( fscanf(rank, "%[^,],%d%*c", nome, &acertos) != EOF ){
+        gtk_list_store_append(list_store_rank, &iter);
+        gtk_list_store_set(
+            list_store_rank , &iter,
+            0, posicao++,
+            1, nome,
+            2, acertos,
+            -1
+        );
+    }
+    fclose(rank);
+
     gtk_stack_set_visible_child_name(stack, "rank");
 }
 

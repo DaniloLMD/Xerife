@@ -54,6 +54,7 @@ void criar_pasta_lista () {
     char caminho[2000];
     g_snprintf(caminho, 2000, "mkdir %s/lista", PATH_BANCO_LISTAS);
 
+    //criando o arquivo de ranking
     FILE *file = fopen(PATH_QTD_TXT, "r");  
     char numero[200] = "";  
     fscanf(file, "%[^\n]", numero);
@@ -62,6 +63,22 @@ void criar_pasta_lista () {
     system(caminho);
 
     fclose(file);
+
+    //criando o arquivo de rank
+    char rank_path[100];
+    FILE *rank;
+    int n_lista = atoi(numero);
+    
+    sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
+    rank = fopen(rank_path, "w");
+    fclose(rank);
+    
+    //criando o arquivo de registro de questoes que cada usuario fez
+    //strcpy(rank_path, "");
+    sprintf(rank_path, "%s/lista%d/registro.txt", PATH_BANCO_LISTAS, n_lista);
+    rank = fopen(rank_path, "w");
+    fprintf(rank, "0");
+    fclose(rank);
 }
 
 void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida, const char* qtd_questoes) {
