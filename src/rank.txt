@@ -1,6 +1,0 @@
-Luis,17
-Matheus,10
-Monik,10
-Danilo,8
-Luiz,5
-Gabriel,3

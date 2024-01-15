@@ -342,11 +342,3 @@ void atualiza_arquivo_registro(char* user_name, int n_lista, int n_questao_feita
     QHead_delete(&head);
 
 }
-
-/*  
-    2
-    Danilo,5
-    1 2 3 4 5
-    Luis,7
-    1 2 3 4 5 8 9
-*/
