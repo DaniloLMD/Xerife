@@ -1,15 +1,10 @@
 #include <stdio.h>
 
-int main () 
-{
-    /*
-    int a, b;
-    scanf("%d %d", &a, &b);
-    printf("%d\n", a+b);
-    */
-   char nome[100];
-   scanf("%[^\n]", nome);
+int main(){
+    long long int luis = 1;
+    while(luis--){
+        //printf("luis = %lld\n", luis);
+    }
 
-   printf("Obrigado por usar o Xerife, %s.\n", nome);
-
+    return 0;
 }

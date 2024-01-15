@@ -5,8 +5,9 @@
 // #############        Funcoes da lista        #######################
 
 struct rank_node{
-    char nome[100];
+    char nome[50];
     int pontos;
+    int tentativas;
     struct rank_node* next;
     struct rank_node* prev;
 };
@@ -18,13 +19,14 @@ struct rank_head{
 };
 
 
-RNode* RNode_new(char* nome, int pontos){
+RNode* RNode_new(char* nome, int pontos, int tentativas){
     RNode* node = (RNode*) malloc(sizeof(RNode));
 
     node->next = NULL;
     node->prev = NULL;
     strcpy(node->nome, nome);
     node->pontos = pontos;
+    node->tentativas = tentativas;
 
     return node;
 }
@@ -58,8 +60,8 @@ void RHead_delete(RHead** head_ref){
     *head_ref = NULL;
 }
 
-void RHead_ordered_insert(RHead* lista, char* nome, int pontos){
-    RNode* node = RNode_new(nome, pontos);
+void RHead_ordered_insert(RHead* lista, char* nome, int pontos, int tentativas){
+    RNode* node = RNode_new(nome, pontos, tentativas);
 
     //1 caso: inserir numa lista vazia
     if(lista->size == 0){
@@ -70,8 +72,8 @@ void RHead_ordered_insert(RHead* lista, char* nome, int pontos){
 
         while(node_atual != NULL){
             
-            //2 caso: node tem pontos maior, entao vai ser inserido antes do node atual
-            if(node_atual->pontos < node->pontos){
+            //2 caso: node tem pontos maior, ou tem os mesmos pontos mas menos tentativas, entao vai ser inserido antes do node atual
+            if(node_atual->pontos < node->pontos || (node_atual->pontos == node->pontos && node_atual->tentativas > node->tentativas)){
                 if(lista->first == node_atual){
                     lista->first = node;
                 }
@@ -110,9 +112,10 @@ void RHead_ordered_insert(RHead* lista, char* nome, int pontos){
  *  @brief atualiza o arquivo de rank, aumentando os pontos do usuario em 1 
  *  @param n_lista numero da lista que deseja atualizar o rank
  *  @param user_name nome do usuario que deseja aumentar os pontos
+ *  @param acertou booleano para saber se o usuario acertou a questao ou nao. Se acertou, os pontos aumentam, se nao, apenas as tentativas aumentam
  *  @return void
 */
-void atualiza_arquivo_rank(int n_lista, char * user_name){
+void atualiza_arquivo_rank(int n_lista, char * user_name, bool acertou){
     char rank_path[100];
     sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
     
@@ -120,6 +123,7 @@ void atualiza_arquivo_rank(int n_lista, char * user_name){
 
     char nome_atual[100];
     int pontos;
+    int tentativas;
     char achou_user = 0;
 
     char ** matriz_nomes = NULL;
@@ -128,25 +132,29 @@ void atualiza_arquivo_rank(int n_lista, char * user_name){
 
     RHead* lista = RHead_new();
 
-    while( fscanf(rank, "%[^,],%d%*c", nome_atual, &pontos) != EOF){
+    while( fscanf(rank, "%[^,],%d,%d%*c", nome_atual, &pontos, &tentativas) != EOF){
         if(strcmp(nome_atual, user_name) == 0){
             achou_user = 1;
-            pontos++;
+            tentativas++;
+            if(acertou == true) pontos++;
         }
 
-        RHead_ordered_insert(lista, nome_atual, pontos);
+        RHead_ordered_insert(lista, nome_atual, pontos, tentativas);
     }
 
     //se ainda nao achou o user_name, registra ele no ranking
     if(!achou_user){
-        RHead_ordered_insert(lista, user_name, 1);
+        tentativas = 1;
+        pontos = 0;
+        if(acertou == true) pontos++;
+        RHead_ordered_insert(lista, user_name, pontos, tentativas);
     }
     fclose(rank);
 
     rank = fopen(rank_path, "w");
 
     for(RNode *node = lista->first; node != NULL; node = node->next){
-        fprintf(rank, "%s,%d\n", node->nome, node->pontos);
+        fprintf(rank, "%s,%d,%d\n", node->nome, node->pontos, node->tentativas);
     }
 
     fclose(rank);

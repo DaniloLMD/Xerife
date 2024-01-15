@@ -458,11 +458,21 @@ void mostrar_casos_de_testes(const char* file_path){
         }
         teste++;
     }
-    if(acertos == qtd_casos_de_teste){
-        if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){
+
+    //se o usuario ja fez a questao antes, apenas ignora e nao muda o rank
+    if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){
+        //se ele acertou, atualiza o rank aumentando o pontos e as tentativas
+        if(acertos == qtd_casos_de_teste){
             atualiza_arquivo_registro(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
-            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name);
+            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, true);
         }
+        //se ele nao acertou, atualiza o rank apenas aumentando o numero de tentativas
+        else{
+            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, false);
+        }
+    }
+    else{
+        mensagem("AVISO", "VOCE JA FEZ A QUESTAO ANTES");
     }
 }   
 
@@ -643,16 +653,17 @@ void on_bt_mostrar_rank_clicked(){
     
     FILE *rank = fopen(rank_path, "r");
 
-    char nome[100];
-    int acertos;
+    char nome[50];
+    int acertos, tentativas;
 
-    while( fscanf(rank, "%[^,],%d%*c", nome, &acertos) != EOF ){
+    while( fscanf(rank, "%[^,],%d,%d%*c", nome, &acertos, &tentativas) != EOF ){
         gtk_list_store_append(list_store_rank, &iter);
         gtk_list_store_set(
             list_store_rank , &iter,
             0, posicao++,
             1, nome,
             2, acertos,
+            3, tentativas,
             -1
         );
     }
