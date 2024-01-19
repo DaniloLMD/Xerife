@@ -394,7 +394,7 @@ void on_bt_voltar_exibir_lista_clicked () {
 }
 
 /**
- * @brief 
+ * @brief exibe na tela a lista atual
  * @param 
  * @return 
  */
@@ -425,7 +425,7 @@ void on_bt_ir_cadastrar_lista_clicked () {
 }
 
 /**
- * @brief 
+ * @brief exibe na tela as listas ativas
  * @param 
  * @return 
  */
@@ -443,16 +443,20 @@ void on_bt_mostrar_listas_ativas_clicked () {
 }
 
 /**
- * @brief 
+ * @brief exibe na tela o file chooser para o usuario escolher o arquivo a ser julgado
  * @param 
  * @return 
  */
 void on_button_submeter_questao_clicked () {
+    if(strcmp(user_name, "") == 0){
+        mensagem("AVISO!!!", "Logue com um nome de usuario para evitar bugs");
+        return;
+    }
     gtk_stack_set_visible_child_name(stack_exibir_lista, "pag_enviar_arquivo_resposta");
 }
 
 /**
- * @brief 
+ * @brief exibe a tela de cadastrar entradas e saidas
  * @param 
  * @return 
  */
@@ -465,7 +469,7 @@ void bt_enviar_entrada_saida () {
 void on_stack_1_escolher_arquivo_file_chooser_confirm_overwrite(){}
 
 /**
- * @brief 
+ * @brief verifica se o codigo escolhido pelo usuario tem uma extensao valida, se tiver chama as funcoes de julgar o codigo e exibir os casos de teste
  * @param 
  * @return 
  */
@@ -485,7 +489,7 @@ void on_stack_1_escolher_arquivo_file_chooser_file_activated(){
 }
 
 /**
- * @brief 
+ * @brief volta na tela de enunciado da questao
  * @param 
  * @return 
  */
@@ -494,7 +498,7 @@ void on_stack_1_casos_de_teste_button_back_clicked(){
 }
 
 /**
- * @brief 
+ * @brief julga o codigo e retorna uma string baseado no inteiro correspodente. Ex: caso o julgamento retorne ACCEPTED, retorna a string "ACCEPTED"
  * @param 
  * @return 
  */
@@ -526,7 +530,7 @@ char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_d
 }
 
 /**
- * @brief 
+ * @brief atualiza a list store com os casos de teste
  * @param 
  * @return 
  */
@@ -569,7 +573,7 @@ void mostrar_casos_de_testes(const char* file_path){
     }
 
     //se o usuario ja fez a questao antes, apenas ignora e nao muda o rank
-    if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){
+    if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){  
         //se ele acertou, atualiza o rank aumentando o pontos e as tentativas
         if(acertos == qtd_casos_de_teste){
             atualiza_arquivo_registro(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
@@ -586,7 +590,7 @@ void mostrar_casos_de_testes(const char* file_path){
 }   
 
 /**
- * @brief 
+ * @brief volta para a tela de enunciado de questoes
  * @param 
  * @return 
  */
@@ -595,7 +599,7 @@ void on_stack_2_casos_de_teste_button_back_clicked(){
 }
 
 /**
- * @brief 
+ * @brief volta para a tela do enunciado de questoes
  * @param 
  * @return 
  */
@@ -604,7 +608,7 @@ void on_bt_voltar_casos_de_teste_clicked(){
 }
 
 /**
- * @brief 
+ * @brief exibe na tela a questao anterior da lista atual, de maneira circular
  * @param 
  * @return 
  */
@@ -623,7 +627,7 @@ void on_bt_back_descricao_questao_clicked(){
 }
 
 /**
- * @brief 
+ * @brief exibe na tela a proxima questao da lista atual, de maneira circular
  * @param 
  * @return 
  */
@@ -638,7 +642,7 @@ void on_bt_forward_descricao_questao_clicked(){
 }
 
 /**
- * @brief 
+ * @brief exibe a tela de listas ativas
  * @param 
  * @return 
  */
@@ -647,7 +651,7 @@ void on_bt_descricao_questao_sair_clicked(){
 }
 
 /**
- * @brief 
+ * @brief exibe a tela do hub
  * @param 
  * @return 
  */
@@ -657,7 +661,7 @@ void on_bt_lista_ativa_sair_clicked(){
 
 
 /**
- * @brief 
+ * @brief exibe a tela do hub
  * @param 
  * @return 
  */
@@ -666,7 +670,7 @@ void on_bt_voltar_cadlista_clicked(){
 }
 
 /**
- * @brief 
+ * @brief atualiza a list store com o nome das listas na pagina de deletar listas
  * @param 
  * @return 
  */
@@ -696,7 +700,7 @@ void atualizar_list_store_deletar_listas(){
 }
 
 /**
- * @brief 
+ * @brief atualiza e mostra na tela a list store com as listas ativas e a tela de deletar listas
  * @param 
  * @return 
  */
@@ -714,7 +718,7 @@ void on_bt_deletar_lista_clicked(){
 }
 
 /**
- * @brief 
+ * @brief mostra a tela do hub
  * @param 
  * @return 
  */
@@ -723,7 +727,7 @@ void on_bt_voltar_deletar_lista_numero_clicked(){
 }
 
 /**
- * @brief 
+ * @brief le o numero da lista via entry e deleta a lista de mesmo numero
  * @param 
  * @return 
  */
@@ -748,7 +752,7 @@ void on_bt_enviar_deletar_lista_numero_clicked(){
 }
 
 /**
- * @brief 
+ * @brief atualiza e mostra a list store e a pagina do rank
  * @param 
  * @return 
  */
@@ -798,7 +802,7 @@ void on_bt_voltar_rank_clicked(){
 void on_file_chooser_arquivos_cad_geral_confirm_overwrite () {};
 
 /**
- * @brief 
+ * @brief atualiza a list store e a stack dos arquivos enviados pelo usuario
  * @param 
  * @return 
  */
@@ -885,14 +889,31 @@ void on_bt_desfazer_cad_activate() {
     }
 };
 
+/**
+ *  @brief exibe a tela da pagina de questoes
+ *  @param
+ *  @return
+ **/
+
 void on_bt_exercicos_listar_clicked() {
     gtk_stack_set_visible_child_name(stack_exibir_lista, "pag_exibir_questao");
 }
 
+/**
+ *  @brief exibe a tela de listas ativas
+ *  @param
+ *  @return 
+ **/
 void on_bt_sair_da_lista_clicked() {
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
 }
 
+
+/**
+ *  @brief 
+ *  @param funcao que cancela o cadastro da lista e exibe a tela anterior de cadastro
+ *  @return
+ **/
 void on_bt_cancelar_cad_clicked(){
     deletar_lista(get_qtd_listas());
     gtk_stack_set_visible_child_name(stack, "teste");

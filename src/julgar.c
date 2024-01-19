@@ -60,8 +60,10 @@ void* thread_funcao_executa(void* param_ref){
 }
 
 /**
- * @brief 
- * @param 
+ * @brief funcao que executa o codigo do usuario e verifica se ocorreram Runtime Error ou Time Limit Exceeded
+ * @param tle_check referencia para uma variavel que guarda a ocorrencia de Time Limit Exceeded
+ * @param runtime_check referencia para uma variavel que guarda a ocorrencia de Runtime Error
+ * @param comando_executar_execucao string que contem o comando para executar o codigo
  * @return 
  */
 void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execucao){
@@ -86,9 +88,11 @@ void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execu
 }
 
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief compara a saida gerada pelo codigo do usuario com a saida do sistema e retorna se sao iguais
+ * @param n_lista numero da lista
+ * @param n_questao numero da questao
+ * @param n_caso_de_teste numero do caso de teste a ser ulgado
+ * @return ACCEPTED se forem iguais ou WRONG ANSWER caso contrario
  */
 int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 
@@ -147,24 +151,26 @@ int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 }
 
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief julga um codigo escrito em c
+ * @param n_lista numero da lista
+ * @param n_questao numero da questao
+ * @param n_caso_de_teste numero do caso de teste a ser julgado
+ * @return resultado do julgamento, ACCEPTED, COMPILATION ERROR, etc
  */
 int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
 
-    //montando o comando para executar o arquivo
-    char comando_executar[300];
-    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada/entrada%d.txt",
-        PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
-        PATH_BANCO_LISTAS, n_lista, n_questao, n_caso_de_teste
-    );
 
     
     //montando o comando para compilar o arquivo
     char comando_compilar[300];
     snprintf(comando_compilar, 300, "gcc %s%s -o %s", PATH_CODIGO_USUARIO, file_extension, PATH_COMPILADO_USUARIO);
     
+    //montando o comando para executar o arquivo
+    char comando_executar[300];
+    snprintf(comando_executar, 300, "%s > %s < %s/lista%d/questao%d/entrada/entrada%d.txt",
+        PATH_COMPILADO_USUARIO, PATH_SAIDA_USUARIO,
+        PATH_BANCO_LISTAS, n_lista, n_questao, n_caso_de_teste
+    );
 
     int compilacao = system(comando_compilar);
 
@@ -187,9 +193,11 @@ if(tle){
 }
 
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief julga um codigo escrito em c++
+ * @param n_lista numero da lista
+ * @param n_questao numero da questao
+ * @param n_caso_de_teste numero do caso de teste a ser julgado
+ * @return resultado do julgamento, ACCEPTED, COMPILATION ERROR, etc
  */
 int judge_cpp_file(int n_lista, int n_questao, int n_caso_de_teste){
 
@@ -225,10 +233,45 @@ if(tle){
     return checa_resposta(n_lista, n_questao, n_caso_de_teste);
 }
 
+int judge_py_file(int n_lista, int n_questao, int n_caso_de_teste){
+
+    //montando o comando para executar o arquivo
+    char comando_executar[300];
+    snprintf(comando_executar, 300, "python3 %spy > %s < %s/lista%d/questao%d/entrada/entrada%d.txt",
+        PATH_CODIGO_USUARIO, PATH_SAIDA_USUARIO,
+        PATH_BANCO_LISTAS, n_lista, n_questao, n_caso_de_teste
+    );
+
+    /*//montando o comando para compilar o arquivo
+    char comando_compilar[300];
+    snprintf(comando_compilar, 300, "g++ %s%s -o %s", PATH_CODIGO_USUARIO, file_extension, PATH_COMPILADO_USUARIO);
+   */ 
+
+    //int compilacao = system(comando_compilar);
+
+    /*if(compilacao != 0){
+        return COMPILATION_ERROR;
+    }//compilacao mal sucedida*/
+
+    bool tle;
+    int execucao;
+    checa_tle(&tle, &execucao, comando_executar);
+    if(tle){
+        return TIME_LIMIT_EXCEEDED;
+    }
+
+    if(execucao != 0){
+        return RUNTIME_ERROR;
+    }//execucao mal sucedida
+    
+    return checa_resposta(n_lista, n_questao, n_caso_de_teste);
+    
+}
+
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief recebe o caminho de um arquivo e retorna o nome dele. Ex : Desktop/pasta/arq.txt , retorna arq.txt
+ * @param path string com o path ate o arquivo desejado
+ * @return nome do arquivo junto de sua extensao
  */
 char* get_file_name_from_path(const char* path){
     char *file_name;
@@ -252,9 +295,9 @@ char* get_file_name_from_path(const char* path){
 }
 
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief recebe o nome de um arquivo e retorna sua extensao. Ex: arq.txt , retorna txt
+ * @param file_name nome do arquivo
+ * @return extensao do arquivo 
  */
 void get_file_extension(const char* file_name){
     int index_ponto = -1;
@@ -278,10 +321,11 @@ void get_file_extension(const char* file_name){
     
 }
 
+
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief recebe uma extensao e retorna se o arquivo possui extensao igual
+ * @param extension_test extensao a ser comparada, "txt", "c", "cpp", "py"
+ * @return true, se a extensao for igual, false caso contrario
  */
 bool extension_compare(const char* extension_test){
     return !(strcmp(file_extension, extension_test));
@@ -289,8 +333,11 @@ bool extension_compare(const char* extension_test){
 
 /**
  * @brief 
- * @param 
- * @return 
+ * @param file_path caminho ate o arquivo
+ * @param n_lista numero da lista 
+ * @param n_questao numero da questao
+ * @param n_caso_de_teste numero do caso de teste a ser julgado
+ * @return resultado do julgamento, ACCEPTED, WRONG ANSWER, COMPILATION ERROR, etc
  */
 int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste){
 
@@ -313,6 +360,9 @@ int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso
     else if(extension_compare("cpp")){
         return judge_cpp_file(n_lista, n_questao, n_caso_de_teste);
     }
+    else if(extension_compare("py")){
+        return judge_py_file(n_lista, n_questao, n_caso_de_teste);
+    }
     else {
         return INVALID_EXTENSION;
     }
@@ -320,9 +370,9 @@ int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso
 }
 
 /**
- * @brief 
- * @param 
- * @return 
+ * @brief recebe o caminho de um arquivo e retorna se a extensao dele e valida
+ * @param arquivo_path caminho ate o arquivo
+ * @return true, se a extensao estiver dentre as validas, false caso contrario
  */
 int extension_is_valid(const char* arquivo_path){
     //pegando o nome do arquivo
@@ -334,6 +384,9 @@ int extension_is_valid(const char* arquivo_path){
         return true;
     }
     else if(extension_compare("cpp")){
+        return true;
+    }
+    else if(extension_compare("py")){
         return true;
     }
 
