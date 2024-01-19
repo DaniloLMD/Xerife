@@ -1,8 +1,0 @@
-Faça um programa que leia o nome de uma pessoa e exiba uma mensagem de agradecimento.
-
-                    Exemplo:
-Entrada: 
-Gustavo
-
-Saida:
-Obrigado por usar o Xerife, Gustavo.

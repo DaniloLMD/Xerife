@@ -59,7 +59,11 @@ void* thread_funcao_executa(void* param_ref){
     pthread_exit(NULL);
 }
 
-
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execucao){
     pthread_t thread_cronometro;
     pthread_t thread_executadora;
@@ -81,6 +85,11 @@ void checa_tle(bool* tle_check, int* runtime_check, char* comando_executar_execu
    *runtime_check = param.execucao_status;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 
     char path_saida[300];       // = "arquivos/saidas/";
@@ -137,6 +146,11 @@ int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
 
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
 
     //montando o comando para executar o arquivo
@@ -172,6 +186,11 @@ if(tle){
     return checa_resposta(n_lista, n_questao, n_caso_de_teste);
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int judge_cpp_file(int n_lista, int n_questao, int n_caso_de_teste){
 
     //montando o comando para executar o arquivo
@@ -206,7 +225,11 @@ if(tle){
     return checa_resposta(n_lista, n_questao, n_caso_de_teste);
 }
 
-
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 char* get_file_name_from_path(const char* path){
     char *file_name;
     int index_barra = -1;
@@ -228,6 +251,11 @@ char* get_file_name_from_path(const char* path){
 
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void get_file_extension(const char* file_name){
     int index_ponto = -1;
     int size = 0;
@@ -250,10 +278,20 @@ void get_file_extension(const char* file_name){
     
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 bool extension_compare(const char* extension_test){
     return !(strcmp(file_extension, extension_test));
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste){
 
     //pegando o nome do arquivo
@@ -281,6 +319,11 @@ int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso
 
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int extension_is_valid(const char* arquivo_path){
     //pegando o nome do arquivo
     char* file_name = get_file_name_from_path(arquivo_path);

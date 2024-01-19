@@ -1,5 +1,10 @@
 #include "../include/includes.h"
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void set_nome_lista(int n_lista, char* list_name){
     char path[100];
     char name[100];
@@ -13,6 +18,11 @@ void set_nome_lista(int n_lista, char* list_name){
     strcpy(list_name, name);
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 int get_qtd_listas(){
 
     //lendo a quantidade total de listas
@@ -24,6 +34,11 @@ int get_qtd_listas(){
     return qtd_listas;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 bool deletar_lista(int n_lista){
     char comando[100];
     FILE* ptr;

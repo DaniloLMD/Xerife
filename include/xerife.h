@@ -11,6 +11,7 @@
 #include "julgar.h"
 #include "mostrar_questao.h"
 #include "rank.h"
+#include "pilha_cadastro.h"
 
 
 void on_bt_submeter_pagina_questao_clicked ();
@@ -43,25 +44,7 @@ void on_bt_ir_cadastrar_lista_clicked();
 
 void on_bt_mostrar_listas_ativas_clicked ();
 
-void on_file_chooser_text_questao_confirm_overwrite ();
-
-void on_file_chooser_text_questao_file_activated ();
-
-void on_file_chooser_entrada_questao_confirm_overwrite ();
-
-void on_file_chooser_entrada_questao_file_activated ();
-
-void on_file_chooser_saida_questao_confirm_overwrite ();
-
-void on_file_chooser_saida_questao_file_activated ();
-
 void bt_enviar_entrada_saida ();
-
-void bt_proxima_questao_cad_desq_pag();
-
-void bt_proxima_questao_cad_enviar_desq_pag();
-
-void on_bt_proxima_questao_entrada_saida_clicked();
 
 void on_bt_lista_selecionada_entrar_clicked ();
 
@@ -104,5 +87,17 @@ void atualizar_list_store_deletar_listas();
 void on_bt_mostrar_rank_clicked();
 
 void on_bt_voltar_rank_clicked();
+
+void on_file_chooser_arquivos_cad_geral_confirm_overwrite();
+
+void on_file_chooser_arquivos_cad_geral_file_activated();
+
+void on_bt_desfazer_cad_activate();
+
+void on_bt_exercicos_listar_clicked();
+
+void on_bt_sair_da_lista_clicked();
+
+void on_bt_cancelar_cad_clicked();
 
 #endif

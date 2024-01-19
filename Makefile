@@ -21,7 +21,8 @@ _src: \
 		$(OBJ)/mostrar_lista.o \
 		$(OBJ)/mostrar_questao.o\
 		$(OBJ)/deletar_lista.o\
-		$(OBJ)/rank.o
+		$(OBJ)/rank.o\
+		$(OBJ)/pilha_cadastro.o
 
 clean_apps:
 	rm -rf $(BIN)/*

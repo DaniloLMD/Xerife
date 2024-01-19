@@ -5,30 +5,50 @@
 #principal_caixa{
     border:3px solid black;
     border-radius:10px;
-    color:lightblue;
-
-
+    color: white;
 }
+
+#bt_prompt_text {
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#bt_prompt_text:hover {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
 #prompt {
     border: 3px solid black;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bolder;
-    font-family: 'Courier New', Courier, monospace;
-
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
     color: black;
 }
+
+#prompt_box{
+    border: 3.5px solid black;
+    font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 #login{
     background: #0077B6;
     background-image: linear-gradient( #0077B6,#02033B);
     padding: 150px;
+
 }
 
 #label_login {
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(206, 255, 251);
-   
-    border-bottom: 3px solid black;    
+    background: white;
+    border-bottom: 1px solid black;    
     color: black;
     font-weight: bolder;
 
@@ -38,9 +58,9 @@
 #grid_login {
     padding:10px;
     border-radius: 10px;
-    background-color: rgb(206, 255, 251);
+    background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
-    border: 3px solid black;
+    border: 1.5px solid black;
 }
 
 #entry_usu {
@@ -49,8 +69,7 @@
     border-top: 3px solid  black;
     border-left: 3px solid  black;
     border-right: 3px solid black;
-    background-color: rgb(206, 255, 251);
-
+    background: white;
 }
 
 #entry_senha {
@@ -59,88 +78,82 @@
     border-top: 3px solid black;
     border-left: 3px solid black;
     border-right: 3px solid black;
-    background-color: rgb(206, 255, 251);
+    background-color: white;
  
 }
 
-
 #Xerefi-login {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
-    font-size: 20px;
-    border-right: 3px solid black;
+    font-size: 18px;
     border-bottom: 3px solid black;
     color: black;
 }
 #usu_login {
     color: black;
-    border-top: 3px solid black; 
-    border-left: 3px solid black;
-    border-right: 3px solid black;
-    border-radius: 20px;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: bolder;
 }
 
 #senha_login {
     color: black;
-    border-top: 3px solid black; 
-    border-left: 3px solid black;
-    border-right: 3px solid black;
-    border-radius: 20px;
-
     font-size: 18px;
     font-weight: bolder;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #login-tela {
     padding: 10px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     background:white;
     color: black;
 
 }
 #bt_login {
-    background: #1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 #bt_login:hover{
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    background: #1bab6a;
-    
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 
 }
+
+
 #bt_cadastre_login {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #bt_cadastre_login:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    background: #1bab6a;
-    
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 
@@ -155,86 +168,73 @@
 }
 
 #grid_cadastro {
-    background: rgb(206, 255, 251);
+    background: white;
     border: 3px solid black;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
 }
 
-#xerife_log_cadastro {
+#logo_cad {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
-    font-size: 20px;
-    border-bottom: 3px solid black;
+    border-bottom: 5px solid black;
     color: black;
 }
 
 #cadastro_label {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     border-bottom: 3px solid black;
     color: black;
 }
 
 #usuario_label_cadastro {
-
-     background: rgb(206, 255, 251);
+    background: white;
     font-weight: bolder;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
-    border-bottom: 3px solid black;
-    border-left: 3px solid black;
-    border-radius: 20px;
 }
 
 #senha_label_cadastro {
-    background: rgb(206, 255, 251);
+    background: white;
     font-weight: bolder;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
-    border-bottom: 3px solid black;
-    border-right: 3px solid black;
-    border-radius: 20px;
 }
 
 #centry_usu_cadastro {
     border-radius: 20px;
-    border-top: 3px solid black;
-    border-right: 3px solid black;
-    border-bottom: black;
-    border-left: black;
-    background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
+    border: 2px solid black;
+    background:white;
 }
-
 #centry_senha_cadastro {
     border-radius: 20px;
-    border-top: 3px solid black;
-    border-right: 3px solid black;
-    border-bottom: black;
-    border-left: black;
-    background-image: linear-gradient(to right, white, rgba(128, 128, 128, 0.219));
+    border: 2px solid black;
+    background:white;
 }
 
-#cbt_enviar_cadastro {
-    background:#1bab6a;
+#bt_cadastro_pag {
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
     color: black
 }
 
-#cbt_enviar_cadastro:hover {
+#bt_cadastro_pag:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 25px;
-    background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 #icon{
@@ -243,22 +243,24 @@
 
 
 #cbt_voltar_cadastro {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #cbt_voltar_cadastro:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 25px;
-    background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 
 }
 
@@ -270,7 +272,6 @@
     background: #0077B6;
     background-image: linear-gradient( #0077B6,#02033B);
     padding: 150px;
-    
 }
 
 #hub_title {
@@ -281,65 +282,91 @@
 }
 
 #bt_listas_ativas {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #bt_listas_ativas:hover{
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
     
 }
 
 #bt_cadastrar_lista {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #bt_cadastrar_lista:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 #bt_deslogar_hub {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 #bt_deslogar_hub:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px; background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
+
+#bt_deletar_listas {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_deletar_listas:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: rgb(182, 0, 0);
+    background-image: linear-gradient(#F28F38, rgb(222, 2, 2));
+}
+
 #box_hub {
-    background-color: rgb(206, 255, 251);
+    background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
@@ -350,9 +377,8 @@
 */
 
 #cadlista_hub {
-    background: #0077B6;
+    background-color: black;
     background-image: linear-gradient( #0077B6,#02033B);
-    padding: 150px;
 }
 
 #Label_cadastrar_lista {
@@ -362,15 +388,19 @@
     color: black;
     border-bottom: 3px solid black;
     border-top: 3px solid black;
-    border-top-left-radius: 10px;
-
+}
+#box_cad_lista_true {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
+    padding: 150px;
 }
 
 #cadlista_box {
-    background-color: rgb(206, 255, 251);
+    background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
+    padding: 18px;
 }
 
 #logo_cad_lista {
@@ -380,7 +410,7 @@
 
 #entry_nome_cad_lista {
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
@@ -389,7 +419,7 @@
 
 #entry_numero_questao {
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
@@ -398,7 +428,7 @@
 
 #entry_entrada_saidas_cad_lista {
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
@@ -406,65 +436,66 @@
 }
 
 #bt_cadlista_voltar{
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #bt_cadlista_voltar:hover{
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    font-size: 30px; 
-    background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 #criar_list_bt {
-    background:#1bab6a;
+    background: #F28F38;
     border-radius: 10px;
-    font-size: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
-    color: black;
+    color: black
 }
 
 #criar_list_bt:hover {
     opacity: 0.9;
+    color: white;
     font-family: 'Courier New', Courier, monospace;
-    box-shadow: 1px 1px 0px #000;
-    transition: ease-in-out 250ms;
-    font-size: 30px;
-    font-size: 30px; background: #1bab6a;
-    background-image: linear-gradient(#1bab6a, #043921);
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 
 #label_nome_lista {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
 #label_numero_questao {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
 #label_quantidade_emtrada_saida {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
 }
 
@@ -474,7 +505,7 @@
 
 #bt_enviar_desq_questao {
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
     border: 3px solid black;
@@ -482,18 +513,470 @@
 }
 
 /* parte de escolher a lista */ 
+#box_lista_ativa {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);
+    padding: 150px;
+
+}
+
+#label_titulo_exibir_lista{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;;
+    color: black;
+}
+
+#lista_atual_label {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;;
+    color: black;
+}
 
 #grid_list_ative{
-    background: rgb(206, 255, 251);
+    background: white;
     border: 3px solid black;
     border-radius: 20px;
     box-shadow: 0 0 150px rgba(0, 0, 0, 0.792);
 }
 
+#bt_ranque{
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+#bt_ranque:hover{   
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
 #box_list{
-    background-color: rgb(206, 255, 251);
+    background: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
     border: 3px solid black;
 }
 
+#bt_listaativa_prox{
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_listaativa_prox:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#bt_listativa_exit{
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+#bt_listativa_exit:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+#bt_listaativa_ant{
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_listaativa_ant:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#bt_listaativa_enter{
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_listaativa_enter:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#label_listas_ativas_exbir {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    border-bottom: 2px solid black;
+    font-weight: bolder;
+}
+
+
+/*
+    css da pagina de deletar listas incluidas no sistema
+*/
+
+#box_deletar_lista {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 150px;
+}
+
+#remover_lista_pag {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 0px #000;
+    background: white;
+}
+
+#grid_bt_deletar_lista {
+    padding: 10px;
+}
+
+#Numero_list_label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: black;
+}
+
+#bt_voltar_deletar_lista {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_voltar_deletar_lista:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#bt_enviar_deletar_lista {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_enviar_deletar_lista:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+
+}
+
+#box_tree_view {
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+#tree_view_deletar_lista {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 7px;
+    font-size: 15px;
+}
+
+#entry_numero_lista {
+    background: #f497453c;
+    border-bottom: 1px solid black;
+}
+
+/*
+    css do ranking
+
+*/
+#box_ranking {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 150px;
+}
+
+#bt_rank_voltar {
+    padding: 20px;
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#label_sua_posicao {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size:  19px;
+    color: black;
+    background: rgba(255, 68, 0, 0.6);
+    border-radius: 5px;
+}
+
+#bt_rank_voltar:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+
+}
+
+#pag_rank {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 0px #000;
+    background: white;
+}
+#box_tree_view_exibir {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+
+}
+#tree_view_ranking {
+    padding: 15px;
+}
+
+/*
+    css exibir questão
+*/
+
+#box_exibir_questao {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 150px;
+}
+
+#box_exibir {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 0px #000;
+    background: white;
+}
+
+/*
+    css da pagina
+*/
+
+#box_cadastrar_lista {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 150px;
+}
+
+#pag_cad_questao {
+    border: 3px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0px #000;
+    background: white;
+}
+
+#text_view_cad_geral {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+#view_cad_box{
+    padding: 20px;
+    border-right: 2px solid black;
+}
+
+#box_butttom_cad_lista {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+#box_button_exibir_questao{
+    padding: 10px;
+}
+
+#bt_avancar_exibir_questao {
+    color: black;
+    border: 2px solid black;
+    font-size: 15px;
+}
+
+#bt_avancar_exibir_questao:hover {
+    background: rgba(0, 100, 0, 0.615);
+    font-size: 18px;
+}
+
+#bt_voltar_exibir_questao {
+    color: black;
+    border: 2px solid black;
+    font-size: 15px;
+}
+
+#bt_voltar_exibir_questao:hover {
+    background: rgb(139, 0, 0);
+    font-size: 18px;
+}
+
+#bt_sair_lista_exibidas {
+    color: black;
+    border: 1px solid black;
+    font-size: 15px;
+}
+
+#label_exibir_desq_questoes {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    color: black;
+}
+
+#label_numero_questao_exibir {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    color: black;
+
+}
+
+/*
+    stack 2 css
+*/
+
+#box_side_bar {
+    background: #ffffff;
+    box-shadow: 2px 2px 2px black;
+    border: 3px solid black;
+}
+
+#bt_sair_da_lista_side_bar {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_sair_da_lista_side_bar:hover {
+    background: orangered;
+    color: black;
+    font-size: 19.5px;
+    border: 2px solid white;
+    transition: ease-in-out 450ms;
+}
+
+#bt_mostra_exercicios {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_mostra_exercicios:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#bt_submeter_codigo {
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_submeter_codigo:hover {
+    background: #0077B6;
+    border-radius: 10px;
+    font-size: 19.5px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black;
+}
+
+#box_enviar_arquivos {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 100px;
+}
+
+#chooser_file_enviar_arquivo {
+    border: 2px solid black;
+}

@@ -4,6 +4,11 @@
 
 // #############        Funcoes da lista        #######################
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 struct rank_node{
     char nome[50];
     int pontos;
@@ -12,6 +17,11 @@ struct rank_node{
     struct rank_node* prev;
 };
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 struct rank_head{
     int size;
     struct rank_node* first;
@@ -19,6 +29,11 @@ struct rank_head{
 };
 
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 RNode* RNode_new(char* nome, int pontos, int tentativas){
     RNode* node = (RNode*) malloc(sizeof(RNode));
 
@@ -31,6 +46,11 @@ RNode* RNode_new(char* nome, int pontos, int tentativas){
     return node;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 RHead* RHead_new(){
     RHead* head = (RHead*) malloc(sizeof(RHead));
 
@@ -41,6 +61,11 @@ RHead* RHead_new(){
     return head;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void RHead_delete(RHead** head_ref){
     RHead* head = *head_ref;
     if(head == NULL)
@@ -60,6 +85,11 @@ void RHead_delete(RHead** head_ref){
     *head_ref = NULL;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void RHead_ordered_insert(RHead* lista, char* nome, int pontos, int tentativas){
     RNode* node = RNode_new(nome, pontos, tentativas);
 
@@ -165,6 +195,11 @@ void atualiza_arquivo_rank(int n_lista, char * user_name, bool acertou){
 
 //#######################################   PARTE DE VERIFICAR SE JA FEZ A QUESTAO ################################
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 struct queue_registro_node{
     char nome[50];
     int qtd_questoes_feitas;
@@ -172,12 +207,22 @@ struct queue_registro_node{
     QNode* next;
 };
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 struct queue_registro_lista{
     int size;
     QNode* first;
     QNode* last;
 };  
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 QNode* QNode_new(char* nome, int qtd_questoes_feitas, int* questoes_feitas){
     QNode* new_node = (QNode*) malloc(sizeof(QNode));
     strcpy(new_node->nome, nome);
@@ -188,6 +233,11 @@ QNode* QNode_new(char* nome, int qtd_questoes_feitas, int* questoes_feitas){
     return new_node;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void QHead_delete(QHead** head_ref){
     QHead* head = *head_ref;
 
@@ -206,6 +256,11 @@ void QHead_delete(QHead** head_ref){
     *head_ref = NULL;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 QHead* QHead_new(){
     QHead* new_head = (QHead*) malloc(sizeof(QHead));
     new_head->first = NULL;
@@ -215,6 +270,11 @@ QHead* QHead_new(){
     return new_head;
 }
 
+/**
+ * @brief 
+ * @param 
+ * @return 
+ */
 void QHead_insert(QHead* head, char* nome, int qtd_questoes_feitas, int* questoes_feitas){
     QNode* new_node = QNode_new(nome, qtd_questoes_feitas, questoes_feitas);
    

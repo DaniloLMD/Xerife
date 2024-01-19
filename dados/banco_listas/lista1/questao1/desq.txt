@@ -1,1 +1,1 @@
-Leia dois inteiros e mostre na tela a soma deles
+Faça um programa que exiba na tela a mensagem "Helo, World!"

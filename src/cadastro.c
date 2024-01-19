@@ -6,7 +6,6 @@
  *
  * @param char_const* nome do usuário
  * 
- *
  * @return Verdadeiro caso a operação tenha sucesso | falso caso o usuário já esteja cadastrado
  * 
  */

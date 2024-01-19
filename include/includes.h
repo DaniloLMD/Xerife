@@ -7,5 +7,4 @@
 #include <stdio.h>
 #include "lista.h"
 #include "paths.h"
-
 #endif

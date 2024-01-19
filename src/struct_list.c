@@ -1,10 +1,10 @@
 #include "../include/struct_list.h"
 #include "../include/includes.h"
 
+#define max_titulo 100
 /**
- * @brief 
- * @param 
- * @return
+ * @brief cria uma lista duplamente encadeada
+ * @return lhead*
  */
 lhead *criar_l_lista() {
     lhead *lista = NULL;
@@ -21,11 +21,11 @@ lhead *criar_l_lista() {
 };
 
 /**
- * @brief 
- * @param 
- * @return
+ * @brief cria um no para lista onde vai ser quardado um titulo[100] de ate 100 caracteres
+ * @param char[100] titulo
+ * @return lnode*
  */
-lnode *criar_l_no(char titulo[100]) {
+lnode *criar_l_no(char titulo[max_titulo]) {
     lnode *no = NULL;
     do {
         no = (lnode*) malloc(sizeof(lnode)*1);
@@ -39,11 +39,12 @@ lnode *criar_l_no(char titulo[100]) {
 }; 
 
 /**
- * @brief 
- * @param 
- * @return
+ * @brief adiciona no fim da lista e concerta o encadeamento  
+ * @param lhead* lista
+ * @param char[100] titulo
+ * @return bool true caso o processo de adicionar no fim ocorra certo || false caso o processo não ocorra certo
  */
-bool adicionar_l_fim(lhead *lista, char titulo [100]) {
+bool adicionar_l_fim(lhead *lista, char titulo [max_titulo]) {
     if (lista != NULL){
         lnode *no = criar_l_no(titulo);
         lnode *aux = NULL;
@@ -77,9 +78,9 @@ bool adicionar_l_fim(lhead *lista, char titulo [100]) {
 
 
 /**
- * @brief 
- * @param 
- * @return
+ * @brief destruir a lista e liberar memoria
+ * @param lhead* ponteiro que guarda a referencia para lista
+ * @return bool true caso o processo de adicionar no fim ocorra certo || false caso o processo não ocorra certo
  */
 bool destruir_l_lista(lhead * lista) {
     if (lista != NULL) {
