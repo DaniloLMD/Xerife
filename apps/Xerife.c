@@ -15,6 +15,8 @@ GtkTreeIter iter;
 
 
 //labels da parte de exibir questao
+GtkLabel* label_n_lista;
+GtkLabel* label_nome_lista;
 GtkLabel* label_n_questao;
 GtkLabel* label_enunciado_questao;
 
@@ -28,12 +30,8 @@ GtkLabel *label_pag_enviar_desq_questao;
 GtkLabel *label_pag_enviar_entrada;
 GtkLabel *label_pag_enviar_saida;
 GtkLabel *label_questao_cad_entrada_saida;
-
 GtkLabel *desq_geral_questao;
 
-//estes labels pertencem a página de carregar as listas
-GtkLabel *numero_questao;
-GtkLabel *titulo_questao;
 
 //fie chooser referentes a parte de cadastrar questão entrada e saida
 GtkFileChooser* file_chooser;
@@ -78,9 +76,7 @@ int main (int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     builder = gtk_builder_new_from_file(PATH_XERIFE_GLADE);
-    //labels que pertencem a página de carregar questão
-    numero_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_numero_lista_exibir_lista"));
-    titulo_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_titulo_questao_exibir_lista"));
+    
     desq_geral_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_motrar_questoes_cadastradas"));
     //file chooser referentes a parte de cadastro de questao
     file_chooser = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")); 
@@ -88,7 +84,9 @@ int main (int argc, char *argv[]) {
     
     //labels da parte de mostrar questao
     label_n_questao = GTK_LABEL(gtk_builder_get_object(builder, "numero-questao"));
+    label_nome_lista = GTK_LABEL(gtk_builder_get_object(builder, "label_nome_da_lista"));
     label_enunciado_questao = GTK_LABEL(gtk_builder_get_object(builder, "enunciado_questao"));
+    label_n_lista = GTK_LABEL(gtk_builder_get_object(builder, "label_numero_da_lista"));
 
     //stack e window do programa inteiro
     stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
@@ -106,8 +104,6 @@ int main (int argc, char *argv[]) {
         "on_bt_cadastre_se_login_clicked", G_CALLBACK(on_bt_cadastre_se_login_clicked),
         "on_cadastro_questao_clicked", G_CALLBACK(on_cadastro_questao_clicked),
         "on_cad_lista_enviar_bt_clicked", G_CALLBACK(on_cad_lista_enviar_bt_clicked),
-        "on_bt_avancar_exibir_listar_clicked", G_CALLBACK(on_bt_avancar_exibir_listar_clicked),
-        "on_bt_voltar_exibir_lista_clicked", G_CALLBACK(on_bt_voltar_exibir_lista_clicked),
         "on_deslogar_clicked", G_CALLBACK(on_deslogar_clicked),
         "on_bt_ir_cadastrar_lista_clicked", G_CALLBACK(on_bt_ir_cadastrar_lista_clicked),
         "on_bt_mostrar_listas_ativas_clicked", G_CALLBACK(on_bt_mostrar_listas_ativas_clicked),
@@ -117,7 +113,6 @@ int main (int argc, char *argv[]) {
         "on_stack_1_escolher_arquivo_file_chooser_file_activated",   G_CALLBACK(on_stack_1_escolher_arquivo_file_chooser_file_activated),
         "on_stack_1_casos_de_teste_button_back_clicked", G_CALLBACK(on_stack_1_casos_de_teste_button_back_clicked),
         "on_stack_2_casos_de_teste_button_back_clicked", G_CALLBACK(on_stack_2_casos_de_teste_button_back_clicked),
-        "on_bt_lista_selecionada_entrar_clicked", G_CALLBACK(on_bt_lista_selecionada_entrar_clicked),
         "on_bt_ok_message_dialog_box_clicked", G_CALLBACK(on_bt_ok_message_dialog_box_clicked),
         "on_bt_voltar_casos_de_teste_clicked", G_CALLBACK(on_bt_voltar_casos_de_teste_clicked),
         "on_bt_back_descricao_questao_clicked", G_CALLBACK(on_bt_back_descricao_questao_clicked), 
@@ -136,6 +131,7 @@ int main (int argc, char *argv[]) {
         "on_bt_exercicos_listar_clicked", G_CALLBACK(on_bt_exercicos_listar_clicked),
         "on_bt_sair_da_lista_clicked", G_CALLBACK(on_bt_sair_da_lista_clicked),
         "on_bt_cancelar_cad_clicked", G_CALLBACK(on_bt_cancelar_cad_clicked),
+        "on_tree_view_listas_ativas_row_activated", G_CALLBACK(on_tree_view_listas_ativas_row_activated),
         NULL
     );
 
@@ -246,6 +242,11 @@ void on_bt_enviar_cadastro_clicked () {
     }
 }
 
+void limpar_entry(GtkEntry *x) {
+    gtk_entry_set_text(x, "");
+}
+
+
 /**
  * @brief realiza o login no sistema
  * @return void
@@ -302,8 +303,6 @@ void on_bt_login_tela_login_clicked () {
         }
     }  
     gtk_stack_set_visible_child_name(stack, "hub");
-
-    
 }
 
 /**
@@ -327,84 +326,60 @@ void on_bt_cadastre_se_login_clicked () {
  * @return void
  */
 void on_cad_lista_enviar_bt_clicked () {
+    int resultado = 0;
+    GtkEntry *enome_lista = GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista"));
+    GtkEntry *eqtd_questoes = GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista"));
+    GtkEntry *eqtd_entrada_saida = GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista"));
+
     GtkListStore* list_store_arquivos_selecionados =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_arquivos_cadastrados"));
     gtk_list_store_clear(list_store_arquivos_selecionados);
+
     const char *nome_lista = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista")));
-    qtd_entrada_saida = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista")));
-    qtd_questao = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista")));
+    resultado = verificacoes_nome_lista(nome_lista);
     
-
-    //verifica se algum dos campos contem uma string vazia caso esteja não realiza o cadastro da lista
-    if ((strcmp(qtd_entrada_saida, "") == 0) || (strcmp(qtd_questao, "") == 0 || (strcmp(nome_lista, "") == 0))) {
-        mensagem("algum dos campos está vazio", "");
-    }
-    else {
-        //chama os passos necessários para cria uma lista
-        casdastrar_lista(nome_lista, qtd_entrada_saida, qtd_questao);
-    
-        //aqui carrego a descrição na pasta da questão
-        cadastro_descricao_questao(qtd_questao);
-
-        //cria a pilha usada para constrolar o cadastro da descrição, entradas e saidas de cada questão
-        criar_pilha_geral(qtd_entrada_saida, qtd_questao);
+    if (resultado == 1) {
+        qtd_entrada_saida = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_entradas_saidas_cad_lista")));
+        qtd_questao = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_numero_de_questoes_cad_lista")));
         
-        //indo para a pagina geral de cadastro da lista onde vai ser informado os arquivos de entradas, saidas e desq de questão
-        gtk_stack_set_visible_child_name(stack, "pag_cad_geral");    
-        contador = 0;
-    }
+        //verifica se algum dos campos contem uma string vazia caso esteja não realiza o cadastro da lista
+        
+        if ((strcmp(qtd_entrada_saida, "") == 0) || (strcmp(qtd_questao, "") == 0 || (strcmp(nome_lista, "") == 0))) {
+            mensagem("algum dos campos está vazio", "");
+        }
+        else if (!contem_apenas_numeros(qtd_entrada_saida) || !contem_apenas_numeros(qtd_questao)) {
+            mensagem("Campo de quantidade de entradas e saidas", "aceita apenas valores numéricos");
+            limpar_entry(eqtd_entrada_saida);
+            limpar_entry(eqtd_questoes);
+        }
+        else {
+            //chama os passos necessários para cria uma lista
+            casdastrar_lista(nome_lista, qtd_entrada_saida, qtd_questao);
+        
+            //aqui carrego a descrição na pasta da questão
+            cadastro_descricao_questao(qtd_questao);
+
+            //cria a pilha usada para constrolar o cadastro da descrição, entradas e saidas de cada questão
+            criar_pilha_geral(qtd_entrada_saida, qtd_questao);
+            
+            //indo para a pagina geral de cadastro da lista onde vai ser informado os arquivos de entradas, saidas e desq de questão
+            gtk_stack_set_visible_child_name(stack, "pag_cad_geral");    
+            contador = 0;
+        }
+    } else {
+        switch (resultado)
+        {
+        case 2:
+            mensagem("Nome de lista já foi cadastrado", "escolha outro por favor");
+            break;
+        
+        case 3:
+            mensagem("O nome da lista deve conter", "pelo menos uma letra");
+            break;
+        }
+        limpar_entry(enome_lista);
+    }   
 }
 
-/**
- * @brief está função avança na lista que está sendo exibida na pagina de exibição das listas ativas
- * @return coid
- */
-void on_bt_avancar_exibir_listar_clicked () {
-    int resposta = avancar_lista(numero_questao, titulo_questao);
-    //atualiza a lista que está sendo selecionada atualmente
-    Lista_atual_selecionada = checar_lista_monitorada();
-
-    switch (resposta)
-    {
-    case 1:
-        mensagem("Você chegou na ultima lista", "So a opção voltar funcionara");
-        break;
-    
-    default:
-        break;
-    }
-}
-
-/**
- * @brief está função retorna na lista que está sendo exibida na pagina de exibição das listas ativas
- * @return void
- */
-void on_bt_voltar_exibir_lista_clicked () {
-    int resposta = voltar_lista(numero_questao, titulo_questao);
-    Lista_atual_selecionada = checar_lista_monitorada();
-    
-    switch (resposta)
-    {
-    case 1:
-        mensagem("Você chegou na primeira lista", "So a opção avançar funcionara");
-        break;
-    
-    default:
-        break;
-    }
-}
-
-/**
- * @brief exibe na tela a lista atual
- * @param 
- * @return 
- */
-void on_bt_lista_selecionada_entrar_clicked () {
-    Lista_atual_selecionada.numero_da_questao = 1;
-    mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
-    mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
-    gtk_stack_set_visible_child_name(stack, "pag_hub_exibir_lista");
-    
-}
 
 /**
  * @brief desloga do sistema e volta para pagina de login
@@ -427,8 +402,8 @@ void on_bt_ir_cadastrar_lista_clicked () {
 /**
  * @brief exibe na tela as listas ativas
  * @param 
- * @return 
- */
+    * @return 
+    */
 void on_bt_mostrar_listas_ativas_clicked () {
 
     if(get_qtd_listas() == 0){
@@ -436,10 +411,10 @@ void on_bt_mostrar_listas_ativas_clicked () {
         return;
     }
 
-    carregar_listas_ativas();
+
+    
+    iniciar_list_store_listas_ativas(builder);
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
-    iniciar_label(numero_questao, titulo_questao);
-    Lista_atual_selecionada = checar_lista_monitorada();
 }
 
 /**
@@ -538,6 +513,8 @@ void mostrar_casos_de_testes(const char* file_path){
 
     GtkListStore* list_store_casos_de_teste;
     list_store_casos_de_teste =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_casos_de_teste"));
+    GtkTreeIter iter;
+    gtk_list_store_clear(list_store_casos_de_teste);
     
     int teste = 1; //caso de teste atual
 
@@ -545,8 +522,6 @@ void mostrar_casos_de_testes(const char* file_path){
     int n_questao = Lista_atual_selecionada.numero_da_questao;
     int qtd_casos_de_teste = Lista_atual_selecionada.qtd_entrada_saida;
 
-    GtkTreeIter iter;
-    gtk_list_store_clear(list_store_casos_de_teste);
 
 
     
@@ -604,7 +579,8 @@ void on_stack_2_casos_de_teste_button_back_clicked(){
  * @return 
  */
 void on_bt_voltar_casos_de_teste_clicked(){
-    gtk_stack_set_visible_child_name(stack, "stack_0_enunciado_questao");
+    gtk_stack_set_visible_child_name(stack, "pag_hub_exibir_lista");
+    gtk_stack_set_visible_child_name(stack_exibir_lista, "pag_exibir_questao");
 }
 
 /**
@@ -789,6 +765,20 @@ void on_bt_mostrar_rank_clicked(){
     fclose(rank);
 
     gtk_stack_set_visible_child_name(stack_exibir_lista, "rank");
+    GtkLabel* label_sua_posicao = GTK_LABEL(gtk_builder_get_object(builder, "label_sua_posicao"));
+
+    int posicao_usuario = get_posicao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+    char texto_posicao[50];
+    char numero_posicao[10];
+    
+    if(posicao_usuario   == -1){
+        sprintf(numero_posicao, "N/A");
+    }
+    else {
+        sprintf(numero_posicao, "%d", posicao_usuario);
+    }
+    sprintf(texto_posicao, "Sua posição: %s", numero_posicao);
+    gtk_label_set_text(label_sua_posicao, texto_posicao);
 }
 
 /**
@@ -862,7 +852,7 @@ void on_file_chooser_arquivos_cad_geral_file_activated () {
 
 
     if (n_questao == qt_questao_at && n_entrada_saida == total_et_sd+1)  {
-        cria_pastas_entrada_saida(qtd_entrada_saida);
+        cria_pastas_entrada_saida(qtd_questao);
         mostrar_pilha();
         mensagem("lista foi cadastrada", "com sucesso");
         gtk_stack_set_visible_child_name(stack, "teste");
@@ -917,4 +907,22 @@ void on_bt_sair_da_lista_clicked() {
 void on_bt_cancelar_cad_clicked(){
     deletar_lista(get_qtd_listas());
     gtk_stack_set_visible_child_name(stack, "teste");
+}
+
+void on_tree_view_listas_ativas_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data){
+    gint n_lista    ;
+    GtkTreeIter iter;
+    GtkTreeModel *model = gtk_tree_view_get_model(tree_view);
+    gtk_tree_model_get_iter(model, &iter, path);
+    gtk_tree_model_get(model, &iter, 0, &n_lista, -1);
+
+    Lista_atual_selecionada.numero_da_lista = n_lista;
+    Lista_atual_selecionada.numero_da_questao = 1;
+    Lista_atual_selecionada.quantidade_de_questoes = get_qtd_questoes(n_lista);
+    Lista_atual_selecionada.qtd_entrada_saida = get_qtd_entrada_saida(n_lista);
+    mostrar_n_lista(label_n_lista, Lista_atual_selecionada.numero_da_lista);
+    mostrar_nome_lista(label_nome_lista, Lista_atual_selecionada.numero_da_lista);
+    mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
+    mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+    gtk_stack_set_visible_child_name(stack, "pag_hub_exibir_lista");
 }

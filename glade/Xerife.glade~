@@ -72,6 +72,16 @@
       <column type="gchararray"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="list_store_listas_ativas">
+    <columns>
+      <!-- column-name Numero -->
+      <column type="gint"/>
+      <!-- column-name Nome -->
+      <column type="gchararray"/>
+      <!-- column-name Questoes -->
+      <column type="gint"/>
+    </columns>
+  </object>
   <object class="GtkListStore" id="list_store_rank">
     <columns>
       <!-- column-name Posição -->
@@ -547,79 +557,73 @@ Cadastro
                     <property name="row-homogeneous">True</property>
                     <property name="column-homogeneous">True</property>
                     <child>
-                      <!-- n-columns=3 n-rows=3 -->
-                      <object class="GtkGrid" id="lista-ativa">
-                        <property name="name">grid_list_ative</property>
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="row-homogeneous">True</property>
-                        <property name="column-homogeneous">True</property>
+                        <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkLabel" id="label_titulo_questao_exibir_lista">
-                            <property name="name">label_titulo_exibir_lista</property>
+                          <object class="GtkLabel">
+                            <property name="name">label_listas_ativas_exbir</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="label" translatable="yes">titulo 1</property>
+                            <property name="label" translatable="yes">Listas Ativas</property>
+                            <attributes>
+                              <attribute name="style" value="oblique"/>
+                            </attributes>
                           </object>
                           <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">1</property>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton" id="bt_lista_selecionada_entrar">
-                            <property name="label" translatable="yes">Entrar</property>
-                            <property name="name">bt_listaativa_enter</property>
+                          <object class="GtkTreeView" id="tree_view_listas_ativas">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="receives-default">True</property>
-                            <property name="margin-start">80</property>
-                            <property name="margin-end">80</property>
-                            <property name="margin-top">80</property>
-                            <property name="margin-bottom">80</property>
-                            <signal name="clicked" handler="on_bt_lista_selecionada_entrar_clicked" swapped="no"/>
+                            <property name="model">list_store_listas_ativas</property>
+                            <signal name="row-activated" handler="on_tree_view_listas_ativas_row_activated" swapped="no"/>
+                            <child internal-child="selection">
+                              <object class="GtkTreeSelection"/>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Número</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="numero_lista"/>
+                                  <attributes>
+                                    <attribute name="text">0</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Nome</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="nome_lista"/>
+                                  <attributes>
+                                    <attribute name="text">1</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkTreeViewColumn">
+                                <property name="title" translatable="yes">Questoes</property>
+                                <child>
+                                  <object class="GtkCellRendererText" id="questoes_lista"/>
+                                  <attributes>
+                                    <attribute name="text">2</attribute>
+                                  </attributes>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                           <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="bt_avancar_exibir_listar">
-                            <property name="label" translatable="yes">Proxima</property>
-                            <property name="name">bt_listaativa_prox</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="receives-default">True</property>
-                            <property name="margin-start">80</property>
-                            <property name="margin-end">80</property>
-                            <property name="margin-top">80</property>
-                            <property name="margin-bottom">80</property>
-                            <signal name="clicked" handler="on_bt_avancar_exibir_listar_clicked" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="left-attach">2</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="bt_voltar_exibir_lista">
-                            <property name="label" translatable="yes">Anterior</property>
-                            <property name="name">bt_listaativa_ant</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="receives-default">False</property>
-                            <property name="margin-start">80</property>
-                            <property name="margin-end">80</property>
-                            <property name="margin-top">80</property>
-                            <property name="margin-bottom">80</property>
-                            <signal name="clicked" handler="on_bt_voltar_exibir_lista_clicked" swapped="no"/>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">2</property>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -629,46 +633,19 @@ Cadastro
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="margin-left">80</property>
+                            <property name="margin-right">80</property>
                             <property name="margin-start">80</property>
                             <property name="margin-end">80</property>
-                            <property name="margin-top">80</property>
                             <property name="margin-bottom">80</property>
                             <signal name="clicked" handler="on_bt_lista_ativa_sair_clicked" swapped="no"/>
                           </object>
                           <packing>
-                            <property name="left-attach">1</property>
-                            <property name="top-attach">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="label_numero_lista_exibir_lista">
-                            <property name="name">lista_atual_label</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="label" translatable="yes">Lista 1</property>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="name">label_listas_ativas_exbir</property>
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="halign">baseline</property>
-                            <property name="label" translatable="yes">Listas Ativas</property>
-                            <attributes>
-                              <attribute name="style" value="oblique"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="left-attach">0</property>
-                            <property name="top-attach">0</property>
-                            <property name="width">3</property>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>
@@ -1373,17 +1350,35 @@ Cadastro
                         <property name="orientation">vertical</property>
                         <property name="homogeneous">True</property>
                         <child>
-                          <object class="GtkButtonBox">
+                          <object class="GtkBox">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="margin-start">35</property>
-                            <property name="margin-end">35</property>
-                            <property name="margin-top">35</property>
-                            <property name="margin-bottom">35</property>
                             <property name="orientation">vertical</property>
-                            <property name="spacing">20</property>
-                            <property name="homogeneous">True</property>
-                            <property name="layout-style">start</property>
+                            <property name="spacing">10</property>
+                            <child>
+                              <object class="GtkLabel" id="label_numero_da_lista">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Lista N</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label_nome_da_lista">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Lista X</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                             <child>
                               <object class="GtkButton" id="bt_exercicos_listar">
                                 <property name="label" translatable="yes">Exercicios</property>
@@ -1394,9 +1389,9 @@ Cadastro
                                 <signal name="clicked" handler="on_bt_exercicos_listar_clicked" swapped="no"/>
                               </object>
                               <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                             <child>
@@ -1409,9 +1404,9 @@ Cadastro
                                 <signal name="clicked" handler="on_bt_mostrar_rank_clicked" swapped="no"/>
                               </object>
                               <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="position">3</property>
                               </packing>
                             </child>
                             <child>
@@ -1421,20 +1416,21 @@ Cadastro
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <property name="valign">start</property>
                                 <signal name="clicked" handler="on_bt_sair_da_lista_clicked" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="padding">1</property>
-                                <property name="position">2</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                           </object>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">0</property>
                           </packing>
                         </child>
                       </object>
@@ -1734,7 +1730,7 @@ Cadastro
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkLabel">
+                                      <object class="GtkLabel" id="label_sua_posicao">
                                         <property name="name">label_sua_posicao</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">False</property>

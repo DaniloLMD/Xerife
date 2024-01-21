@@ -100,4 +100,6 @@ void on_bt_sair_da_lista_clicked();
 
 void on_bt_cancelar_cad_clicked();
 
+void on_tree_view_listas_ativas_row_activated();
+
 #endif

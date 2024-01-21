@@ -335,6 +335,34 @@ bool checa_se_ja_fez_a_questao(char* user_name, int n_lista, int n_questao){
 }
 
 /**
+ * @brief recebe um nome de usuario e retorna a posicao dele no ranking
+ * @param user_name string com o nome do usuario
+ * @param n_lista numero da lista
+ * @param n_questao numero da questao
+ * @return posicao do usuario na lista, -1 se nao estiver
+*/
+int get_posicao(char* user_name, int n_lista, int n_questao){
+    
+    char rank_path[100];
+    sprintf(rank_path, "%s/lista%d/rank.txt", PATH_BANCO_LISTAS, n_lista);
+    FILE *rank = fopen(rank_path, "r");
+
+    char nome_atual[100];
+
+    
+    int pontos, tentativas;
+    int posicao = 1;
+    while( fscanf(rank, "%[^,],%d,%d%*c", nome_atual, &pontos, &tentativas) != EOF){
+        if(strcmp(nome_atual, user_name) == 0){
+            return posicao;
+        }
+        posicao++;
+    }
+    
+    return -1;
+}   
+
+/**
  * 
  * @brief funcao que recebe o numero da lista, o numero da questao e o nome do usuario e registra que tal usuario já respondeu a questao.
  * @return void 

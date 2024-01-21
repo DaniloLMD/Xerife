@@ -1,8 +1,70 @@
 #include "../include/cadastro_lista.h"
 #include "gtk-3.0/gtk/gtk.h"
 #include "../include/includes.h"
-
 int qtd_lista = 0;
+
+bool compara_string (const char *nome, char texto[]) {
+    if (strlen(nome) != strlen(texto)) return false;
+    else {
+        for (int i = 0; i < strlen(nome); i++) {
+            if(nome[i] != texto[i]) return false;
+        }
+    }
+}
+
+bool lista_ja_cadastrada (const char *nome) {
+    char texto[100] = "";
+    char caminho[200];
+    int n_list = 0;
+
+    FILE *file = NULL;
+    file = fopen(PATH_QTD_TXT, "r");
+    fscanf(file ,"%[^\n]", texto);
+    n_list = atoi(texto);
+    fclose(file);
+    strcpy(texto, "");
+
+    for (int i = 1; i <= n_list; i++) {
+        sprintf(caminho, "%s/lista%d/nome_lista.txt", PATH_BANCO_LISTAS,i);
+        file = fopen(caminho, "r");
+        fscanf(file, "%[^\n]", texto);
+
+        if (compara_string(nome, texto)) {
+            return true;
+        }
+        fclose(file);
+    }
+
+    return false;
+};
+
+bool verificar_caractere_padrao(const char* nome) {
+    for (int i = 0; i < strlen(nome); i++) {
+        if ((nome[i] >= 'a' && nome[i] <= 'z') || (nome[i] >= 'A' && nome[i] <= 'Z') ) return true;
+    }
+    return false;
+};
+
+bool contem_apenas_numeros(const char *stringx) {
+    for (int i = 0; i < strlen(stringx); i++) {
+        if (stringx[i] >= '0' && stringx[i] <= '9') continue;
+        return false;
+    }
+    return true;
+};
+
+
+int verificacoes_nome_lista(const char* nome) {
+    if (verificar_caractere_padrao(nome) && !lista_ja_cadastrada(nome)) {
+        return 1;
+    }
+    else if (lista_ja_cadastrada(nome)) {
+        return 2;
+    }
+    else if (!verificar_caractere_padrao(nome)) {
+        return 3;
+    }
+};
 
 /**
  * @brief Cadastra o Nome da lista nos arquivos do sistema
@@ -145,3 +207,4 @@ void casdastrar_lista(const char *nome, const char* qtd_entrada_saida, const cha
     cria_past_qtd_entrada_saida(qtd_entrada_saida, qtd_questoes);
     cadastrar_nome_lista(nome);
 };
+

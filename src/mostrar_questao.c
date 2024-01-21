@@ -1,6 +1,7 @@
 #include "mostrar_questao.h"
 #include "paths.h"
 #include "includes.h"
+#include "../include/deletar_lista.h"
 
 /**
  * @brief 
@@ -53,4 +54,18 @@ void mostrar_n_questao(GtkLabel* label, int n_questao){
     char numero_questao[50];
     g_snprintf(numero_questao, 50, "Questão %d", n_questao);
     gtk_label_set_text(label, numero_questao);
+}
+
+void mostrar_n_lista(GtkLabel *label, int n_lista){
+    char numero_lista[150];
+
+    g_snprintf(numero_lista, 50, "Lista %d", n_lista);
+    gtk_label_set_text(label, numero_lista);
+}
+
+void mostrar_nome_lista(GtkLabel *label, int n_lista){
+    char nome_lista[100];
+
+    set_nome_lista(n_lista, nome_lista);
+    gtk_label_set_text(label, nome_lista);
 }

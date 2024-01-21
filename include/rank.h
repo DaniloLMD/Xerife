@@ -16,6 +16,8 @@ void atualiza_arquivo_rank(int n_lista, char * user_name, bool acertou);
 
 bool checa_se_ja_fez_a_questao(char* user_name, int n_lista, int n_questao);
 
+int get_posicao(char* user_name, int n_lista, int n_questao);
+
 void atualiza_arquivo_registro(char* user_name, int n_lista, int n_questao_feita);
 
 

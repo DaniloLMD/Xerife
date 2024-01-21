@@ -11,6 +11,8 @@
         "mostrar_questao.h": "c",
         "rank.h": "c",
         "string": "c",
-        "deletar_lista.h": "c"
+        "deletar_lista.h": "c",
+        "struct_list.h": "c",
+        "lista.h": "c"
     }
 }
