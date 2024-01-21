@@ -7,7 +7,6 @@ char user_name[100];
 #define Max_nome 30
 
 //variaveis para a parte de cadastrar lista
-gchar *caminho_atual;
 int contador = 0;
 int n_entrada_saida = 0;
 GtkListStore* list_store_arquivos_selecionados;
@@ -15,8 +14,6 @@ GtkTreeIter iter;
 
 
 //labels da parte de exibir questao
-GtkLabel* label_n_lista;
-GtkLabel* label_nome_lista;
 GtkLabel* label_n_questao;
 GtkLabel* label_enunciado_questao;
 
@@ -25,17 +22,8 @@ GtkWidget *window;
 GtkStack *stack;
 GtkStack *stack_exibir_lista;
 
-//labels referentes a pagina de registrar questão
-GtkLabel *label_pag_enviar_desq_questao;
-GtkLabel *label_pag_enviar_entrada;
-GtkLabel *label_pag_enviar_saida;
-GtkLabel *label_questao_cad_entrada_saida;
-GtkLabel *desq_geral_questao;
-
-
 //fie chooser referentes a parte de cadastrar questão entrada e saida
-GtkFileChooser* file_chooser;
-GtkFileChooser *Cad_questao_geral;
+//GtkFileChooser* file_chooser;
 
 const char *qtd_questao;
 const char *qtd_entrada_saida;
@@ -45,7 +33,7 @@ gchar *caminho_entrada_questao;
 gchar *caminho_saida_questao;
 gchar* arquivo_usuario_path;
 
-GtkMessageDialog *prompt;
+
 
 /**
  * @brief Está função destroi a janela geral do aplicativo usando a função main quit
@@ -77,17 +65,12 @@ int main (int argc, char *argv[]) {
 
     builder = gtk_builder_new_from_file(PATH_XERIFE_GLADE);
     
-    desq_geral_questao = GTK_LABEL(gtk_builder_get_object(builder, "label_motrar_questoes_cadastradas"));
-    //file chooser referentes a parte de cadastro de questao
-    file_chooser = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")); 
-    Cad_questao_geral = GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_arquivos_cad_geral")); 
+    //file chooser referentes a parte de cadastro de questao  
     
     //labels da parte de mostrar questao
     label_n_questao = GTK_LABEL(gtk_builder_get_object(builder, "numero-questao"));
-    label_nome_lista = GTK_LABEL(gtk_builder_get_object(builder, "label_nome_da_lista"));
     label_enunciado_questao = GTK_LABEL(gtk_builder_get_object(builder, "enunciado_questao"));
-    label_n_lista = GTK_LABEL(gtk_builder_get_object(builder, "label_numero_da_lista"));
-
+    
     //stack e window do programa inteiro
     stack = GTK_STACK(gtk_builder_get_object(builder, "stack"));
     stack_exibir_lista = GTK_STACK(gtk_builder_get_object(builder, "stack_exibir_lista"));
@@ -165,7 +148,7 @@ void on_bt_voltar_cadastro_clicked () {
  * @return void
  */
 void mensagem (const char *texto, const char *texto_secundario) {
-    prompt = GTK_MESSAGE_DIALOG(gtk_builder_get_object(builder, "janela_prompt"));
+    GtkMessageDialog *prompt = GTK_MESSAGE_DIALOG(gtk_builder_get_object(builder, "janela_prompt"));
     g_object_set(prompt, "text", texto, NULL);
     g_object_set(prompt, "secondary_text", texto_secundario, NULL);
     
@@ -178,7 +161,7 @@ void mensagem (const char *texto, const char *texto_secundario) {
  * @return void
  */
 void on_bt_ok_message_dialog_box_clicked () {
-    gtk_widget_hide(GTK_WIDGET(prompt));
+    gtk_widget_hide(GTK_WIDGET(GTK_MESSAGE_DIALOG(gtk_builder_get_object(builder, "janela_prompt"))));
 }
 
 /**
@@ -449,7 +432,7 @@ void on_stack_1_escolher_arquivo_file_chooser_confirm_overwrite(){}
  * @return 
  */
 void on_stack_1_escolher_arquivo_file_chooser_file_activated(){
-    arquivo_usuario_path = gtk_file_chooser_get_filename(file_chooser);
+    arquivo_usuario_path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "stack_1_escolher_arquivo_file_chooser")));
 
     if(extension_is_valid(arquivo_usuario_path) == false){
         char* file_name = get_file_name_from_path(arquivo_usuario_path);
@@ -808,7 +791,7 @@ void on_file_chooser_arquivos_cad_geral_file_activated () {
 
     fscanf(file, "%d", &lista_att);
     fclose(file);
-    gchar* caminho_file = gtk_file_chooser_get_filename(Cad_questao_geral);
+    gchar* caminho_file = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_arquivos_cad_geral")));
     strcpy(aux2, caminho_file);
    
     int qt_questao_at = atoi(qtd_questao);
@@ -920,8 +903,8 @@ void on_tree_view_listas_ativas_row_activated(GtkTreeView *tree_view, GtkTreePat
     Lista_atual_selecionada.numero_da_questao = 1;
     Lista_atual_selecionada.quantidade_de_questoes = get_qtd_questoes(n_lista);
     Lista_atual_selecionada.qtd_entrada_saida = get_qtd_entrada_saida(n_lista);
-    mostrar_n_lista(label_n_lista, Lista_atual_selecionada.numero_da_lista);
-    mostrar_nome_lista(label_nome_lista, Lista_atual_selecionada.numero_da_lista);
+    mostrar_n_lista(GTK_LABEL(gtk_builder_get_object(builder, "label_numero_da_lista")), Lista_atual_selecionada.numero_da_lista);
+    mostrar_nome_lista(GTK_LABEL(gtk_builder_get_object(builder, "label_nome_da_lista")), Lista_atual_selecionada.numero_da_lista);
     mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
     mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
     gtk_stack_set_visible_child_name(stack, "pag_hub_exibir_lista");
