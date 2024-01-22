@@ -331,7 +331,7 @@ void on_cad_lista_enviar_bt_clicked () {
             mensagem("algum dos campos está vazio", "");
         }
         else if (!contem_apenas_numeros(qtd_entrada_saida) || !contem_apenas_numeros(qtd_questao)) {
-            mensagem("Campo de quantidade de entradas e saidas", "aceita apenas valores numéricos");
+            mensagem("Campo de quantidade de entradas e saidas", "aceita apenas valores numéricos e maiores que 0");
             limpar_entry(eqtd_entrada_saida);
             limpar_entry(eqtd_questoes);
         }
@@ -399,6 +399,7 @@ void on_bt_mostrar_listas_ativas_clicked () {
     
     iniciar_list_store_listas_ativas(builder);
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
+    gtk_stack_set_visible_child_name(stack_exibir_lista, "pag_exibir_questao");
 }
 
 /**
@@ -927,8 +928,9 @@ void on_bt_mostrar_envios_clicked(){
 }
 
 void on_tree_view_envios_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data){
-    gint n_envio;
     GtkTreeIter iter;
+
+    gint n_envio;
 
     GtkTreeModel *model = gtk_tree_view_get_model(tree_view);
     gtk_tree_model_get_iter(model, &iter, path);
@@ -937,6 +939,7 @@ void on_tree_view_envios_row_activated(GtkTreeView *tree_view, GtkTreePath *path
     
     char codigo[5000];
     get_code_from_envio(Lista_atual_selecionada.numero_da_lista, n_envio, codigo);
+
 
     codigo_prompt (n_envio, codigo, builder);
 }

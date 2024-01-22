@@ -78,6 +78,7 @@ void set_novo_envio(int n_lista, int n_questao, char* user_name, char* resultado
     //lendo e copiando o codigo
     FILE *code_file = fopen(code_path, "r");
 
+    strcpy(code, "");
     while(fscanf(code_file, "%c", &str[0]) != EOF){
         strcat(code, str);
     }
@@ -149,8 +150,10 @@ void codigo_prompt (int n_envio, char *codigo, GtkBuilder* builder) {
     sprintf(texto, "Envio %d", n_envio);
 
     GtkMessageDialog *prompt = GTK_MESSAGE_DIALOG(gtk_builder_get_object(builder, "codigo_prompt"));
+    GtkLabel *label = GTK_LABEL(gtk_builder_get_object(builder, "codigo_prompt_label"));
+
     g_object_set(prompt, "text", texto, NULL);
-    g_object_set(prompt, "secondary_text", codigo, NULL);
+    gtk_label_set_text(label, codigo);
     
     gtk_widget_show_all(GTK_WIDGET(prompt));
     gtk_dialog_run(GTK_DIALOG(prompt));

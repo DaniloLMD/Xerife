@@ -1,3 +1,2 @@
-Danilo,0,1
-a,0,1
-danilo,0,2
+Gustavo,1,1
+aeiou,0,1

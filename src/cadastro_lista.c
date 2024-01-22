@@ -49,7 +49,7 @@ bool verificar_caractere_padrao(const char* nome) {
 
 bool contem_apenas_numeros(const char *stringx) {
     for (int i = 0; i < strlen(stringx); i++) {
-        if (stringx[i] >= '0' && stringx[i] <= '9') continue;
+        if (stringx[i] >= '1' && stringx[i] <= '9') continue;
         return false;
     }
     return true;

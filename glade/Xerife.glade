@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkMessageDialog" id="codigo_prompt">
     <property name="can-focus">False</property>
     <property name="type-hint">dialog</property>
+    <property name="text" translatable="yes">Envio N</property>
+    <property name="secondary-text" translatable="yes"> </property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -38,6 +40,32 @@
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow" id="scroll">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
+            <property name="min-content-height">200</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="codigo_prompt_label">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">CODIGO</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>
@@ -722,7 +750,6 @@ Cadastro
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">29</property>
                     <child>
                       <!-- n-columns=2 n-rows=5 -->
                       <object class="GtkGrid">
@@ -837,7 +864,7 @@ Cadastro
                             <property name="margin-right">49</property>
                             <property name="margin-top">10</property>
                             <property name="margin-bottom">10</property>
-                            <property name="pixbuf">../../../../Downloads/Sem_título-removebg-preview2.png</property>
+                            <property name="pixbuf">../imagens/xerife_sem_fundo_pequeno.png</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>

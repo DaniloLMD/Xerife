@@ -1,15 +1,8 @@
-1,danilo,WRONG ANSWER,cpp
-#include <bits/stdc++.h>
+1,Gustavo,ACCEPTED,c
+#include <stdio.h>
 
-using namespace std;
-
-int main(){
-
-	int a, b;
-
-	std::cin >> a >> b;
-
-	std::cout << a+b << std::endl;
-	
-	return 0;
+int main () 
+{   
+    printf("Hello, World!");
+    return 0;
 }
