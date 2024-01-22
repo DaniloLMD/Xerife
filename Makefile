@@ -22,7 +22,9 @@ _src: \
 		$(OBJ)/mostrar_questao.o\
 		$(OBJ)/deletar_lista.o\
 		$(OBJ)/rank.o\
-		$(OBJ)/pilha_cadastro.o
+		$(OBJ)/pilha_cadastro.o\
+		$(OBJ)/paths.o\
+		$(OBJ)/envios.o
 
 clean_apps:
 	rm -rf $(BIN)/*

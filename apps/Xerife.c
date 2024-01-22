@@ -115,6 +115,7 @@ int main (int argc, char *argv[]) {
         "on_bt_sair_da_lista_clicked", G_CALLBACK(on_bt_sair_da_lista_clicked),
         "on_bt_cancelar_cad_clicked", G_CALLBACK(on_bt_cancelar_cad_clicked),
         "on_tree_view_listas_ativas_row_activated", G_CALLBACK(on_tree_view_listas_ativas_row_activated),
+        "on_bt_ok_codigo_prompt_clicked", G_CALLBACK(on_bt_ok_codigo_prompt_clicked),
         NULL
     );
 
@@ -461,29 +462,28 @@ void on_stack_1_casos_de_teste_button_back_clicked(){
  * @return 
  */
 // stack de casos_de_teste
-char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste){
-    switch (julgar_arquivo(file_path, n_lista, n_questao, n_caso_de_teste))
+char* get_answer(int resultado){
+    switch (resultado)
     {
+        case ACCEPTED:
+            return "ACCEPTED";
 
-    case ACCEPTED:
-        return "ACCEPTED";
+        case WRONG_ANSWER:
+            return "WRONG ANSWER";
 
-    case WRONG_ANSWER:
-        return "WRONG ANSWER";
+        case COMPILATION_ERROR:
+            return "COMPILATION ERROR";
 
-    case COMPILATION_ERROR:
-        return "COMPILATION ERROR";
+            break;
+        case RUNTIME_ERROR:
+            return "RUNTIME ERROR";
+            break;
 
-        break;
-    case RUNTIME_ERROR:
-        return "RUNTIME ERROR";
-        break;
-
-    case TIME_LIMIT_EXCEEDED:
-        return "TIME LIMIT EXCEEDED";
-    
-    default:
-        return "ERROR";
+        case TIME_LIMIT_EXCEEDED:
+            return "TIME LIMIT EXCEEDED";
+        
+        default:
+            return "ERROR";
     }
 }
 
@@ -506,14 +506,17 @@ void mostrar_casos_de_testes(const char* file_path){
     int qtd_casos_de_teste = Lista_atual_selecionada.qtd_entrada_saida;
 
 
-
+    char *file_name = get_file_name_from_path(file_path);
+    char file_extension[15];
+    get_file_extension(file_name, file_extension);
     
     mensagem("JULGANDO", "Por favor aguarde");
     int acertos = 0;
     char * answer;
+    int resultado;
     while(teste <= qtd_casos_de_teste){
-        
-        answer = get_answer(file_path, n_lista, n_questao, teste);
+        resultado = julgar_arquivo(file_path, n_lista, n_questao, teste);
+        answer = get_answer(resultado);
 
         gtk_list_store_append(list_store_casos_de_teste, &iter);
         
@@ -523,24 +526,30 @@ void mostrar_casos_de_testes(const char* file_path){
             1, answer,
             -1
         );
-
-        if(strcmp(answer, "ACCEPTED") == 0){
-            acertos++;
-        }
         teste++;
+
+        if(resultado != ACCEPTED){
+            //se ele nao acertou, atualiza o rank apenas aumentando o numero de tentativas 
+            if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){  
+                atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, false);
+            }
+
+            set_novo_envio(n_lista, n_questao, user_name, answer, file_extension, file_path);
+            free(file_name);
+
+            return;
+        }
     }
+
+    set_novo_envio(n_lista, n_questao, user_name, answer, file_extension, file_path);
+    free(file_name);
+
 
     //se o usuario ja fez a questao antes, apenas ignora e nao muda o rank
     if(!checa_se_ja_fez_a_questao(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao)){  
         //se ele acertou, atualiza o rank aumentando o pontos e as tentativas
-        if(acertos == qtd_casos_de_teste){
-            atualiza_arquivo_registro(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
-            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, true);
-        }
-        //se ele nao acertou, atualiza o rank apenas aumentando o numero de tentativas
-        else{
-            atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, false);
-        }
+        atualiza_arquivo_registro(user_name, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
+        atualiza_arquivo_rank(Lista_atual_selecionada.numero_da_lista, user_name, true);
     }
     else{
         mensagem("AVISO", "VOCE JA FEZ A QUESTAO ANTES");
@@ -893,7 +902,7 @@ void on_bt_cancelar_cad_clicked(){
 }
 
 void on_tree_view_listas_ativas_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data){
-    gint n_lista    ;
+    gint n_lista;
     GtkTreeIter iter;
     GtkTreeModel *model = gtk_tree_view_get_model(tree_view);
     gtk_tree_model_get_iter(model, &iter, path);
@@ -908,4 +917,34 @@ void on_tree_view_listas_ativas_row_activated(GtkTreeView *tree_view, GtkTreePat
     mostrar_n_questao(label_n_questao, Lista_atual_selecionada.numero_da_questao);
     mostrar_enunciado(label_enunciado_questao, Lista_atual_selecionada.numero_da_lista, Lista_atual_selecionada.numero_da_questao);
     gtk_stack_set_visible_child_name(stack, "pag_hub_exibir_lista");
+}
+
+void on_bt_mostrar_envios_clicked(){
+
+    atualiza_list_store_envios(builder, Lista_atual_selecionada.numero_da_lista);
+
+    gtk_stack_set_visible_child_name(stack_exibir_lista, "envios");
+}
+
+void on_tree_view_envios_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data){
+    gint n_envio;
+    GtkTreeIter iter;
+
+    GtkTreeModel *model = gtk_tree_view_get_model(tree_view);
+    gtk_tree_model_get_iter(model, &iter, path);
+    gtk_tree_model_get(model, &iter, 0, &n_envio, -1);
+
+    
+    char codigo[5000];
+    get_code_from_envio(Lista_atual_selecionada.numero_da_lista, n_envio, codigo);
+
+    codigo_prompt (n_envio, codigo, builder);
+}
+
+/**
+ * @brief esconde o prompt de mensagem que foi carregado na tela
+ * @return void
+ */
+void on_bt_ok_codigo_prompt_clicked () {
+    gtk_widget_hide(GTK_WIDGET(GTK_MESSAGE_DIALOG(gtk_builder_get_object(builder, "codigo_prompt"))));
 }

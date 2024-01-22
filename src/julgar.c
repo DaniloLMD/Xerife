@@ -295,11 +295,12 @@ char* get_file_name_from_path(const char* path){
 }
 
 /**
- * @brief recebe o nome de um arquivo e retorna sua extensao. Ex: arq.txt , retorna txt
+ * @brief recebe o nome de um arquivo e grava sua extensao em uma string. Ex: arq.txt , grava txt
  * @param file_name nome do arquivo
- * @return extensao do arquivo 
+ * @param extension_ref referencia para a string que guardara a extensao
+ * @return void
  */
-void get_file_extension(const char* file_name){
+void get_file_extension(const char* file_name, char* extension_ref){
     int index_ponto = -1;
     int size = 0;
 
@@ -310,14 +311,14 @@ void get_file_extension(const char* file_name){
     }
 
     if(index_ponto == -1){
-        file_extension[0] = '\0';
+        extension_ref[0] = '\0';
         return;
     } 
 
     for(int i = index_ponto+1; i < strlen(file_name); i++){
-        file_extension[size++] = file_name[i];
+        extension_ref[size++] = file_name[i];
     }
-    file_extension[size] = '\0';
+    extension_ref[size] = '\0';
     
 }
 
@@ -344,7 +345,7 @@ int julgar_arquivo(const char* file_path, int n_lista, int n_questao, int n_caso
     //pegando o nome do arquivo
     char* file_name = get_file_name_from_path(file_path);
     //pegando a extensao do arquivo
-    get_file_extension(file_name);
+    get_file_extension(file_name, file_extension);
 
     //copiando o arquivo informado ate a pasta onde ele sera julgado
     char comando_executar_copy[300];
@@ -378,7 +379,7 @@ int extension_is_valid(const char* arquivo_path){
     //pegando o nome do arquivo
     char* file_name = get_file_name_from_path(arquivo_path);
     //pegando a extensao do arquivo
-    get_file_extension(file_name);
+    get_file_extension(file_name, file_extension);
     free(file_name);
     if(extension_compare("c")){
         return true;

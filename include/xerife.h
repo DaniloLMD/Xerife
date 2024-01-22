@@ -12,6 +12,7 @@
 #include "mostrar_questao.h"
 #include "rank.h"
 #include "pilha_cadastro.h"
+#include "envios.h"
 
 
 void on_bt_submeter_pagina_questao_clicked ();
@@ -60,7 +61,7 @@ void on_stack_2_casos_de_teste_button_back_clicked();
 
 void mostrar_casos_de_testes(const char*);
 
-char* get_answer(const char* file_path, int n_lista, int n_questao, int n_caso_de_teste);
+char* get_answer(int resultado);
 
 void on_bt_ok_message_dialog_box_clicked(); 
 
@@ -102,4 +103,9 @@ void on_bt_cancelar_cad_clicked();
 
 void on_tree_view_listas_ativas_row_activated();
 
+void on_bt_mostrar_envios_clicked();
+
+void on_tree_view_envios_row_activated();
+
+void on_bt_ok_codigo_prompt_clicked();
 #endif

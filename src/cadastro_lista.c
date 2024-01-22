@@ -1,6 +1,8 @@
 #include "../include/cadastro_lista.h"
 #include "gtk-3.0/gtk/gtk.h"
 #include "../include/includes.h"
+#include "../include/envios.h"
+
 int qtd_lista = 0;
 
 bool compara_string (const char *nome, char texto[]) {
@@ -125,6 +127,9 @@ void criar_pasta_lista () {
     system(caminho);
 
     fclose(file);
+
+    //criando pasta e arquivo de envios
+    inicializar_pasta_envios(get_qtd_listas());
 
     //criando o arquivo de rank
     char rank_path[100];

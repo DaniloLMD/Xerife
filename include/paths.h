@@ -15,5 +15,11 @@ const char PATH_CODIGO_USUARIO[] = "dados/arquivos_usuario/codigos/usuario.";
 const char PATH_COMPILADO_USUARIO[] = "dados/arquivos_usuario/compilados/usuario_compilado";
 const char PATH_SAIDA_USUARIO[] = "dados/arquivos_usuario/saida_usuario";
 
+void set_nome_lista(int n_lista, char* list_name);
+int get_qtd_listas();
+int get_qtd_questoes(int n_lista);
+int get_qtd_entrada_saida(int n_lista);
+
+
 
 #endif

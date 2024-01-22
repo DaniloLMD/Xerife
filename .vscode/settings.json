@@ -13,6 +13,8 @@
         "string": "c",
         "deletar_lista.h": "c",
         "struct_list.h": "c",
-        "lista.h": "c"
+        "lista.h": "c",
+        "envios.h": "c",
+        "paths.h": "c"
     }
 }

@@ -2,6 +2,47 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
+  <object class="GtkMessageDialog" id="codigo_prompt">
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="homogeneous">True</property>
+            <property name="layout-style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <object class="GtkButton" id="bt_ok_codigo_prompt">
+                <property name="label" translatable="yes">ok</property>
+                <property name="name">bt_prompt_text</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <signal name="clicked" handler="on_bt_ok_codigo_prompt_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkMessageDialog" id="janela_prompt">
     <property name="name">prompt</property>
     <property name="can-focus">False</property>
@@ -61,6 +102,20 @@
       <!-- column-name Teste -->
       <column type="gint"/>
       <!-- column-name Resultado -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkListStore" id="list_store_envios">
+    <columns>
+      <!-- column-name Envio -->
+      <column type="gint"/>
+      <!-- column-name Questao -->
+      <column type="gint"/>
+      <!-- column-name Usuario -->
+      <column type="gchararray"/>
+      <!-- column-name Status -->
+      <column type="gchararray"/>
+      <!-- column-name Linguagem -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -1359,7 +1414,7 @@ Cadastro
                               <object class="GtkLabel" id="label_numero_da_lista">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Lista N</property>
+                                <property name="label" translatable="yes">Lista NUMERO</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1371,7 +1426,7 @@ Cadastro
                               <object class="GtkLabel" id="label_nome_da_lista">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Lista X</property>
+                                <property name="label" translatable="yes">Lista NOME</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1410,6 +1465,20 @@ Cadastro
                               </packing>
                             </child>
                             <child>
+                              <object class="GtkButton" id="bt_mostrar_envios">
+                                <property name="label" translatable="yes">Envios</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">True</property>
+                                <signal name="clicked" handler="on_bt_mostrar_envios_clicked" swapped="no"/>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">4</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkButton" id="bt_sair_da_lista">
                                 <property name="label" translatable="yes">sair da lista</property>
                                 <property name="name">bt_sair_da_lista_side_bar</property>
@@ -1423,7 +1492,7 @@ Cadastro
                                 <property name="expand">True</property>
                                 <property name="fill">True</property>
                                 <property name="padding">1</property>
-                                <property name="position">4</property>
+                                <property name="position">5</property>
                               </packing>
                             </child>
                           </object>
@@ -1843,6 +1912,89 @@ Cadastro
                             <property name="name">resultado_caso_de_teste</property>
                             <property name="title" translatable="yes">page3</property>
                             <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkTreeView" id="tree_view_envios">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="model">list_store_envios</property>
+                                <signal name="row-activated" handler="on_tree_view_envios_row_activated" swapped="no"/>
+                                <child internal-child="selection">
+                                  <object class="GtkTreeSelection"/>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Envio</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Questão</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Usuário</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">2</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Status</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">3</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Linguagem</property>
+                                    <child>
+                                      <object class="GtkCellRendererText"/>
+                                      <attributes>
+                                        <attribute name="text">4</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">True</property>
+                                <property name="fill">True</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="name">envios</property>
+                            <property name="title" translatable="yes">page0</property>
+                            <property name="position">4</property>
                           </packing>
                         </child>
                       </object>
