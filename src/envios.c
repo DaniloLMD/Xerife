@@ -115,10 +115,9 @@ void atualiza_list_store_envios(GtkBuilder *builder, int n_lista){
     char resultado[50];
     char linguagem[15];
 
-    for(int i = 1; i <= qtd_envios; i++){
+    for(int i = qtd_envios; i >= 1; i--){
         sprintf(path, "%s/lista%d/envios/envio%d.txt", PATH_BANCO_LISTAS, n_lista, i);
         envio = fopen(path, "r");
-        
         fscanf(envio, "%d,%[^,],%[^,],%[^\n]%*c", &n_questao, usuario, resultado, linguagem);
     
         gtk_list_store_append(list_store_envios, &iter);
