@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkMessageDialog" id="codigo_prompt">
@@ -750,7 +750,6 @@ Cadastro
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">29</property>
                     <child>
                       <!-- n-columns=2 n-rows=5 -->
                       <object class="GtkGrid">
@@ -865,7 +864,7 @@ Cadastro
                             <property name="margin-right">49</property>
                             <property name="margin-top">10</property>
                             <property name="margin-bottom">10</property>
-                            <property name="pixbuf">../imagens/xerife_sem_fundo_pequeno.png</property>
+                            <property name="pixbuf">../imagens/xerife_tamanho_certo.png</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
@@ -1570,11 +1569,24 @@ Cadastro
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="enunciado_questao">
-                                    <property name="name">label_exibir_desq_questoes</property>
+                                  <object class="GtkScrolledWindow">
                                     <property name="visible">True</property>
-                                    <property name="can-focus">False</property>
-                                    <property name="label" translatable="yes">Faça X e Y</property>
+                                    <property name="can-focus">True</property>
+                                    <property name="shadow-type">in</property>
+                                    <child>
+                                      <object class="GtkViewport">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
+                                        <child>
+                                          <object class="GtkLabel" id="enunciado_questao">
+                                            <property name="name">label_exibir_desq_questoes</property>
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">False</property>
+                                            <property name="label" translatable="yes">Faça X e Y</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
                                   </object>
                                   <packing>
                                     <property name="expand">True</property>
