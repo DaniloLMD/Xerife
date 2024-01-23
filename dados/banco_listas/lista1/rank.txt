@@ -1,2 +1,2 @@
-Gustavo,1,1
-aeiou,0,1
+Gugu,0,2
+a,0,2

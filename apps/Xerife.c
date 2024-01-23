@@ -27,6 +27,7 @@ GtkStack *stack_exibir_lista;
 
 const char *qtd_questao;
 const char *qtd_entrada_saida;
+const char *nome_lista;
 
 gchar *caminho_desq_questao;
 gchar *caminho_entrada_questao;
@@ -318,7 +319,7 @@ void on_cad_lista_enviar_bt_clicked () {
     GtkListStore* list_store_arquivos_selecionados =  GTK_LIST_STORE(gtk_builder_get_object(builder, "list_store_arquivos_cadastrados"));
     gtk_list_store_clear(list_store_arquivos_selecionados);
 
-    const char *nome_lista = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista")));
+    nome_lista = gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "entry_nome_lista")));
     resultado = verificacoes_nome_lista(nome_lista);
     
     if (resultado == 1) {
@@ -336,12 +337,15 @@ void on_cad_lista_enviar_bt_clicked () {
             limpar_entry(eqtd_questoes);
         }
         else {
+            /*
             //chama os passos necessários para cria uma lista
             casdastrar_lista(nome_lista, qtd_entrada_saida, qtd_questao);
         
             //aqui carrego a descrição na pasta da questão
             cadastro_descricao_questao(qtd_questao);
 
+            */
+    
             //cria a pilha usada para constrolar o cadastro da descrição, entradas e saidas de cada questão
             criar_pilha_geral(qtd_entrada_saida, qtd_questao);
             
@@ -800,6 +804,9 @@ void on_file_chooser_arquivos_cad_geral_file_activated () {
     char aux3[50];
 
     fscanf(file, "%d", &lista_att);
+    
+    lista_att += 1;
+
     fclose(file);
     gchar* caminho_file = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(gtk_builder_get_object(builder, "file_chooser_arquivos_cad_geral")));
     strcpy(aux2, caminho_file);
@@ -810,7 +817,6 @@ void on_file_chooser_arquivos_cad_geral_file_activated () {
     int mod = 2*total_et_sd + 1;
     int n_questao = contador/mod + 1;
 
-    printf("%d", contador);
     if (contador%mod == 0) {
         sprintf(caminho_destino, "dados/banco_listas/lista%d/questao%d/desq.txt\n",lista_att , n_questao);
         sprintf(aux,"Questao%d", n_questao);
@@ -843,12 +849,22 @@ void on_file_chooser_arquivos_cad_geral_file_activated () {
         -1
     );
 
-
     if (n_questao == qt_questao_at && n_entrada_saida == total_et_sd+1)  {
+        //chama os passos necessários para cria uma lista
+        casdastrar_lista(nome_lista, qtd_entrada_saida, qtd_questao);
+        
+        //aqui carrego a descrição na pasta da questão
+        cadastro_descricao_questao(qtd_questao);
+
+
         cria_pastas_entrada_saida(qtd_questao);
         mostrar_pilha();
         mensagem("lista foi cadastrada", "com sucesso");
+
+
+
         gtk_stack_set_visible_child_name(stack, "teste");
+        
     };
     contador++;
 }
@@ -898,7 +914,6 @@ void on_bt_sair_da_lista_clicked() {
  *  @return
  **/
 void on_bt_cancelar_cad_clicked(){
-    deletar_lista(get_qtd_listas());
     gtk_stack_set_visible_child_name(stack, "teste");
 }
 
