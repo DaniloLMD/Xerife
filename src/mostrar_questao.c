@@ -18,7 +18,7 @@ void mostrar_enunciado(GtkLabel* label, int n_lista, int n_questao){
 
     char enunciado[10000] = ""; 
     char str[2];
-    int limite_de_caracteres_por_linha = 60;
+    int limite_de_caracteres_por_linha = 100;
     str[1] = '\0';
 
     int caracteres_lidos = 0;

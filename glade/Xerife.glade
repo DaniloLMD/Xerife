@@ -1280,6 +1280,7 @@ Cadastro
                           <object class="GtkGrid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="column-homogeneous">True</property>
                             <child>
                               <object class="GtkBox">
                                 <property name="name">view_cad_box</property>
@@ -1288,38 +1289,52 @@ Cadastro
                                 <property name="orientation">vertical</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <object class="GtkTreeView">
+                                  <object class="GtkScrolledWindow">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
-                                    <property name="model">list_store_arquivos_cadastrados</property>
-                                    <child internal-child="selection">
-                                      <object class="GtkTreeSelection"/>
-                                    </child>
+                                    <property name="shadow-type">in</property>
                                     <child>
-                                      <object class="GtkTreeViewColumn">
-                                        <property name="title" translatable="yes">Nome do Arquivo selecionado</property>
+                                      <object class="GtkViewport">
+                                        <property name="visible">True</property>
+                                        <property name="can-focus">False</property>
                                         <child>
-                                          <object class="GtkCellRendererText"/>
-                                          <attributes>
-                                            <attribute name="text">0</attribute>
-                                          </attributes>
-                                        </child>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkTreeViewColumn">
-                                        <property name="title" translatable="yes">Arquivo selecionado</property>
-                                        <child>
-                                          <object class="GtkCellRendererText"/>
-                                          <attributes>
-                                            <attribute name="text">1</attribute>
-                                          </attributes>
+                                          <object class="GtkTreeView">
+                                            <property name="visible">True</property>
+                                            <property name="can-focus">True</property>
+                                            <property name="model">list_store_arquivos_cadastrados</property>
+                                            <property name="search-column">0</property>
+                                            <child internal-child="selection">
+                                              <object class="GtkTreeSelection"/>
+                                            </child>
+                                            <child>
+                                              <object class="GtkTreeViewColumn">
+                                                <property name="title" translatable="yes">Nome do Arquivo selecionado</property>
+                                                <child>
+                                                  <object class="GtkCellRendererText"/>
+                                                  <attributes>
+                                                    <attribute name="text">0</attribute>
+                                                  </attributes>
+                                                </child>
+                                              </object>
+                                            </child>
+                                            <child>
+                                              <object class="GtkTreeViewColumn">
+                                                <property name="title" translatable="yes">Arquivo selecionado</property>
+                                                <child>
+                                                  <object class="GtkCellRendererText"/>
+                                                  <attributes>
+                                                    <attribute name="text">1</attribute>
+                                                  </attributes>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
                                         </child>
                                       </object>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">False</property>
+                                    <property name="expand">True</property>
                                     <property name="fill">True</property>
                                     <property name="position">0</property>
                                   </packing>
