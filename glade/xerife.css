@@ -303,6 +303,48 @@
     
 }
 
+#cancelar_cadastro_bt {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#cancelar_cadastro_bt:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#bt_desfazer_ultimo_envio {
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_desfazer_ultimo_envio:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
 #bt_cadastrar_lista {
     background: #F28F38;
     border-radius: 10px;
@@ -816,9 +858,30 @@
 #box_exibir {
     border: 3px solid black;
     border-radius: 10px;
-    padding: 20px;
+    padding: 40px;
     box-shadow: 1px 1px 0px #000;
     background: white;
+}
+
+#bt_envios_mostar_lista {  
+    background: #F28F38;
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#bt_envios_mostar_lista:hover {
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
 }
 
 /*
@@ -913,7 +976,11 @@
 #box_side_bar {
     background: #ffffff;
     box-shadow: 2px 2px 2px black;
-    border: 3px solid black;
+    border: 2px solid black;
+}
+
+#box_side_bar_dentro {
+    padding: 20px;
 }
 
 #bt_sair_da_lista_side_bar {
@@ -980,3 +1047,32 @@
 #chooser_file_enviar_arquivo {
     border: 2px solid black;
 }
+
+#Label_numero_lista_exibir {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 18px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+
+#label_nome_lista_exibir {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 18px;
+    border-bottom: 3px solid black;
+    color: black;
+}
+
+/*
+    css a pagina de status de envio
+
+*/
+
+#box_status_envio {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 100px;   
+}
+
+
