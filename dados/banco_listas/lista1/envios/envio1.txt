@@ -1,97 +1,11 @@
-1,a,WRONG ANSWER,c
-#include <stdio.h>
+1,DaniloLMD,WRONG ANSWER,cpp
+#include <iostream>
 
-int main () 
-{   
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
+int main(){
+    int a,b;
 
+    std::cin >> a >> b;
+    std::cout << a + b << std::endl;
+    
     return 0;
 }

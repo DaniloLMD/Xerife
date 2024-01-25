@@ -269,6 +269,7 @@ void on_bt_login_tela_login_clicked () {
             mensagem("logado com sucesso !!!", "");
             gtk_entry_set_text(eusuario, "");
             gtk_entry_set_text(esenha, "");
+            gtk_stack_set_visible_child_name(stack, "hub");
 
             break;
         case 2:
@@ -287,7 +288,7 @@ void on_bt_login_tela_login_clicked () {
             break;
         }
     }  
-    gtk_stack_set_visible_child_name(stack, "hub");
+    //gtk_stack_set_visible_child_name(stack, "hub");
 }
 
 /**

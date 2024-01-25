@@ -1,96 +1,10 @@
-#include <stdio.h>
+Faça um programa que leia dois números inteiros A e B e exiba na tela a soma deles.
 
-int main () 
-{   
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
+Exemplo:
 
-    return 0;
-}
+Entrada:
+77
+33
+
+Saida:
+100

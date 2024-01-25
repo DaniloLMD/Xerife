@@ -1,3 +1,0 @@
-1,Gugu,RUNTIME ERROR,py
-print("Hello, World!")
-a = 0/0

@@ -18,13 +18,10 @@ head *ler_arquivo() {
     
     no *node = NULL;
 
-    while(!(feof(list_usu))) {
-        if (fgets(texto, 402, list_usu)) { 
-            fscanf(list_usu, "%[^,],%[^\n]", enome, esenha);
-            
+    while((fscanf(list_usu, "%[^,],%[^\n]", enome, esenha) != EOF)) {
             inserir_no_fim(Lista_usuarios , enome, esenha);
-        }
     }
+
     fclose(list_usu);
     return Lista_usuarios;
 };

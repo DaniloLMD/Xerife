@@ -1,1 +1,10 @@
 Faça um programa que leia dois números inteiros A e B e exiba na tela a soma deles.
+
+Exemplo:
+
+Entrada:
+77
+33
+
+Saida:
+100
