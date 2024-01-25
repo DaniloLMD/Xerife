@@ -19,7 +19,7 @@ head *criar_lista () {
 };
 
 /**
- * @brief 
+ * @brief
  * @param 
  * @return
  */

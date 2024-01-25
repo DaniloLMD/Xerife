@@ -395,7 +395,6 @@ void atualiza_arquivo_registro(char* user_name, int n_lista, int n_questao_feita
         questoes_feitas = (int*) malloc(qtd_questoes_feitas * sizeof(int));
         for(int i = 0; i < qtd_questoes_feitas; i++){
             fscanf(file, "%d%*c", &questoes_feitas[i]);
-            printf("%s fez a questao %d\n", nome_atual, questoes_feitas[i]);
         }
         if(strcmp(nome_atual, user_name) == 0){
             questoes_feitas = (int*) realloc(questoes_feitas, (qtd_questoes_feitas + 1) * sizeof(int));
@@ -429,7 +428,6 @@ void atualiza_arquivo_registro(char* user_name, int n_lista, int n_questao_feita
 
         for(int i = 0; i < node_atual->qtd_questoes_feitas; i++){
             fprintf(file, "%d ", node_atual->questoes_feitas[i]);
-        printf("questoes_feitas = %d\n", node_atual->questoes_feitas[i]);
         }
         fprintf(file, "\n");
 
