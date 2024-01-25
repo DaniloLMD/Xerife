@@ -152,7 +152,6 @@ void codigo_prompt (int n_envio, char *codigo, GtkBuilder* builder) {
     GtkLabel *label = GTK_LABEL(gtk_builder_get_object(builder, "codigo_prompt_label"));
 
     g_object_set(prompt, "text", texto, NULL);
-    g_object_set(prompt, "secondary_text", "AAAA", NULL);
     gtk_label_set_text(label, codigo);
     
     gtk_widget_show_all(GTK_WIDGET(prompt));

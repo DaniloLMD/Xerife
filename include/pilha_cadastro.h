@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdbool.h>
 #define max_comando 150
+
 typedef struct desqnode{
     char comando[max_comando];
     struct desqnode *proximo;

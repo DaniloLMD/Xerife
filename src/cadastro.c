@@ -4,14 +4,6 @@
 #define max_nome 35
 #define comando 100
 
-void tolower_case (char *nome) {
-    for (int i = 0; i < strlen(nome); i++) {
-        if (nome[i] >= 'A' && nome[i] <= 'Z') {
-            nome[i] +=  'a' - 'A';
-        }
-    } 
-}
-
 /**
  * @brief Verifica se o nome de usuário já existe no sistema
  *
@@ -66,7 +58,6 @@ int cadastro(const char *usuario, const char *senha) {
     
     strcpy(nome, usuario);
     strcpy(sen, senha);
-    tolower_case(nome);
     printf("fui pra lower %s", nome);
 
     fputs(nome, arquivo);

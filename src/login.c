@@ -1,18 +1,11 @@
-#include "../include/login.h"
-#include "../include/lista_login.h"
-#include "../include/includes.h"
+#include "login.h"
+#include "lista_login.h"
+#include "includes.h"
+
 #define max_nome 35
 #define max_senha 35
 
-void tolower_case (char *nome) {
-    for (int i = 0; i < strlen(nome); i++) {
-        if (nome[i] >= 'A' && nome[i] <= 'Z') {
-            nome[i] +=  'a' - 'A';
-        }
-    } 
-}
-
-/**
+/** 
  * @brief 
  * @param 
  * @return
@@ -62,8 +55,7 @@ int login (const char nome[max_nome], const char senha[max_senha]) {
     no *node = NULL;
     char copia_nome[max_nome] = "";
     strcpy(copia_nome, nome);
-    tolower_case(copia_nome);
-
+    
     node = Lista_usuarios -> begin;
     
 

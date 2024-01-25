@@ -819,7 +819,7 @@
 }
 
 #entry_numero_lista {
-    background: #f497453c;
+    background:rgb(252, 147, 48);
     border-bottom: 1px solid black;
 }
 
@@ -872,11 +872,12 @@
     box-shadow: 1px 1px 0px #000;
     background: white;
 }
+
 #box_tree_view_exibir {
     border-right: 2px solid black;
     border-left: 2px solid black;
-
 }
+
 #tree_view_ranking {
     padding: 15px;
 }
@@ -1146,9 +1147,9 @@
 }
 
 #codigo_prompt{
-    border: 4px solid black;
-    border-radius: 10px;
-    padding:20px;
+    /*border: 4px solid black;
+    border-radius: 10px;*/
+    padding: 500px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -1168,9 +1169,38 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#testeaaa{
+#codigo_prompt_box{
     border: 4px solid black;
     border-radius: 10px;
     padding:20px;
     font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 18px;
+    border-bottom: 3px solid black;
+    color: black;   
+}
+
+/* CSS dos envios */
+
+#box_status_envios {
+    background: #0077B6;
+    background-image: linear-gradient( #0077B6,#02033B);   
+    padding: 150px;
+}
+#pag_envios {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 1px 1px 0px #000;
+    background: white;
+}
+
+#box_tree_view_envios {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+#tree_view_status_envio {
+    padding: 15px;
 }
