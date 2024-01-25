@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkMessageDialog" id="codigo_prompt">
@@ -7,9 +7,10 @@
     <property name="can-focus">False</property>
     <property name="type-hint">dialog</property>
     <property name="text" translatable="yes">Envio N</property>
-    <property name="secondary-text" translatable="yes"> </property>
+    <property name="secondary-text" translatable="yes">Código</property>
     <child internal-child="vbox">
       <object class="GtkBox">
+        <property name="name">testeaaa</property>
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
@@ -51,12 +52,14 @@
             <property name="min-content-height">200</property>
             <child>
               <object class="GtkViewport">
+                <property name="name">codigo_prompt_text</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkLabel" id="codigo_prompt_label">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="halign">center</property>
                     <property name="label" translatable="yes">CODIGO</property>
                   </object>
                 </child>
@@ -114,53 +117,6 @@
             <property name="fill">False</property>
             <property name="position">0</property>
           </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkMessageDialog" id="julgando_prompt">
-    <property name="name">prompt</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">window-close</property>
-    <property name="type-hint">dialog</property>
-    <property name="text" translatable="yes">texto primario</property>
-    <property name="secondary-text" translatable="yes">texto-secundario</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="name">prompt_box</property>
-        <property name="can-focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can-focus">False</property>
-            <property name="layout-style">end</property>
-            <child>
-              <object class="GtkButton" id="bt_ok_message_dialog_box1">
-                <property name="label" translatable="yes">ok</property>
-                <property name="name">bt_prompt_text</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>
@@ -691,9 +647,11 @@ Cadastro
                     <property name="column-homogeneous">True</property>
                     <child>
                       <object class="GtkBox">
+                        <property name="name">box_guardar_itens_lista_ativas</property>
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="orientation">vertical</property>
+                        <property name="spacing">10</property>
                         <child>
                           <object class="GtkLabel">
                             <property name="name">label_listas_ativas_exbir</property>
@@ -711,46 +669,60 @@ Cadastro
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkTreeView" id="tree_view_listas_ativas">
+                          <!-- n-columns=1 n-rows=1 -->
+                          <object class="GtkGrid">
+                            <property name="name">box_tree_view_lista_ativa</property>
                             <property name="visible">True</property>
-                            <property name="can-focus">True</property>
-                            <property name="model">list_store_listas_ativas</property>
-                            <signal name="row-activated" handler="on_tree_view_listas_ativas_row_activated" swapped="no"/>
-                            <child internal-child="selection">
-                              <object class="GtkTreeSelection"/>
-                            </child>
+                            <property name="can-focus">False</property>
+                            <property name="row-homogeneous">True</property>
+                            <property name="column-homogeneous">True</property>
                             <child>
-                              <object class="GtkTreeViewColumn">
-                                <property name="title" translatable="yes">Número</property>
+                              <object class="GtkTreeView" id="tree_view_listas_ativas">
+                                <property name="name">tree_view_lista_ativas</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="model">list_store_listas_ativas</property>
+                                <property name="show-expanders">False</property>
+                                <property name="enable-grid-lines">both</property>
+                                <signal name="row-activated" handler="on_tree_view_listas_ativas_row_activated" swapped="no"/>
                                 <child>
-                                  <object class="GtkCellRendererText" id="numero_lista"/>
-                                  <attributes>
-                                    <attribute name="text">0</attribute>
-                                  </attributes>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Número</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="numero_lista"/>
+                                      <attributes>
+                                        <attribute name="text">0</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Nome</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="nome_lista"/>
+                                      <attributes>
+                                        <attribute name="text">1</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkTreeViewColumn">
+                                    <property name="title" translatable="yes">Questoes</property>
+                                    <child>
+                                      <object class="GtkCellRendererText" id="questoes_lista"/>
+                                      <attributes>
+                                        <attribute name="text">2</attribute>
+                                      </attributes>
+                                    </child>
+                                  </object>
                                 </child>
                               </object>
-                            </child>
-                            <child>
-                              <object class="GtkTreeViewColumn">
-                                <property name="title" translatable="yes">Nome</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="nome_lista"/>
-                                  <attributes>
-                                    <attribute name="text">1</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkTreeViewColumn">
-                                <property name="title" translatable="yes">Questoes</property>
-                                <child>
-                                  <object class="GtkCellRendererText" id="questoes_lista"/>
-                                  <attributes>
-                                    <attribute name="text">2</attribute>
-                                  </attributes>
-                                </child>
-                              </object>
+                              <packing>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                              </packing>
                             </child>
                           </object>
                           <packing>
@@ -767,7 +739,7 @@ Cadastro
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
                             <property name="halign">center</property>
-                            <property name="valign">center</property>
+                            <property name="valign">start</property>
                             <property name="margin-left">80</property>
                             <property name="margin-right">80</property>
                             <property name="margin-start">80</property>
@@ -1673,7 +1645,7 @@ Cadastro
                                     <property name="homogeneous">True</property>
                                     <child>
                                       <object class="GtkButton" id="bt_back_descricao_questao">
-                                        <property name="label">gtk-go-back</property>
+                                        <property name="label">Voltar</property>
                                         <property name="name">bt_voltar_exibir_questao</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
@@ -1683,7 +1655,6 @@ Cadastro
                                         <property name="margin-start">10</property>
                                         <property name="margin-end">10</property>
                                         <property name="margin-top">1</property>
-                                        <property name="use-stock">True</property>
                                         <property name="always-show-image">True</property>
                                         <signal name="clicked" handler="on_bt_back_descricao_questao_clicked" swapped="no"/>
                                       </object>
@@ -1711,7 +1682,7 @@ Cadastro
                                     </child>
                                     <child>
                                       <object class="GtkButton" id="bt_forward_descricao_questao">
-                                        <property name="label">gtk-go-forward</property>
+                                        <property name="label">avançar</property>
                                         <property name="name">bt_avancar_exibir_questao</property>
                                         <property name="visible">True</property>
                                         <property name="can-focus">True</property>
@@ -1720,7 +1691,6 @@ Cadastro
                                         <property name="margin-right">10</property>
                                         <property name="margin-start">10</property>
                                         <property name="margin-end">10</property>
-                                        <property name="use-stock">True</property>
                                         <property name="image-position">right</property>
                                         <property name="always-show-image">True</property>
                                         <signal name="clicked" handler="on_bt_forward_descricao_questao_clicked" swapped="no"/>
@@ -2040,9 +2010,11 @@ Cadastro
                                 <property name="column-homogeneous">True</property>
                                 <child>
                                   <object class="GtkTreeView" id="tree_view_envios">
+                                    <property name="name">tree_view_status_envio</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="model">list_store_envios</property>
+                                    <property name="enable-grid-lines">both</property>
                                     <signal name="row-activated" handler="on_tree_view_envios_row_activated" swapped="no"/>
                                     <child internal-child="selection">
                                       <object class="GtkTreeSelection"/>

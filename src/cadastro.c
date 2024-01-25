@@ -1,5 +1,16 @@
 #include "../include/cadastro.h"
 #include "../include/includes.h"
+#include "../include/login.h"
+#define max_nome 35
+#define comando 100
+
+void tolower_case (char *nome) {
+    for (int i = 0; i < strlen(nome); i++) {
+        if (nome[i] >= 'A' && nome[i] <= 'Z') {
+            nome[i] +=  'a' - 'A';
+        }
+    } 
+}
 
 /**
  * @brief Verifica se o nome de usuário já existe no sistema
@@ -27,7 +38,7 @@ bool usuario_existente(const char *usuario) {
     destruir_lista(Lista_usuarios);
 }
 
-bool verificar_caracteres_proibidos(const char string[35]) {
+bool verificar_caracteres_proibidos(const char string[max_nome]) {
     for (int i = 0; i < strlen(string); i++) {
         if(string[i] == ',') {
             return true;
@@ -50,11 +61,14 @@ int cadastro(const char *usuario, const char *senha) {
     if (verificar_caracteres_proibidos(usuario) || verificar_caracteres_proibidos(senha)) return 3;
     FILE *arquivo = NULL;
     arquivo = fopen(PATH_USUARIOS_CADASTRADOS_CSV, "a");
-    char nome[202];
-    char sen[202];
+    char nome[comando];
+    char sen[comando];
     
     strcpy(nome, usuario);
     strcpy(sen, senha);
+    tolower_case(nome);
+    printf("fui pra lower %s", nome);
+
     fputs(nome, arquivo);
     fputc(',', arquivo);
     fputs(sen, arquivo);

@@ -8,18 +8,26 @@
     color: white;
 }
 
-#bt_prompt_text {
-    border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-}
 
-#bt_prompt_text:hover {
+#bt_prompt_text {
     background: #F28F38;
     border-radius: 10px;
     font-size: 19px;
     font-weight: bolder;
     border: 3px solid black;
     color: black
+}
+#bt_prompt_text:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+
 }
 
 #prompt {
@@ -562,6 +570,36 @@
 
 }
 
+#box_guardar_itens_lista_ativas {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.792);
+    border: 3px solid black;
+}
+#box_tree_view_lista_ativa {
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+#tree_view_lista_ativas {
+    color: black;
+    padding: 10px;
+  
+}
+
+#tree_view_lista_ativas:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
 #label_titulo_exibir_lista{
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;;
@@ -571,7 +609,6 @@
 #lista_atual_label {
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;;
-    color: black;
 }
 
 #grid_list_ative{
@@ -694,7 +731,6 @@
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    border-bottom: 2px solid black;
     font-weight: bolder;
 }
 
@@ -861,6 +897,7 @@
     padding: 40px;
     box-shadow: 1px 1px 0px #000;
     background: white;
+
 }
 
 #bt_envios_mostar_lista {  
@@ -925,9 +962,12 @@
 }
 
 #bt_avancar_exibir_questao {
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
     color: black;
-    border: 2px solid black;
-    font-size: 15px;
+    background: #F28F38;
 }
 
 #bt_avancar_exibir_questao:hover {
@@ -936,9 +976,12 @@
 }
 
 #bt_voltar_exibir_questao {
+    border-radius: 10px;
+    font-size: 19px;
+    font-weight: bolder;
+    border: 3px solid black;
     color: black;
-    border: 2px solid black;
-    font-size: 15px;
+    background: #F28F38;
 }
 
 #bt_voltar_exibir_questao:hover {
@@ -958,7 +1001,10 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 19px;
     font-weight: bold;
+    background: white;
     color: black;
+    border: 2px solid black;
+
 }
 
 #label_numero_questao_exibir {
@@ -1025,6 +1071,7 @@
     border-radius: 10px;
     font-size: 19px;
     font-weight: bolder;
+    background: #F28F38;
     border: 3px solid black;
     color: black
 }
@@ -1076,3 +1123,54 @@
 }
 
 
+#tree_view_status_envio{
+    color: black;
+    padding: 10px;      
+}
+#box_status_envio {
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background: white;
+}
+#tree_view_status_envio:hover{
+    opacity: 0.9;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    border: 3px solid white;
+    border-radius: 10px;
+    transition: ease-in-out 450ms;
+    font-size: 19px;
+    background: #F28F38;
+    background-image: linear-gradient(#F28F38, #ee4e14);
+}
+
+#codigo_prompt{
+    border: 4px solid black;
+    border-radius: 10px;
+    padding:20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#codigo_prompt:hover{
+    background: #F28F38;
+    border-radius: 10px;
+    
+    font-weight: bolder;
+    border: 3px solid black;
+    color: black
+}
+
+#codigo_prompt_text{
+    border: 4px solid black;
+    border-radius: 10px;
+    padding:20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#testeaaa{
+    border: 4px solid black;
+    border-radius: 10px;
+    padding:20px;
+    font-family: Arial, Helvetica, sans-serif;
+}

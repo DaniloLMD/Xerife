@@ -2,7 +2,7 @@
 #include <gtk-3.0/gtk/gtk.h>
 
 
-#define max_comando 370
+#define max_comando 150
 
 
 /**

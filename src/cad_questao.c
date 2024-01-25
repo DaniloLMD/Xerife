@@ -2,14 +2,14 @@
 #include "../include/includes.h"
 #include "../include/pilha_cadastro.h"
 
-
+#define caminho_tamanho 150
 
 pilha_desq *pilha_geral;
 int q1;
 int q2;
-char caminho_atual[90];
-char caminho_final[370];
-char lista_atual[200];
+char caminho_atual[caminho_tamanho];
+char caminho_final[caminho_tamanho];
+char lista_atual[caminho_tamanho];
 
 /**
  * @brief está função vai criar as pastas que vão receber cada questão, criando o caminho automatico até elas
@@ -42,7 +42,7 @@ void cria_pastas_desq_questao (const char * qtd_questao) {
  * @return void
  */
 void cria_pastas_entrada_saida (const char *qtd_questao) {
-    char caminho[200] = "";
+    char caminho[caminho_tamanho] = "";
     int max_questao = atoi(qtd_questao);
 
     for (int i = 1; i <= max_questao; i++) {
@@ -92,7 +92,7 @@ void gerar_caminhos() {
  * @return 
  */
 void gravar_pilha_geral(const char *caminho, char *caminho_onde_vai) {
-    char comando[500];
+    char comando[caminho_tamanho];
     sprintf(comando, "cp %s %s", caminho, caminho_onde_vai);
     push(pilha_geral, comando);
 }

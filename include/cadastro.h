@@ -6,5 +6,6 @@
 
 int cadastro(const char *usuario, const char *senha);
 bool usuario_existente(const char *usuario);
+void tolower_case (char *nome);
 
 #endif

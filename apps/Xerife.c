@@ -269,7 +269,7 @@ void on_bt_login_tela_login_clicked () {
             mensagem("logado com sucesso !!!", "");
             gtk_entry_set_text(eusuario, "");
             gtk_entry_set_text(esenha, "");
-            gtk_stack_set_visible_child_name(stack, "hub");
+            //gtk_stack_set_visible_child_name(stack, "hub");
 
             break;
         case 2:
@@ -288,7 +288,7 @@ void on_bt_login_tela_login_clicked () {
             break;
         }
     }  
-    //gtk_stack_set_visible_child_name(stack, "hub");
+    gtk_stack_set_visible_child_name(stack, "hub");
 }
 
 /**
@@ -402,9 +402,9 @@ void on_bt_mostrar_listas_ativas_clicked () {
 
 
     
-    iniciar_list_store_listas_ativas(builder);
     gtk_stack_set_visible_child_name(stack, "pag_mostrar_listas");
     gtk_stack_set_visible_child_name(stack_exibir_lista, "pag_exibir_questao");
+    iniciar_list_store_listas_ativas(builder);
 }
 
 /**

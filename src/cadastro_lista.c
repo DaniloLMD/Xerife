@@ -4,6 +4,7 @@
 #include "../include/envios.h"
 
 int qtd_lista = 0;
+#define tamanho_dos_caminhos 150
 
 bool compara_string (const char *nome, char texto[]) {
     if (strlen(nome) != strlen(texto)) return false;
@@ -15,8 +16,8 @@ bool compara_string (const char *nome, char texto[]) {
 }
 
 bool lista_ja_cadastrada (const char *nome) {
-    char texto[100] = "";
-    char caminho[200];
+    char texto[tamanho_dos_caminhos] = "";
+    char caminho[tamanho_dos_caminhos];
     int n_list = 0;
 
     FILE *file = NULL;
@@ -77,18 +78,18 @@ int verificacoes_nome_lista(const char* nome) {
  * @return void
  */
 void cadastrar_nome_lista(char const *nome) {
-    char nome_da_questao[100] = "";
-    char aux[200]= "";
+    char nome_da_questao[tamanho_dos_caminhos] = "";
+    char aux[tamanho_dos_caminhos]= "";
     //construindo o caminho para abrir o arquivo
-    char caminho[500];
+    char caminho[tamanho_dos_caminhos];
     strcat(aux, PATH_BANCO_LISTAS);
     strcat(aux, "/");
     strcpy(caminho, aux);
-    char pasta[500] = "lista";
-    char nome_arq[500] =  "/nome_lista";
+    char pasta[tamanho_dos_caminhos] = "lista";
+    char nome_arq[tamanho_dos_caminhos] =  "/nome_lista";
     //abrindo o arquivo que guarda a quantidade de listas no sistema
     FILE *file = fopen(PATH_QTD_TXT, "r");  
-    char numero[200] = "";
+    char numero[tamanho_dos_caminhos] = "";
     //lendo a quantidade de listas no sistema
     fscanf(file, "%[^\n]", numero);
     strcat(pasta, numero);
@@ -115,12 +116,12 @@ void cadastrar_nome_lista(char const *nome) {
  */
 void criar_pasta_lista () {
     //mesmo processo da função anterior
-    char caminho[2000];
-    g_snprintf(caminho, 2000, "mkdir %s/lista", PATH_BANCO_LISTAS);
+    char caminho[tamanho_dos_caminhos];
+    g_snprintf(caminho, tamanho_dos_caminhos, "mkdir %s/lista", PATH_BANCO_LISTAS);
 
     //criando o arquivo de ranking
     FILE *file = fopen(PATH_QTD_TXT, "r");  
-    char numero[200] = "";  
+    char numero[tamanho_dos_caminhos] = "";  
     fscanf(file, "%[^\n]", numero);
 
     strcat(caminho, numero);
@@ -132,7 +133,7 @@ void criar_pasta_lista () {
     inicializar_pasta_envios(get_qtd_listas());
 
     //criando o arquivo de rank
-    char rank_path[100];
+    char rank_path[tamanho_dos_caminhos];
     FILE *rank;
     int n_lista = atoi(numero);
     
@@ -149,7 +150,7 @@ void criar_pasta_lista () {
 }
 
 void cria_past_qtd_entrada_saida(const char* qtd_entrada_saida, const char* qtd_questoes) {
-    char comando[200] = "";
+    char comando[tamanho_dos_caminhos] = "";
     sprintf(comando, "mkdir dados/banco_listas/lista%d/qtd_entrada_saida", qtd_lista);
     system(comando);
     strcpy(comando, "");
@@ -178,7 +179,7 @@ void atualizar_qtd_lista () {
     FILE *file = NULL;
 
     file = fopen(PATH_QTD_TXT, "r");
-    char quantidade[200] = "";
+    char quantidade[tamanho_dos_caminhos] = "";
     int intquantidade = 0;
     
     fscanf(file ,"%[^\n]", quantidade);
