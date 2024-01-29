@@ -1,0 +1,51 @@
+1,DaniloLMD,RUNTIME ERROR,cpp
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int busca_maior(vector<int> v) {
+    int i = 0, maior = v[0];
+
+    for (int c = 0; c < v.size(); c++) {
+        if (v[c] > maior) {
+            i = c;
+            maior = v[c];
+        }
+    }
+    return i;
+}
+
+int soma_digitos(int num) {
+    int soma = 0;
+    while (num != 0) {
+        soma += num % 10;
+        num /= 10;
+    }
+    return soma;
+}
+
+int main() {
+    int qtd_flores, posicao_abelha, i_maior;
+    cin >> qtd_flores;
+    cin >> posicao_abelha;
+    vector<int> flores(qtd_flores);
+
+    //preenchendo o vector com qtd de polen de cada flor
+    for (int c = 0; c < qtd_flores; c++) {
+        cin >> flores[c];
+    }
+
+
+    //fazendo as abelhas na frente da gertrude trabalhar
+    for (int c = 1; c < posicao_abelha; c++) {
+        i_maior = busca_maior(flores);
+        flores[i_maior] -= soma_digitos(flores[i_maior]);
+    }
+    i_maior = busca_maior(flores);
+    //pegando a quantidade necessaria de polen para a gertrude
+    cout << soma_digitos(flores[i_maior]) << endl;
+
+
+    return 0;
+}

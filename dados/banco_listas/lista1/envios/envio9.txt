@@ -1,0 +1,6 @@
+1,paulo,ACCEPTED,c
+#include <stdio.h>
+
+int main(){
+    printf("Hello, World!\n");
+}
