@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkMessageDialog" id="codigo_prompt">
@@ -168,6 +168,18 @@
       <column type="gint"/>
     </columns>
   </object>
+  <object class="GtkListStore" id="list_store_rank">
+    <columns>
+      <!-- column-name Posição -->
+      <column type="gint"/>
+      <!-- column-name Nome -->
+      <column type="gchararray"/>
+      <!-- column-name Acertos -->
+      <column type="gint"/>
+      <!-- column-name Tentativas -->
+      <column type="gint"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="main_window">
     <property name="name">main_window</property>
     <property name="can-focus">False</property>
@@ -299,7 +311,7 @@
                                 <property name="name">Xerefi-login</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Xerife-logo</property>
+                                <property name="label" translatable="yes">Xerife</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -2157,17 +2169,5 @@ Cadastro
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListStore" id="list_store_rank">
-    <columns>
-      <!-- column-name Posição -->
-      <column type="gint"/>
-      <!-- column-name Nome -->
-      <column type="gchararray"/>
-      <!-- column-name Acertos -->
-      <column type="gint"/>
-      <!-- column-name Tentativas -->
-      <column type="gint"/>
-    </columns>
   </object>
 </interface>

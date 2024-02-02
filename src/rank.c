@@ -1,7 +1,6 @@
 #include "../include/includes.h"
 #include "../include/rank.h"
 
-
 // #############        Funcoes da lista        #######################
 
 /**

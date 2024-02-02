@@ -62,10 +62,6 @@ bool adicionar_l_fim(lhead *lista, char titulo [max_titulo]) {
             lista -> end -> next = lista -> begin;
             lista -> begin -> prev = lista -> end;
 
-            /*lista -> end = no;
-            lista -> end -> prev = aux;
-            aux -> next = lista -> end;
-            */
         }
         
         lista -> tamanho++;

@@ -5,8 +5,6 @@ typedef struct {
     int numero_da_lista;
     int qtd_entrada_saida;
     int quantidade_de_questoes;
-
-    //numero da questao atual
     int numero_da_questao;
 } llista;
 

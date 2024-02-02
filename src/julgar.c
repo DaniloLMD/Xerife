@@ -158,9 +158,6 @@ int checa_resposta(int n_lista, int n_questao, int n_caso_de_teste){
  * @return resultado do julgamento, ACCEPTED, COMPILATION ERROR, etc
  */
 int judge_c_file(int n_lista, int n_questao, int n_caso_de_teste){
-
-
-    
     //montando o comando para compilar o arquivo
     char comando_compilar[300];
     snprintf(comando_compilar, 300, "gcc %s%s -o %s", PATH_CODIGO_USUARIO, file_extension, PATH_COMPILADO_USUARIO);
