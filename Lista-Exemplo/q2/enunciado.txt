@@ -1,0 +1,8 @@
+Leia o nome de uma pessoa e exiba na tela a mensagem "Ola, [NOME]"
+
+Exemplo:
+Entrada:
+Gustavo
+
+Saida:
+Ola, Gustavo

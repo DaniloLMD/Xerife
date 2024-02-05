@@ -1,0 +1,8 @@
+Leia dois números inteiros, A e B, e exiba na tela o resultado de A/B. Caso não for possivel, exiba a mensagem "ERROR".
+
+Exemplo:
+Entrada
+10 2
+
+Saida
+5
