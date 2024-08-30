@@ -9,7 +9,6 @@ Este projeto final foi desenvolvido para a disciplina de Algoritmos e Estruturas
     <img src="https://skillicons.dev/icons?i=c,cmake,gtk&theme=dark" alt="Tecnologias usadas" />
   </a>
 </div>
-## Telas Do Aplicativo
 
 ## Telas Do Aplicativo
 
