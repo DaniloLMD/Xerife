@@ -11,9 +11,36 @@ Projeto final para a disciplina de Algoritmos e Estruturas de Dados 1.
 </div>
 
 ## Para executar:
-
-### Tela Inicial
+###Telas Do Aplicativo
+### Login
 ![Tela Inicial](telas/login.png)
+
+### Cadastro
+![Tela Inicial](telas/cadastro.png)
+
+### Hub Principal
+![Tela Inicial](telas/hub.png)
+
+### Cadastrar Lista
+![Tela Inicial](telas/CadastrarLista.png)
+
+### Enviar Arquivos Da Lista
+![Tela Inicial](telas/EnviarArquivos.png)
+
+### Deletar Lista
+![Tela Inicial](telas/DeletarLista.png)
+
+### Listas Ativas
+![Tela Inicial](telas/HubListas.png)
+
+### Questões Ranks e envios
+![Tela Inicial](telas/AreaListIndividual.png)
+
+### Rank
+![Tela Inicial](telas/rank.png)
+
+### Envios
+![Tela Inicial](telas/envios.png)
 
 
 ```bash
