@@ -9,40 +9,39 @@ Projeto final para a disciplina de Algoritmos e Estruturas de Dados 1.
     <img src="https://skillicons.dev/icons?i=c,cmake,gtk&theme=dark" alt="Tecnologias usadas" />
   </a>
 </div>
+## Telas Do Aplicativo
 
-## Para executar:
-###Telas Do Aplicativo
 ### Login
-![Tela Inicial](telas/login.png)
+<img src="telas/login.png" alt="Tela Login" width="400"/>
 
 ### Cadastro
-![Tela Inicial](telas/cadastro.png)
+<img src="telas/cadastro.png" alt="Tela Cadastro" width="400"/>
 
 ### Hub Principal
-![Tela Inicial](telas/hub.png)
+<img src="telas/hub.png" alt="Tela Hub Principal" width="400"/>
 
 ### Cadastrar Lista
-![Tela Inicial](telas/CadastrarLista.png)
+<img src="telas/CadastrarLista.png" alt="Tela Cadastrar Lista" width="400"/>
 
 ### Enviar Arquivos Da Lista
-![Tela Inicial](telas/EnviarArquivos.png)
+<img src="telas/EnviarArquivos.png" alt="Tela Enviar Arquivos Da Lista" width="400"/>
 
 ### Deletar Lista
-![Tela Inicial](telas/DeletarLista.png)
+<img src="telas/DeletarLista.png" alt="Tela Deletar Lista" width="400"/>
 
 ### Listas Ativas
-![Tela Inicial](telas/HubListas.png)
+<img src="telas/HubListas.png" alt="Tela Listas Ativas" width="400"/>
 
-### Questões Ranks e envios
-![Tela Inicial](telas/AreaListIndividual.png)
+### Questões Ranks e Envios
+<img src="telas/AreaListIndividual.png" alt="Tela Questões Ranks e Envios" width="400"/>
 
 ### Rank
-![Tela Inicial](telas/rank.png)
+<img src="telas/rank.png" alt="Tela Rank" width="400"/>
 
 ### Envios
-![Tela Inicial](telas/envios.png)
+<img src="telas/envios.png" alt="Tela Envios" width="400"/>
 
-
+## Para executar:
 ```bash
 git clone https://github.com/DaniloLMD/Xerife/
 cd Xerife
