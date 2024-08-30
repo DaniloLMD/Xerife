@@ -47,3 +47,9 @@ Este projeto final foi desenvolvido para a disciplina de Algoritmos e Estruturas
 git clone https://github.com/DaniloLMD/Xerife/
 cd Xerife
 make
+```
+
+## 💻 Autores
+
+- [@Danilo](https://github.com/DaniloLMD)
+- [@Luis](https://github.com/LuisFcarmo)
