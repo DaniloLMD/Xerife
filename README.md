@@ -12,6 +12,10 @@ Projeto final para a disciplina de Algoritmos e Estruturas de Dados 1.
 
 ## Para executar:
 
+### Tela Inicial
+![Tela Inicial](telas/login.png)
+
+
 ```bash
 git clone https://github.com/DaniloLMD/Xerife/
 cd Xerife
